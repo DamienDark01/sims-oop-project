@@ -2,24 +2,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class StudentDao {
+public class PrincipalDao {
     
-    public static ArrayList<Student> getAll() {
-        ArrayList<Student> list = new ArrayList<Student>();
+    public static ArrayList<Principal> getAll() {
+        ArrayList<Principal> list = new ArrayList<Principal>();
 
         try {
-            String query = "SELECT * FROM student;";
+            String query = "SELECT * FROM principal;";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
                 // column data are taken
 
-                Student student = new Student();
+                Principal principal = new Principal();
 
                 // setters are called
 
                 // object is added to ArrayList
-                list.add(student);
+                list.add(principal);
             }
 
             return list;

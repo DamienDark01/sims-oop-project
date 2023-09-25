@@ -2,10 +2,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class StudentDao {
+public class SubjectDao {
     
-    public static ArrayList<Student> getAll() {
-        ArrayList<Student> list = new ArrayList<Student>();
+    public static ArrayList<Subject> getAll() {
+        ArrayList<Subject> list = new ArrayList<Subject>();
 
         try {
             String query = "SELECT * FROM student;";
@@ -14,12 +14,12 @@ public class StudentDao {
             while (rslt.next()) {
                 // column data are taken
 
-                Student student = new Student();
+                Subject sub = new Subject();
 
                 // setters are called
 
                 // object is added to ArrayList
-                list.add(student);
+                list.add(sub);
             }
 
             return list;
