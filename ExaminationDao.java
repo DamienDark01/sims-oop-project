@@ -17,7 +17,8 @@ import java.util.ArrayList;
 // class implementation
 class ExaminationDao {
 
-    public static ArrayList<Examination> getAll() {
+    // show all
+    public ArrayList<Examination> getAll() {
         ArrayList<Examination> list = new ArrayList<Examination>();
 
         try {
@@ -37,6 +38,63 @@ class ExaminationDao {
 
             return list;
         } catch (SQLException e) {
+            // gui
+            System.out.println("Database Error: " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    // search by id
+    public ArrayList<Examination> getById(String id) {
+        ArrayList<Examination> list = new ArrayList<Examination>();
+
+        try {
+            String query = "SELECT * FROM examination WHERE id = " + id + ";";
+            ResultSet rslt = CommonDao.getResultSet(query);
+
+            while (rslt.next()) {
+                // column data
+
+                Examination exam = new Examination();
+
+                // setters are called
+
+                // add object to ArrayList
+                list.add(exam);
+            }
+
+            return list;
+        } catch (SQLException e) {
+            // gui
+            System.out.println("Database Error: " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    // search by name
+    public ArrayList<Examination> getByName(String name) {
+        ArrayList<Examination> list = new ArrayList<Examination>();
+
+        try {
+            String query = "SELECT * FROM examination WHERE name LIKE '%" + name + "';";
+            ResultSet rslt = CommonDao.getResultSet(query);
+
+            while (rslt.next()) {
+                // column data
+
+                Examination exam = new Examination();
+
+                // setters are called
+
+                // add object to ArrayList
+                list.add(exam);
+            }
+
+            return list;
+        } catch (SQLException e) {
+            // gui
             System.out.println("Database Error: " + e.getMessage());
         }
 

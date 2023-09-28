@@ -17,6 +17,7 @@ import java.util.ArrayList;
 // class implementation
 public class LaboratoryDao {
     
+    // show all
     public static ArrayList<Laboratory> getAll() {
         ArrayList<Laboratory> list = new ArrayList<Laboratory>();
 
@@ -37,6 +38,63 @@ public class LaboratoryDao {
 
             return list;
         } catch (SQLException e) {
+            // gui
+            System.out.println("Database Error: " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    // search by id
+    public ArrayList<Laboratory> getById(String id) {
+        ArrayList<Laboratory> list = new ArrayList<Laboratory>();
+
+        try {
+            String query = "SELECT * FROM laboratory WHERE id = " + id + ";";
+            ResultSet rslt = CommonDao.getResultSet(query);
+
+            while (rslt.next()) {
+                // column data
+
+                Laboratory lab = new Laboratory();
+
+                // setters are called
+
+                // add object to ArrayList
+                list.add(lab);
+            }
+
+            return list;
+        } catch (SQLException e) {
+            // gui
+            System.out.println("Database Error: " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    // search by name
+    public ArrayList<Laboratory> getByName(String name) {
+        ArrayList<Laboratory> list = new ArrayList<Laboratory>();
+
+        try {
+            String query = "SELECT * FROM laboratory WHERE name LIKE '%" + name + "';";
+            ResultSet rslt = CommonDao.getResultSet(query);
+
+            while (rslt.next()) {
+                // column data
+
+                Laboratory lab = new Laboratory();
+
+                // setters are called
+
+                // add object to ArrayList
+                list.add(lab);
+            }
+
+            return list;
+        } catch (SQLException e) {
+            // gui
             System.out.println("Database Error: " + e.getMessage());
         }
 
