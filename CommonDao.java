@@ -13,7 +13,6 @@ public class CommonDao {
     // for login validation
     public static boolean getValidation(String sqlQuery) {
         boolean isValid = false;
-        int result = 0;
 
         try {
             // correct url
@@ -22,10 +21,6 @@ public class CommonDao {
             rslt = stmt.executeQuery(sqlQuery);
 
             while (rslt.next()) {
-                result++;
-            }
-
-            if (result > 0) {
                 isValid = true;
             }
         } catch (SQLException e) {
