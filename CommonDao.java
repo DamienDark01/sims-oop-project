@@ -6,9 +6,9 @@ import java.sql.Statement;
 
 public class CommonDao {
 
-    private static Connection dbcon;
-    private static Statement stmt;
-    private static ResultSet rslt;
+    private static Connection dbcon = null;
+    private static Statement stmt = null;
+    private static ResultSet rslt = null;
 
     public static ResultSet getResultSet(String sqlQuery) {
         try {
