@@ -10,19 +10,42 @@ public class CommonDao {
     private static Statement stmt = null;
     private static ResultSet rslt = null;
 
+    // for select * queries
     public static ResultSet getResultSet(String sqlQuery) {
         try {
-            // enter correct URL
+            // correct URL
             dbcon = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "1234");
             stmt = dbcon.createStatement();
             rslt = stmt.executeQuery(sqlQuery);
 
             return rslt;
         } catch (SQLException e) {
+            // convert to GUI
             System.out.println("Database Error: " + e.getMessage());
         }
 
         return null;
+    }
+
+    // for insert, update and delete queries
+    public static boolean getInsertUpdateDeleteStatus(String sqlQuery) {
+        boolean isSuccess = false;
+
+        try {
+            // correct url
+            dbcon = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "1234");
+            stmt = dbcon.createStatement();
+            int result = stmt.executeUpdate(sqlQuery);
+
+            if (result > 0) {
+                isSuccess = true;
+            }
+        } catch (SQLException e) {
+            // convert to GUI
+            System.out.println("Database Error : " + e.getMessage());
+        }
+
+        return isSuccess;
     }
 
 }
