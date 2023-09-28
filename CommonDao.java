@@ -10,6 +10,32 @@ public class CommonDao {
     private static Statement stmt = null;
     private static ResultSet rslt = null;
 
+    // for login validation
+    public static boolean getValidation(String sqlQuery) {
+        boolean isValid = false;
+        int result = 0;
+
+        try {
+            // correct url
+            dbcon = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "1234");
+            stmt = dbcon.createStatement();
+            rslt = stmt.executeQuery(sqlQuery);
+
+            while (rslt.next()) {
+                result++;
+            }
+
+            if (result > 0) {
+                isValid = true;
+            }
+        } catch (SQLException e) {
+            // convert to GUI
+            System.out.println("Database Error: " + e.getMessage());
+        }
+
+        return isValid;
+    }
+
     // for select * queries
     public static ResultSet getResultSet(String sqlQuery) {
         try {
