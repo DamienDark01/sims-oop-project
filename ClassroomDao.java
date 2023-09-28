@@ -1,7 +1,20 @@
+/*
+ * Classname : ClassroomDao
+ * Data Access Object class
+ *
+ * Version info : ~
+ *
+ * Copyright notice
+ * Author Name : 
+ * Author Reg No : 
+ */
+
+// imports
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+// class implementation
 class ClassroomDao {
 
     public static ArrayList<Classroom> getAll() {

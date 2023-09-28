@@ -1,9 +1,22 @@
+/*
+ * Classname : ClassroomDao
+ * Data Access Object class
+ *
+ * Version info : ~
+ *
+ * Copyright notice
+ * Author Name : 
+ * Author Reg No : 
+ */
+
+// imports
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+// class implementation
 public class CommonDao {
 
     private static Connection dbcon = null;
@@ -31,7 +44,7 @@ public class CommonDao {
         return isValid;
     }
 
-    // for select * queries
+    // for select queries
     public static ResultSet getResultSet(String sqlQuery) {
         try {
             // correct URL
