@@ -27,10 +27,19 @@ class ExaminationDao {
 
             while (rslt.next()) {
                 // column data are taken
+                String id = rslt.getString("exam_id");
+                String subjectId = rslt.getString("sub_id");
+                String examType = rslt.getString("exam_type");
+                String duration = rslt.getString("duration");
 
                 Examination exam = new Examination();
+                Subject sub = SubjectDao.getById(subjectId);
 
                 // setters are called
+                exam.setId(id);
+                exam.setSubject(sub);
+                exam.setExamType(examType);
+                exam.setDuration(duration);
 
                 // object is added to ArrayList
                 list.add(exam);
@@ -46,18 +55,27 @@ class ExaminationDao {
     }
 
     // search by id
-    public static Examination getById(String id) {
+    public static Examination getById(String pId) {
         Examination exam = new Examination();
 
         try {
-            String query = "SELECT * FROM examination WHERE id = " + id + ";";
+            String query = "SELECT * FROM examination WHERE id = " + pId + ";";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
                 // column data
+                String id = rslt.getString("exam_id");
+                String subjectId = rslt.getString("sub_id");
+                String examType = rslt.getString("exam_type");
+                String duration = rslt.getString("duration");
+
+                Subject sub = SubjectDao.getById(subjectId);
 
                 // setters are called
-
+                exam.setId(id);
+                exam.setSubject(sub);
+                exam.setExamType(examType);
+                exam.setDuration(duration);
             }
 
             return exam;
@@ -78,11 +96,20 @@ class ExaminationDao {
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
-                // column data
+                // column data are taken
+                String id = rslt.getString("exam_id");
+                String subjectId = rslt.getString("sub_id");
+                String examType = rslt.getString("exam_type");
+                String duration = rslt.getString("duration");
 
                 Examination exam = new Examination();
+                Subject sub = SubjectDao.getById(subjectId);
 
                 // setters are called
+                exam.setId(id);
+                exam.setSubject(sub);
+                exam.setExamType(examType);
+                exam.setDuration(duration);
 
                 // add object to ArrayList
                 list.add(exam);

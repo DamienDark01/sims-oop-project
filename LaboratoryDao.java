@@ -27,10 +27,19 @@ public class LaboratoryDao {
 
             while (rslt.next()) {
                 // column data are taken
+                String id = rslt.getString("lab_id");
+                String purpose = rslt.getString("purpose");
+                String location = rslt.getString("location");
+                String teacherId = rslt.getString("teacher_id");
 
                 Laboratory lab = new Laboratory();
+                Teacher teacher = TeacherDao.getById(teacherId);
 
                 // setters are called
+                lab.setId(id);
+                lab.setPurpose(purpose);
+                lab.setLocation(location);
+                lab.setTeacher(teacher);
 
                 // object is added to ArrayList
                 list.add(lab);
@@ -46,18 +55,26 @@ public class LaboratoryDao {
     }
 
     // search by id
-    public static Laboratory getById(String id) {
+    public static Laboratory getById(String pId) {
         Laboratory lab = new Laboratory();
 
         try {
-            String query = "SELECT * FROM laboratory WHERE id = " + id + ";";
+            String query = "SELECT * FROM laboratory WHERE id = " + pId + ";";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
-                // column data
+                String id = rslt.getString("lab_id");
+                String purpose = rslt.getString("purpose");
+                String location = rslt.getString("location");
+                String teacherId = rslt.getString("teacher_id");
+
+                Teacher teacher = TeacherDao.getById(teacherId);
 
                 // setters are called
-
+                lab.setId(id);
+                lab.setPurpose(purpose);
+                lab.setLocation(location);
+                lab.setTeacher(teacher);
             }
 
             return lab;
@@ -78,11 +95,19 @@ public class LaboratoryDao {
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
-                // column data
+                String id = rslt.getString("lab_id");
+                String purpose = rslt.getString("purpose");
+                String location = rslt.getString("location");
+                String teacherId = rslt.getString("teacher_id");
 
                 Laboratory lab = new Laboratory();
+                Teacher teacher = TeacherDao.getById(teacherId);
 
                 // setters are called
+                lab.setId(id);
+                lab.setPurpose(purpose);
+                lab.setLocation(location);
+                lab.setTeacher(teacher);
 
                 // add object to ArrayList
                 list.add(lab);

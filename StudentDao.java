@@ -27,10 +27,27 @@ public class StudentDao {
 
             while (rslt.next()) {
                 // column data are taken
+                String id = rslt.getString("student_id");
+                String firstName = rslt.getString("student_f_name");
+                String lastName = rslt.getString("student_l_name");
+                String address = rslt.getString("s_address");
+                String contact = rslt.getString("s_contact");
+                String email = rslt.getString("s_email");
+                String gender = rslt.getString("gender");
+                String classId = rslt.getString("class_id");
 
                 Student student = new Student();
+                Classroom classroom = ClassroomDao.getById(classId);
 
                 // setters are called
+                student.setId(id);
+                student.setFirstName(firstName);
+                student.setLastName(lastName);
+                student.setAddress(address);
+                student.setContact(contact);
+                student.setEmail(email);
+                student.setGender(gender);
+                student.setClassroom(classroom);
 
                 // object is added to ArrayList
                 list.add(student);
@@ -46,19 +63,34 @@ public class StudentDao {
     }
 
     // search by id
-    public static Student getById(String id) {
+    public static Student getById(String pId) {
         Student student = new Student();
 
         try {
-            String query = "SELECT * FROM student WHERE id = " + id + ";";
+            String query = "SELECT * FROM student WHERE id = " + pId + ";";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
-                // column data
-
+                // column data are taken
+                String id = rslt.getString("student_id");
+                String firstName = rslt.getString("student_f_name");
+                String lastName = rslt.getString("student_l_name");
+                String address = rslt.getString("s_address");
+                String contact = rslt.getString("s_contact");
+                String email = rslt.getString("s_email");
+                String gender = rslt.getString("gender");
+                String classId = rslt.getString("class_id");
+                Classroom classroom = ClassroomDao.getById(classId);
 
                 // setters are called
-
+                student.setId(id);
+                student.setFirstName(firstName);
+                student.setLastName(lastName);
+                student.setAddress(address);
+                student.setContact(contact);
+                student.setEmail(email);
+                student.setGender(gender);
+                student.setClassroom(classroom);
             }
 
             return student;
@@ -79,11 +111,28 @@ public class StudentDao {
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
-                // column data
+                // column data are taken
+                String id = rslt.getString("student_id");
+                String firstName = rslt.getString("student_f_name");
+                String lastName = rslt.getString("student_l_name");
+                String address = rslt.getString("s_address");
+                String contact = rslt.getString("s_contact");
+                String email = rslt.getString("s_email");
+                String gender = rslt.getString("gender");
+                String classId = rslt.getString("class_id");
 
                 Student student = new Student();
+                Classroom classroom = ClassroomDao.getById(classId);
 
                 // setters are called
+                student.setId(id);
+                student.setFirstName(firstName);
+                student.setLastName(lastName);
+                student.setAddress(address);
+                student.setContact(contact);
+                student.setEmail(email);
+                student.setGender(gender);
+                student.setClassroom(classroom);
 
                 // add object to ArrayList
                 list.add(student);

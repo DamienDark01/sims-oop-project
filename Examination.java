@@ -49,7 +49,7 @@ public class Examination {
 		return subject;
 	}
 
-	public void setSubId(Subject subject) {
+	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
 

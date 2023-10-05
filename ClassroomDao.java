@@ -36,6 +36,10 @@ class ClassroomDao {
                 Teacher teacher = TeacherDao.getById(teacherId);
 
                 // setters are called
+                classroom.setId(classId);
+                classroom.setTeacher(teacher);
+                classroom.setLocation(location);
+                classroom.setCapacity(capacity);
 
                 // object is added to ArrayList
                 list.add(classroom);
@@ -60,9 +64,18 @@ class ClassroomDao {
 
             while (rslt.next()) {
                 // column data
+                String classId = rslt.getString("class_id");
+                String teacherId = rslt.getString("teacher_id");
+                String location = rslt.getString("location");
+                int capacity = rslt.getInt("capacity");
+
+                Teacher teacher = TeacherDao.getById(teacherId);
 
                 // setters are called
-
+                classroom.setId(classId);
+                classroom.setTeacher(teacher);
+                classroom.setLocation(location);
+                classroom.setCapacity(capacity);
             }
 
             return classroom;
@@ -84,10 +97,19 @@ class ClassroomDao {
 
             while (rslt.next()) {
                 // column data
+                String classId = rslt.getString("class_id");
+                String teacherId = rslt.getString("teacher_id");
+                String location = rslt.getString("location");
+                int capacity = rslt.getInt("capacity");
 
-                Classroom classroom = new Classroom();
+                Classroom classroom = ClassroomDao.getById(classId);
+                Teacher teacher = TeacherDao.getById(teacherId);
 
                 // setters are called
+                classroom.setId(classId);
+                classroom.setTeacher(teacher);
+                classroom.setLocation(location);
+                classroom.setCapacity(capacity);
 
                 // add object to ArrayList
                 list.add(classroom);

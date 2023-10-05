@@ -21,7 +21,7 @@ public class Student {
 	private String address;
 	private String contact;
 	private String email;
-	private char gender;
+	private String gender;
 	private Classroom classroom;
 
     // default constructor
@@ -32,12 +32,12 @@ public class Student {
         address = null;
         contact = null;
         email = null;
-        gender = 0;
+        gender = null;
         classroom = null;
     }
 
 	// overloaded constructor
-	public Student(String id, String firstName, String lastName, String address, String contact, String email, char gender, Classroom classroom) {
+	public Student(String id, String firstName, String lastName, String address, String contact, String email, String gender, Classroom classroom) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -97,11 +97,11 @@ public class Student {
 		this.email = email;
 	}
 
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 

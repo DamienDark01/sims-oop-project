@@ -44,11 +44,11 @@ public class Classroom {
 		this.id = id;
 	}
 
-	public Teacher getTeacherId() {
+	public Teacher getTeacher() {
 		return teacher;
 	}
 
-	public void setTeacherId(Teacher teacher) {
+	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
 	}
 

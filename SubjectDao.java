@@ -27,10 +27,16 @@ public class SubjectDao {
 
             while (rslt.next()) {
                 // column data are taken
+                String id = rslt.getString("sub_id");
+                String name = rslt.getString("sub_name");
+                int noOfModules = rslt.getInt("no_of_modules");
 
                 Subject sub = new Subject();
 
                 // setters are called
+                sub.setId(id);
+                sub.setName(name);
+                sub.setNoOfModules(noOfModules);
 
                 // object is added to ArrayList
                 list.add(sub);
@@ -45,19 +51,23 @@ public class SubjectDao {
     }
 
     // search by id
-    public static Subject getById(String id) {
+    public static Subject getById(String pId) {
         Subject sub = new Subject();
 
         try {
-            String query = "SELECT * FROM subject WHERE id = " + id + ";";
+            String query = "SELECT * FROM subject WHERE id = " + pId + ";";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
-                // column data
-
+                // column data are taken
+                String id = rslt.getString("sub_id");
+                String name = rslt.getString("sub_name");
+                int noOfModules = rslt.getInt("no_of_modules");
 
                 // setters are called
-
+                sub.setId(id);
+                sub.setName(name);
+                sub.setNoOfModules(noOfModules);
             }
 
             return sub;
@@ -70,19 +80,25 @@ public class SubjectDao {
     }
 
     // search by name
-    public static ArrayList<Subject> getByName(String name) {
+    public static ArrayList<Subject> getByName(String pName) {
         ArrayList<Subject> list = new ArrayList<Subject>();
 
         try {
-            String query = "SELECT * FROM subject WHERE name LIKE '%" + name + "';";
+            String query = "SELECT * FROM subject WHERE name LIKE '%" + pName + "';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
-                // column data
+                // column data are taken
+                String id = rslt.getString("sub_id");
+                String name = rslt.getString("sub_name");
+                int noOfModules = rslt.getInt("no_of_modules");
 
                 Subject sub = new Subject();
 
                 // setters are called
+                sub.setId(id);
+                sub.setName(name);
+                sub.setNoOfModules(noOfModules);
 
                 // add object to ArrayList
                 list.add(sub);
