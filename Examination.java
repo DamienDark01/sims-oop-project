@@ -21,7 +21,10 @@ public class Examination {
 
     // default constructor
     public Examination() {
-        //
+        id = null;
+        subId = null;
+        examType = null;
+        duration = null;
     }
 
     // overloaded constructor

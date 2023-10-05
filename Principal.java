@@ -26,7 +26,14 @@ public class Principal {
 
     // default constructor
     public Principal() {
-        //
+        id = null;
+        firstName = null;
+        lastName = null;
+        email = null;
+        contact = null;
+        position = null;
+        address = null;
+        gender = 0;
     }
 
     // overloaded constructor

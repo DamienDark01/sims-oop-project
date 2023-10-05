@@ -26,7 +26,14 @@ public class Student {
 
     // default constructor
     public Student() {
-        //
+        id = null;
+        firstName = null;
+        lastName = null;
+        address = null;
+        contact = null;
+        email = null;
+        gender = 0;
+        classId = null;
     }
 
     // overloaded constructor

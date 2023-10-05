@@ -27,7 +27,15 @@ public class Teacher {
 
     // default constructor
     public Teacher() {
-        //
+        id = null;
+        firstName = null;
+        lastName = null;
+        subId = null;
+        email = null;
+        contact = null;
+        qualification = null;
+        address = null;
+        gender = 0;
     }
 
     // overloaded constructor

@@ -22,7 +22,10 @@ public class Laboratory {
 
     // default constructor
     public Laboratory() {
-        //
+        id = null;
+        purpose = null;
+        location = null;
+        teacherId = null;
     }
 
     // overloaded constructor

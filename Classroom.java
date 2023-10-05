@@ -20,7 +20,10 @@ public class Classroom {
 
     // default constructor
     public Classroom() {
-        //
+        id = null;
+        teacherId = null;
+        location = null;
+        capacity = 0;
     }
 
     // overloaded constructor

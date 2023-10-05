@@ -21,7 +21,9 @@ public class Subject {
 
     // default constructor
     public Subject() {
-        //
+        id = null;
+        name = null;
+        noOfModules = 0;
     }
 
     // overloaded constructor
