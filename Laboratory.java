@@ -18,23 +18,23 @@ public class Laboratory {
     private String id;
     private String purpose;
     private String location;
-    private String teacherId;
+    private Teacher teacher;
 
     // default constructor
     public Laboratory() {
         id = null;
         purpose = null;
         location = null;
-        teacherId = null;
+        teacher = null;
     }
 
     // overloaded constructor
-    public Laboratory(String id, String purpose, String location, String teacherId) {
+    public Laboratory(String id, String purpose, String location, Teacher teacher) {
 		super();
 		this.id = id;
 		this.purpose = purpose;
 		this.location = location;
-		this.teacherId = teacherId;
+		this.teacher = teacher;
 	}
 
     // getters and setters
@@ -62,12 +62,12 @@ public class Laboratory {
 		this.location = location;
 	}
 
-	public String getTeacherId() {
-		return teacherId;
+	public Teacher getTeacher() {
+		return teacher;
 	}
 
-	public void setTeacherId(String teacherId) {
-		this.teacherId = teacherId;
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
 }

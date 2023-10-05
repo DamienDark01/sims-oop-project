@@ -15,23 +15,23 @@ public class Examination {
     
     // properties
     private String id;
-    private String subId;
+    private Subject subject;
     private String examType;
     private String duration;
 
     // default constructor
     public Examination() {
         id = null;
-        subId = null;
+        subject = null;
         examType = null;
         duration = null;
     }
 
     // overloaded constructor
-    public Examination(String id, String subId, String examType, String duration) {
+    public Examination(String id, Subject subject, String examType, String duration) {
 		super();
 		this.id = id;
-		this.subId = subId;
+		this.subject = subject;
 		this.examType = examType;
 		this.duration = duration;
 	}
@@ -45,12 +45,12 @@ public class Examination {
 		this.id = id;
 	}
 
-	public String getSubId() {
-		return subId;
+	public Subject getSubject() {
+		return subject;
 	}
 
-	public void setSubId(String subId) {
-		this.subId = subId;
+	public void setSubId(Subject subject) {
+		this.subject = subject;
 	}
 
 	public String getExamType() {

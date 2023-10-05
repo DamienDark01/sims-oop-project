@@ -46,8 +46,8 @@ public class PrincipalDao {
     }
 
     // search by id
-    public static ArrayList<Principal> getById(String id) {
-        ArrayList<Principal> list = new ArrayList<Principal>();
+    public static Principal getById(String id) {
+        Principal principal = new Principal();
 
         try {
             String query = "SELECT * FROM principal WHERE id = " + id + ";";
@@ -56,15 +56,12 @@ public class PrincipalDao {
             while (rslt.next()) {
                 // column data
 
-                Principal principal = new Principal();
 
                 // setters are called
 
-                // add object to ArrayList
-                list.add(principal);
             }
 
-            return list;
+            return principal;
         } catch (SQLException e) {
             // gui
             System.out.println("Database Error: " + e.getMessage());

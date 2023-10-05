@@ -46,8 +46,8 @@ public class LaboratoryDao {
     }
 
     // search by id
-    public static ArrayList<Laboratory> getById(String id) {
-        ArrayList<Laboratory> list = new ArrayList<Laboratory>();
+    public static Laboratory getById(String id) {
+        Laboratory lab = new Laboratory();
 
         try {
             String query = "SELECT * FROM laboratory WHERE id = " + id + ";";
@@ -56,15 +56,11 @@ public class LaboratoryDao {
             while (rslt.next()) {
                 // column data
 
-                Laboratory lab = new Laboratory();
-
                 // setters are called
 
-                // add object to ArrayList
-                list.add(lab);
             }
 
-            return list;
+            return lab;
         } catch (SQLException e) {
             // gui
             System.out.println("Database Error: " + e.getMessage());

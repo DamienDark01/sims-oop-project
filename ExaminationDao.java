@@ -46,8 +46,8 @@ class ExaminationDao {
     }
 
     // search by id
-    public static ArrayList<Examination> getById(String id) {
-        ArrayList<Examination> list = new ArrayList<Examination>();
+    public static Examination getById(String id) {
+        Examination exam = new Examination();
 
         try {
             String query = "SELECT * FROM examination WHERE id = " + id + ";";
@@ -56,15 +56,11 @@ class ExaminationDao {
             while (rslt.next()) {
                 // column data
 
-                Examination exam = new Examination();
-
                 // setters are called
 
-                // add object to ArrayList
-                list.add(exam);
             }
 
-            return list;
+            return exam;
         } catch (SQLException e) {
             // gui
             System.out.println("Database Error: " + e.getMessage());

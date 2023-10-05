@@ -14,23 +14,23 @@ public class Classroom {
 
     // properties
     private String id;
-    private String teacherId;
+    private Teacher teacher;
     private String location;
     private int capacity;
 
     // default constructor
     public Classroom() {
         id = null;
-        teacherId = null;
+        teacher = null;
         location = null;
         capacity = 0;
     }
 
     // overloaded constructor
-    public Classroom(String id, String teacherId, String location, int capacity) {
+    public Classroom(String id, Teacher teacher, String location, int capacity) {
 		super();
 		this.id = id;
-		this.teacherId = teacherId;
+		this.teacher = teacher;
 		this.location = location;
 		this.capacity = capacity;
 	}
@@ -44,12 +44,12 @@ public class Classroom {
 		this.id = id;
 	}
 
-	public String getTeacherId() {
-		return teacherId;
+	public Teacher getTeacherId() {
+		return teacher;
 	}
 
-	public void setTeacherId(String teacherId) {
-		this.teacherId = teacherId;
+	public void setTeacherId(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
 	public String getLocation() {

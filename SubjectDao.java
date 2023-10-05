@@ -45,8 +45,8 @@ public class SubjectDao {
     }
 
     // search by id
-    public static ArrayList<Subject> getById(String id) {
-        ArrayList<Subject> list = new ArrayList<Subject>();
+    public static Subject getById(String id) {
+        Subject sub = new Subject();
 
         try {
             String query = "SELECT * FROM subject WHERE id = " + id + ";";
@@ -55,15 +55,12 @@ public class SubjectDao {
             while (rslt.next()) {
                 // column data
 
-                Subject sub = new Subject();
 
                 // setters are called
 
-                // add object to ArrayList
-                list.add(sub);
             }
 
-            return list;
+            return sub;
         } catch (SQLException e) {
             // gui
             System.out.println("Database Error: " + e.getMessage());

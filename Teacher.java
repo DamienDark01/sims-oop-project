@@ -18,7 +18,7 @@ public class Teacher {
     private String id;
     private String firstName;
     private String lastName;
-    private String subId;
+    private Subject subject;
     private String email;
     private String contact;
     private String qualification;
@@ -30,7 +30,7 @@ public class Teacher {
         id = null;
         firstName = null;
         lastName = null;
-        subId = null;
+        subject = null;
         email = null;
         contact = null;
         qualification = null;
@@ -39,13 +39,11 @@ public class Teacher {
     }
 
     // overloaded constructor
-    public Teacher(String id, String firstName, String lastName, String subId, String email, String contact,
-			String qualification, String address, char gender) {
-		super();
+    public Teacher(String id, String firstName, String lastName, Subject subject, String email, String contact, String qualification, String address, char gender) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.subId = subId;
+		this.subject = subject;
 		this.email = email;
 		this.contact = contact;
 		this.qualification = qualification;
@@ -78,12 +76,12 @@ public class Teacher {
 		this.lastName = lastName;
 	}
 
-	public String getSubId() {
-		return subId;
+	public Subject getSubject() {
+		return subject;
 	}
 
-	public void setSubId(String subId) {
-		this.subId = subId;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 
 	public String getEmail() {

@@ -14,15 +14,15 @@
 // class implementation
 public class Student {
 
-    // properties
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String contact;
-    private String email;
-    private char gender;
-    private String classId;
+	// properties
+	private String id;
+	private String firstName;
+	private String lastName;
+	private String address;
+	private String contact;
+	private String email;
+	private char gender;
+	private Classroom classroom;
 
     // default constructor
     public Student() {
@@ -33,13 +33,11 @@ public class Student {
         contact = null;
         email = null;
         gender = 0;
-        classId = null;
+        classroom = null;
     }
 
-    // overloaded constructor
-    public Student(String id, String firstName, String lastName, String address, String contact, String email,
-			char gender, String classId) {
-		super();
+	// overloaded constructor
+	public Student(String id, String firstName, String lastName, String address, String contact, String email, char gender, Classroom classroom) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -47,11 +45,11 @@ public class Student {
 		this.contact = contact;
 		this.email = email;
 		this.gender = gender;
-		this.classId = classId;
+		this.classroom = classroom;
 	}
 
-    // getters and setters
-    public String getId() {
+	// getters and setters
+	public String getId() {
 		return id;
 	}
 
@@ -107,12 +105,12 @@ public class Student {
 		this.gender = gender;
 	}
 
-	public String getClassId() {
-		return classId;
+	public Classroom getClassroom() {
+		return classroom;
 	}
 
-	public void setClassId(String classId) {
-		this.classId = classId;
+	public void setClassroom(Classroom classroom) {
+		this.classroom = classroom;
 	}
-    
+
 }

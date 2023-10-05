@@ -46,8 +46,8 @@ public class StudentDao {
     }
 
     // search by id
-    public static ArrayList<Student> getById(String id) {
-        ArrayList<Student> list = new ArrayList<Student>();
+    public static Student getById(String id) {
+        Student student = new Student();
 
         try {
             String query = "SELECT * FROM student WHERE id = " + id + ";";
@@ -56,15 +56,12 @@ public class StudentDao {
             while (rslt.next()) {
                 // column data
 
-                Student student = new Student();
 
                 // setters are called
 
-                // add object to ArrayList
-                list.add(student);
             }
 
-            return list;
+            return student;
         } catch (SQLException e) {
             // gui
             System.out.println("Database Error: " + e.getMessage());
