@@ -13,7 +13,12 @@
 
 // class implementation
 public class Laboratory {
+
     // properties
+    private String id;
+    private String purpose;
+    private String location;
+    private String teacherId;
 
     // default constructor
     public Laboratory() {

@@ -15,6 +15,14 @@
 public class Student {
 
     // properties
+    private String id;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String contact;
+    private String email;
+    private char gender;
+    private String classId;
 
     // default constructor
     public Student() {

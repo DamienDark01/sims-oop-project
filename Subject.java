@@ -13,7 +13,11 @@
 
 // class implementation
 public class Subject {
+
     // properties
+    private String id;
+    private String name;
+    private int noOfModules;
 
     // default constructor
     public Subject() {
