@@ -28,9 +28,45 @@ public class Examination {
     }
 
     // overloaded constructor
+    public Examination(String id, String subId, String examType, String duration) {
+		super();
+		this.id = id;
+		this.subId = subId;
+		this.examType = examType;
+		this.duration = duration;
+	}
 
-    // getters
+    // getters and setters
+    public String getId() {
+		return id;
+	}
 
-    // setters
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getSubId() {
+		return subId;
+	}
+
+	public void setSubId(String subId) {
+		this.subId = subId;
+	}
+
+	public String getExamType() {
+		return examType;
+	}
+
+	public void setExamType(String examType) {
+		this.examType = examType;
+	}
+
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
 
 }

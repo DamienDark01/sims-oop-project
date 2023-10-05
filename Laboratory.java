@@ -29,9 +29,45 @@ public class Laboratory {
     }
 
     // overloaded constructor
+    public Laboratory(String id, String purpose, String location, String teacherId) {
+		super();
+		this.id = id;
+		this.purpose = purpose;
+		this.location = location;
+		this.teacherId = teacherId;
+	}
 
-    // getters
+    // getters and setters
+    public String getId() {
+		return id;
+	}
 
-    // setters
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getTeacherId() {
+		return teacherId;
+	}
+
+	public void setTeacherId(String teacherId) {
+		this.teacherId = teacherId;
+	}
 
 }

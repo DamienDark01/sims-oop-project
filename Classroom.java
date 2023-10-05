@@ -27,9 +27,45 @@ public class Classroom {
     }
 
     // overloaded constructor
+    public Classroom(String id, String teacherId, String location, int capacity) {
+		super();
+		this.id = id;
+		this.teacherId = teacherId;
+		this.location = location;
+		this.capacity = capacity;
+	}
 
-    // getters
+    // getters and setters
+    public String getId() {
+		return id;
+	}
 
-    // setters
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTeacherId() {
+		return teacherId;
+	}
+
+	public void setTeacherId(String teacherId) {
+		this.teacherId = teacherId;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
 
 }

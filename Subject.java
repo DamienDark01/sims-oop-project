@@ -27,9 +27,36 @@ public class Subject {
     }
 
     // overloaded constructor
+    public Subject(String id, String name, int noOfModules) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.noOfModules = noOfModules;
+	}
 
-    // getters
+    // getters and setters
+    public String getId() {
+		return id;
+	}
 
-    // setters
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getNoOfModules() {
+		return noOfModules;
+	}
+
+	public void setNoOfModules(int noOfModules) {
+		this.noOfModules = noOfModules;
+	}
 
 }
