@@ -29,7 +29,6 @@ public class Examination {
 
     // overloaded constructor
     public Examination(String id, Subject subject, String examType, String duration) {
-		super();
 		this.id = id;
 		this.subject = subject;
 		this.examType = examType;

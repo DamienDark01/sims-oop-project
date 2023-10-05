@@ -30,7 +30,6 @@ public class Laboratory {
 
     // overloaded constructor
     public Laboratory(String id, String purpose, String location, Teacher teacher) {
-		super();
 		this.id = id;
 		this.purpose = purpose;
 		this.location = location;

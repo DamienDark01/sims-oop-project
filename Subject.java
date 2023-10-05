@@ -28,7 +28,6 @@ public class Subject {
 
     // overloaded constructor
     public Subject(String id, String name, int noOfModules) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.noOfModules = noOfModules;

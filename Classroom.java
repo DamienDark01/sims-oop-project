@@ -28,7 +28,6 @@ public class Classroom {
 
     // overloaded constructor
     public Classroom(String id, Teacher teacher, String location, int capacity) {
-		super();
 		this.id = id;
 		this.teacher = teacher;
 		this.location = location;

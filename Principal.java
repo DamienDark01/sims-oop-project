@@ -37,9 +37,7 @@ public class Principal {
     }
 
     // overloaded constructor
-    public Principal(String id, String firstName, String lastName, String email, String contact, String position,
-			String address, String gender) {
-		super();
+    public Principal(String id, String firstName, String lastName, String email, String contact, String position, String address, String gender) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
