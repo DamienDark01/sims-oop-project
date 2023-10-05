@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 // class implementation
 public class SubjectDao {
-    
+
     // show all
     public static ArrayList<Subject> getAll() {
         ArrayList<Subject> list = new ArrayList<Subject>();
@@ -45,7 +45,7 @@ public class SubjectDao {
     }
 
     // search by id
-    public ArrayList<Subject> getById(String id) {
+    public static ArrayList<Subject> getById(String id) {
         ArrayList<Subject> list = new ArrayList<Subject>();
 
         try {
@@ -73,7 +73,7 @@ public class SubjectDao {
     }
 
     // search by name
-    public ArrayList<Subject> getByName(String name) {
+    public static ArrayList<Subject> getByName(String name) {
         ArrayList<Subject> list = new ArrayList<Subject>();
 
         try {

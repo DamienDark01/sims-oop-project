@@ -18,7 +18,7 @@ import java.util.ArrayList;
 class ExaminationDao {
 
     // show all
-    public ArrayList<Examination> getAll() {
+    public static ArrayList<Examination> getAll() {
         ArrayList<Examination> list = new ArrayList<Examination>();
 
         try {
@@ -46,7 +46,7 @@ class ExaminationDao {
     }
 
     // search by id
-    public ArrayList<Examination> getById(String id) {
+    public static ArrayList<Examination> getById(String id) {
         ArrayList<Examination> list = new ArrayList<Examination>();
 
         try {
@@ -74,7 +74,7 @@ class ExaminationDao {
     }
 
     // search by name
-    public ArrayList<Examination> getByName(String name) {
+    public static ArrayList<Examination> getByName(String name) {
         ArrayList<Examination> list = new ArrayList<Examination>();
 
         try {

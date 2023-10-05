@@ -46,7 +46,7 @@ public class PrincipalDao {
     }
 
     // search by id
-    public ArrayList<Principal> getById(String id) {
+    public static ArrayList<Principal> getById(String id) {
         ArrayList<Principal> list = new ArrayList<Principal>();
 
         try {
@@ -74,7 +74,7 @@ public class PrincipalDao {
     }
 
     // search by name
-    public ArrayList<Principal> getByName(String name) {
+    public static ArrayList<Principal> getByName(String name) {
         ArrayList<Principal> list = new ArrayList<Principal>();
 
         try {

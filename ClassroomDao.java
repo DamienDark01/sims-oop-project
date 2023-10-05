@@ -18,7 +18,7 @@ import java.util.ArrayList;
 class ClassroomDao {
 
     // show all
-    public ArrayList<Classroom> getAll() {
+    public static ArrayList<Classroom> getAll() {
         ArrayList<Classroom> list = new ArrayList<Classroom>();
 
         try {
@@ -27,8 +27,13 @@ class ClassroomDao {
 
             while (rslt.next()) {
                 // column data are taken
+                String classId = rslt.getString("class_id");
+                String teacherId = rslt.getString("teacher_id");
+                String location = rslt.getString("location");
+                int capacity = rslt.getInt("capacity");
 
-                Classroom classroom = new Classroom();
+                Classroom classroom = ClassroomDao.getById(classId);
+                Teacher teacher = TeacherDao.getById(teacherId);
 
                 // setters are called
 
@@ -46,8 +51,8 @@ class ClassroomDao {
     }
 
     // search by id
-    public ArrayList<Classroom> getById(String id) {
-        ArrayList<Classroom> list = new ArrayList<Classroom>();
+    public static Classroom getById(String id) {
+        Classroom classroom = new Classroom();
 
         try {
             String query = "SELECT * FROM classroom WHERE id = " + id + ";";
@@ -56,15 +61,11 @@ class ClassroomDao {
             while (rslt.next()) {
                 // column data
 
-                Classroom classroom = new Classroom();
-
                 // setters are called
 
-                // add object to ArrayList
-                list.add(classroom);
             }
 
-            return list;
+            return classroom;
         } catch (SQLException e) {
             // gui
             System.out.println("Database Error: " + e.getMessage());
@@ -74,11 +75,11 @@ class ClassroomDao {
     }
 
     // search by name
-    public ArrayList<Classroom> getByName(String name) {
+    public static ArrayList<Classroom> getByName(String name) {
         ArrayList<Classroom> list = new ArrayList<Classroom>();
 
         try {
-            String query = "SELECT * FROM classroom WHERE name LIKE '%" + name + "';";
+            String query = "SELECT * FROM classroom WHERE name LIKE '%" + name + "%';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {

@@ -46,7 +46,7 @@ public class LaboratoryDao {
     }
 
     // search by id
-    public ArrayList<Laboratory> getById(String id) {
+    public static ArrayList<Laboratory> getById(String id) {
         ArrayList<Laboratory> list = new ArrayList<Laboratory>();
 
         try {
@@ -74,7 +74,7 @@ public class LaboratoryDao {
     }
 
     // search by name
-    public ArrayList<Laboratory> getByName(String name) {
+    public static ArrayList<Laboratory> getByName(String name) {
         ArrayList<Laboratory> list = new ArrayList<Laboratory>();
 
         try {

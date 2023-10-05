@@ -46,7 +46,7 @@ public class StudentDao {
     }
 
     // search by id
-    public ArrayList<Student> getById(String id) {
+    public static ArrayList<Student> getById(String id) {
         ArrayList<Student> list = new ArrayList<Student>();
 
         try {
@@ -74,7 +74,7 @@ public class StudentDao {
     }
 
     // search by name
-    public ArrayList<Student> getByName(String name) {
+    public static ArrayList<Student> getByName(String name) {
         ArrayList<Student> list = new ArrayList<Student>();
 
         try {

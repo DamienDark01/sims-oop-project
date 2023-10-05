@@ -45,8 +45,8 @@ public class TeacherDao {
     }
 
     // search by id
-    public ArrayList<Teacher> getById(String id) {
-        ArrayList<Teacher> list = new ArrayList<Teacher>();
+    public static Teacher getById(String id) {
+        Teacher teacher = new Teacher();
 
         try {
             String query = "SELECT * FROM teacher WHERE id = " + id + ";";
@@ -55,15 +55,11 @@ public class TeacherDao {
             while (rslt.next()) {
                 // column data
 
-                Teacher teacher = new Teacher();
-
                 // setters are called
 
-                // add object to ArrayList
-                list.add(teacher);
             }
 
-            return list;
+            return teacher;
         } catch (SQLException e) {
             System.out.println("Database Error: " + e.getMessage());
         }
@@ -72,7 +68,7 @@ public class TeacherDao {
     }
 
     // search by name
-    public ArrayList<Teacher> getByName(String name) {
+    public static ArrayList<Teacher> getByName(String name) {
         ArrayList<Teacher> list = new ArrayList<Teacher>();
 
         try {
