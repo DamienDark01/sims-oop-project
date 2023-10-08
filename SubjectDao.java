@@ -50,7 +50,7 @@ public class SubjectDao {
             return list;
         } catch (SQLException e) {
             // show error message on JOptionPane
-            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
         }
 
         // returns null if the above list is not returned
@@ -83,7 +83,7 @@ public class SubjectDao {
             return sub;
         } catch (SQLException e) {
             // show error message on JOptionPane
-            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
         }
 
         // returns null if the above list is not returned
@@ -121,7 +121,7 @@ public class SubjectDao {
             return list;
         } catch (SQLException e) {
             // show error message on JOptionPane
-            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
         }
 
         // returns null if the above list is not returned

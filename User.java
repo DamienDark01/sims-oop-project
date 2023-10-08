@@ -17,6 +17,7 @@ public class User {
     // properties
     private String id;
     private String name;
+	private String password;
     private String accountType;
     private String email;
     private String contact;
@@ -27,6 +28,7 @@ public class User {
     public User() {
         id = null;
         name = null;
+		password = null;
         accountType = null;
         email = null;
         contact = null;
@@ -35,9 +37,10 @@ public class User {
     }
 
     // overloaded constructor
-    public User(String id, String name, String accountType, String email, String contact, String address, String gender) {
+    public User(String id, String name, String password, String accountType, String email, String contact, String address, String gender) {
         this.id = id;
         this.name = name;
+		this.password = password;
         this.accountType = accountType;
         this.email = email;
         this.contact = contact;
@@ -60,6 +63,14 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getAccountType() {

@@ -16,6 +16,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 // class implementation
 public class CommonDao {
 
@@ -29,7 +31,7 @@ public class CommonDao {
 
         try {
             // correct url
-            dbcon = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "1234");
+            dbcon = DriverManager.getConnection("jdbc:mysql://localhost/oop_project", "root", "1234");
             stmt = dbcon.createStatement();
             rslt = stmt.executeQuery(sqlQuery);
 
@@ -37,8 +39,8 @@ public class CommonDao {
                 isValid = true;
             }
         } catch (SQLException e) {
-            // convert to GUI
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
         }
 
         return isValid;
@@ -54,8 +56,8 @@ public class CommonDao {
 
             return rslt;
         } catch (SQLException e) {
-            // convert to GUI
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
         }
 
         return null;
@@ -75,8 +77,8 @@ public class CommonDao {
                 isSuccess = true;
             }
         } catch (SQLException e) {
-            // convert to GUI
-            System.out.println("Database Error : " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
         }
 
         return isSuccess;

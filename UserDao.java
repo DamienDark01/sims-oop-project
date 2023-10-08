@@ -19,6 +19,50 @@ import javax.swing.JOptionPane;
 // class implementation
 public class UserDao {
 
+    // to validate user
+    public static User validateUser(String pName, String pPw) {
+        User user = new User();
+        boolean isValid = false;
+
+        try {
+            String query = "SELECT * FROM user WHERE id = " + pName + "AND password = " + pPw + ";";
+            isValid = CommonDao.getValidation(query);
+
+            if (isValid == true) {
+                ResultSet rslt = CommonDao.getResultSet(query);
+
+                while (rslt.next()) {
+                    // column data are taken
+                    String id = rslt.getString("user_id");
+                    String name = rslt.getString("user_name");
+                    String accountType = rslt.getString("accountType");
+                    String email = rslt.getString("u_email");
+                    String contact = rslt.getString("u_contact");
+                    String address = rslt.getString("u_address");
+                    String gender = rslt.getString("gender");
+
+                    // setters are called
+                    user.setId(id);
+                    user.setName(name);
+                    user.setAccountType(accountType);
+                    user.setEmail(email);
+                    user.setContact(contact);
+                    user.setAddress(address);
+                    user.setGender(gender);
+                }
+
+                return user;
+            } else {
+                JOptionPane.showMessageDialog(null, "No User Found!");
+            }
+        } catch (SQLException e) {
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+        }
+
+        return null;
+    }
+
     // show all
     public static ArrayList<User> getAll() {
         // create the returning list
@@ -58,7 +102,7 @@ public class UserDao {
             return list;
         } catch (SQLException e) {
             // show error message on JOptionPane
-            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
         }
 
         // returns null if the above list is not returned
@@ -99,7 +143,7 @@ public class UserDao {
             return user;
         } catch (SQLException e) {
             // show error message on JOptionPane
-            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
         }
 
         // return object
@@ -145,11 +189,11 @@ public class UserDao {
             return list;
         } catch (SQLException e) {
             // show error message on JOptionPane
-            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
         }
 
         // returns null if the above list is not returned
         return null;
     }
-    
+
 }
