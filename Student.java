@@ -1,5 +1,5 @@
 /*
- * Classname : Laboratory
+ * Class Name : Laboratory
  * Entity class
  *
  * Version info : ~

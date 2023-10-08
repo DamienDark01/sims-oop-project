@@ -1,5 +1,5 @@
 /*
- * Classname : TeacherDao
+ * Class Name : TeacherDao
  * Data Access Object class
  *
  * Version info : ~
@@ -14,14 +14,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 // class implementation
 public class TeacherDao {
     
     // show all
     public static ArrayList<Teacher> getAll() {
+        // create the returning list
         ArrayList<Teacher> list = new ArrayList<Teacher>();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM teacher;";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -37,6 +41,7 @@ public class TeacherDao {
                 String address = rslt.getString("t_address");
                 String gender = rslt.getString("gender");
 
+                // using Data Access Objects to create specific objects
                 Teacher teacher = new Teacher();
                 Subject sub = SubjectDao.getById(subjectId);
 
@@ -55,19 +60,24 @@ public class TeacherDao {
                 list.add(teacher);
             }
 
+            // return list
             return list;
         } catch (SQLException e) {
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
+        // returns null if the above list is not returned
         return null;
     }
 
     // search by id
     public static Teacher getById(String pId) {
+        // create returning object
         Teacher teacher = new Teacher();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM teacher WHERE id = " + pId + ";";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -83,6 +93,7 @@ public class TeacherDao {
                 String address = rslt.getString("t_address");
                 String gender = rslt.getString("gender");
 
+                // using Data Access Objects to create specific objects
                 Subject sub = SubjectDao.getById(subjectId);
 
                 // setters are called
@@ -97,19 +108,24 @@ public class TeacherDao {
                 teacher.setGender(gender);
             }
 
+            // return object
             return teacher;
         } catch (SQLException e) {
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
+        // return object
         return null;
     }
 
     // search by name
     public static ArrayList<Teacher> getByName(String name) {
+        // create the returning list
         ArrayList<Teacher> list = new ArrayList<Teacher>();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM teacher WHERE name LIKE '%" + name + "';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -125,6 +141,7 @@ public class TeacherDao {
                 String address = rslt.getString("t_address");
                 String gender = rslt.getString("gender");
 
+                // using Data Access Objects to create specific objects
                 Teacher teacher = new Teacher();
                 Subject sub = SubjectDao.getById(subjectId);
 
@@ -143,11 +160,14 @@ public class TeacherDao {
                 list.add(teacher);
             }
 
+            // return list
             return list;
         } catch (SQLException e) {
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
+        // returns null if the above list is not returned
         return null;
     }
 

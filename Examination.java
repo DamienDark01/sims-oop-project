@@ -1,5 +1,5 @@
 /*
- * Classname : Examination
+ * Class Name : Examination
  * Entity class
  *
  * Version info : ~
@@ -11,6 +11,7 @@
 
 // imports
 
+// class implementation
 public class Examination {
     
     // properties

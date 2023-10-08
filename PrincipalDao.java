@@ -1,5 +1,5 @@
 /*
- * Classname : PricipalDao
+ * Class Name : PricipalDao
  * Data Access Object class
  *
  * Version info : ~
@@ -14,14 +14,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 // class implementation
 public class PrincipalDao {
     
     // show all
     public static ArrayList<Principal> getAll() {
+        // create the returning list
         ArrayList<Principal> list = new ArrayList<Principal>();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM principal;";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -52,10 +56,11 @@ public class PrincipalDao {
                 list.add(principal);
             }
 
+            // return list
             return list;
         } catch (SQLException e) {
-            // gui
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
         return null;
@@ -63,9 +68,11 @@ public class PrincipalDao {
 
     // search by id
     public static Principal getById(String pId) {
+        // create returning object
         Principal principal = new Principal();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM principal WHERE id = " + pId + ";";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -91,10 +98,11 @@ public class PrincipalDao {
                 principal.setGender(gender);
             }
 
+            // return object
             return principal;
         } catch (SQLException e) {
-            // gui
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
         return null;
@@ -102,9 +110,11 @@ public class PrincipalDao {
 
     // search by name
     public static ArrayList<Principal> getByName(String name) {
+        // create the returning list
         ArrayList<Principal> list = new ArrayList<Principal>();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM principal WHERE name LIKE '%" + name + "';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -135,12 +145,14 @@ public class PrincipalDao {
                 list.add(principal);
             }
 
+            // return list
             return list;
         } catch (SQLException e) {
-            // gui
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
+        // returns null if the above list is not returned
         return null;
     }
 

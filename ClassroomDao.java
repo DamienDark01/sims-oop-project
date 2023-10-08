@@ -1,5 +1,5 @@
 /*
- * Classname : ClassroomDao
+ * Class Name : ClassroomDao
  * Data Access Object class
  *
  * Version info : ~
@@ -14,14 +14,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 // class implementation
 class ClassroomDao {
 
     // show all
     public static ArrayList<Classroom> getAll() {
+        // create the returning list
         ArrayList<Classroom> list = new ArrayList<Classroom>();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM classroom;";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -32,6 +36,7 @@ class ClassroomDao {
                 String location = rslt.getString("location");
                 int capacity = rslt.getInt("capacity");
 
+                // using Data Access Objects to create specific objects
                 Classroom classroom = ClassroomDao.getById(classId);
                 Teacher teacher = TeacherDao.getById(teacherId);
 
@@ -45,20 +50,24 @@ class ClassroomDao {
                 list.add(classroom);
             }
 
+            // return list 
             return list;
         } catch (SQLException e) {
-            // gui
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
+        // returns null if the above list is not returned
         return null;
     }
 
     // search by id
     public static Classroom getById(String id) {
+        // create returning object
         Classroom classroom = new Classroom();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM classroom WHERE id = " + id + ";";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -69,6 +78,7 @@ class ClassroomDao {
                 String location = rslt.getString("location");
                 int capacity = rslt.getInt("capacity");
 
+                // using Data Access Objects to create specific objects
                 Teacher teacher = TeacherDao.getById(teacherId);
 
                 // setters are called
@@ -78,20 +88,24 @@ class ClassroomDao {
                 classroom.setCapacity(capacity);
             }
 
+            // return object
             return classroom;
         } catch (SQLException e) {
-            // gui
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
+        // returns null if the above list is not returned
         return null;
     }
 
     // search by name
     public static ArrayList<Classroom> getByName(String name) {
+        // create the returning list
         ArrayList<Classroom> list = new ArrayList<Classroom>();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM classroom WHERE name LIKE '%" + name + "%';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -102,6 +116,7 @@ class ClassroomDao {
                 String location = rslt.getString("location");
                 int capacity = rslt.getInt("capacity");
 
+                // using Data Access Objects to create specific objects
                 Classroom classroom = ClassroomDao.getById(classId);
                 Teacher teacher = TeacherDao.getById(teacherId);
 
@@ -115,12 +130,14 @@ class ClassroomDao {
                 list.add(classroom);
             }
 
+            // return list
             return list;
         } catch (SQLException e) {
-            // gui
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
+        // returns null if the above list is not returned
         return null;
     }
 

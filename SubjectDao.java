@@ -1,5 +1,5 @@
 /*
- * Classname : SubjectDao
+ * Class Name : SubjectDao
  * Data Access Object class
  *
  * Version info : ~
@@ -14,14 +14,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 // class implementation
 public class SubjectDao {
 
     // show all
     public static ArrayList<Subject> getAll() {
+        // create the returning list
         ArrayList<Subject> list = new ArrayList<Subject>();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM student;";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -42,19 +46,24 @@ public class SubjectDao {
                 list.add(sub);
             }
 
+            // return list
             return list;
         } catch (SQLException e) {
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
+        // returns null if the above list is not returned
         return null;
     }
 
     // search by id
     public static Subject getById(String pId) {
+        // create returning object
         Subject sub = new Subject();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM subject WHERE id = " + pId + ";";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -70,20 +79,24 @@ public class SubjectDao {
                 sub.setNoOfModules(noOfModules);
             }
 
+            // return object
             return sub;
         } catch (SQLException e) {
-            // gui
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
+        // returns null if the above list is not returned
         return null;
     }
 
     // search by name
     public static ArrayList<Subject> getByName(String pName) {
+        // create the returning list
         ArrayList<Subject> list = new ArrayList<Subject>();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM subject WHERE name LIKE '%" + pName + "';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -104,12 +117,14 @@ public class SubjectDao {
                 list.add(sub);
             }
 
+            // return list
             return list;
         } catch (SQLException e) {
-            // gui
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
+        // returns null if the above list is not returned
         return null;
     }
 

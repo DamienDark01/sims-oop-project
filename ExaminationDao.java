@@ -1,5 +1,5 @@
 /*
- * Classname : ExaminationDao
+ * Class Name : ExaminationDao
  * Data Access Object class
  *
  * Version info : ~
@@ -14,14 +14,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 // class implementation
 class ExaminationDao {
 
     // show all
     public static ArrayList<Examination> getAll() {
+        // create the returning list
         ArrayList<Examination> list = new ArrayList<Examination>();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM examination;";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -32,6 +36,7 @@ class ExaminationDao {
                 String examType = rslt.getString("exam_type");
                 String duration = rslt.getString("duration");
 
+                // using Data Access Objects to create specific objects
                 Examination exam = new Examination();
                 Subject sub = SubjectDao.getById(subjectId);
 
@@ -45,20 +50,24 @@ class ExaminationDao {
                 list.add(exam);
             }
 
+            // return list
             return list;
         } catch (SQLException e) {
-            // gui
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
+        // returns null if the above list is not returned
         return null;
     }
 
     // search by id
     public static Examination getById(String pId) {
+        // create returning object
         Examination exam = new Examination();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM examination WHERE id = " + pId + ";";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -69,6 +78,7 @@ class ExaminationDao {
                 String examType = rslt.getString("exam_type");
                 String duration = rslt.getString("duration");
 
+                // using Data Access Objects to create specific objects
                 Subject sub = SubjectDao.getById(subjectId);
 
                 // setters are called
@@ -78,10 +88,11 @@ class ExaminationDao {
                 exam.setDuration(duration);
             }
 
+            // return object
             return exam;
         } catch (SQLException e) {
-            // gui
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
         return null;
@@ -89,9 +100,11 @@ class ExaminationDao {
 
     // search by name
     public static ArrayList<Examination> getByName(String name) {
+        // create the returning list
         ArrayList<Examination> list = new ArrayList<Examination>();
 
         try {
+            // getting the resultset using CommonDao
             String query = "SELECT * FROM examination WHERE name LIKE '%" + name + "';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
@@ -102,6 +115,7 @@ class ExaminationDao {
                 String examType = rslt.getString("exam_type");
                 String duration = rslt.getString("duration");
 
+                // using Data Access Objects to create specific objects
                 Examination exam = new Examination();
                 Subject sub = SubjectDao.getById(subjectId);
 
@@ -115,12 +129,14 @@ class ExaminationDao {
                 list.add(exam);
             }
 
+            // return list
             return list;
         } catch (SQLException e) {
-            // gui
-            System.out.println("Database Error: " + e.getMessage());
+            // show error message on JOptionPane
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
         }
 
+        // returns null if the above list is not returned
         return null;
     }
 

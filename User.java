@@ -1,5 +1,5 @@
 /*
- * Class Name : Laboratory
+ * Class Name : User
  * Entity class
  *
  * Version info : ~
@@ -12,41 +12,38 @@
 // imports
 
 // class implementation
-public class Principal {
-    
+public class User {
+
     // properties
     private String id;
-    private String firstName;
-    private String lastName;
+    private String name;
+    private String accountType;
     private String email;
     private String contact;
-    private String position;
     private String address;
     private String gender;
 
     // default constructor
-    public Principal() {
+    public User() {
         id = null;
-        firstName = null;
-        lastName = null;
+        name = null;
+        accountType = null;
         email = null;
         contact = null;
-        position = null;
         address = null;
         gender = null;
     }
 
     // overloaded constructor
-    public Principal(String id, String firstName, String lastName, String email, String contact, String position, String address, String gender) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.contact = contact;
-		this.position = position;
-		this.address = address;
-		this.gender = gender;
-	}
+    public User(String id, String name, String accountType, String email, String contact, String address, String gender) {
+        this.id = id;
+        this.name = name;
+        this.accountType = accountType;
+        this.email = email;
+        this.contact = contact;
+        this.address = address;
+        this.gender = gender;
+    }
 
     // getters and setters
     public String getId() {
@@ -57,20 +54,20 @@ public class Principal {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getAccountType() {
+		return accountType;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
 	}
 
 	public String getEmail() {
@@ -87,14 +84,6 @@ public class Principal {
 
 	public void setContact(String contact) {
 		this.contact = contact;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
 	}
 
 	public String getAddress() {

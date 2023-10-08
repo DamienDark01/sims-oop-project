@@ -1,5 +1,5 @@
 /*
- * Classname : ClassroomDao
+ * Class Name : ClassroomDao
  * Data Access Object class
  *
  * Version info : ~
