@@ -9,10 +9,11 @@
  * Author Reg No :
  */
 
-// imports
+// package
+package project;
 
-// class implementation
-public class Classroom {
+// imports
+class Classroom {
 
     // properties
     private String id;

@@ -9,6 +9,9 @@
  * Author Reg No : 
  */
 
+// package
+package project;
+
 // imports
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +20,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 // class implementation
-public class UserDao {
+class UserDao {
 
     // to validate user
     public static User validateUser(String pName, String pPw) {
@@ -53,7 +56,7 @@ public class UserDao {
 
                 return user;
             } else {
-                JOptionPane.showMessageDialog(null, "No User Found!");
+                JOptionPane.showMessageDialog(null, "No User Found!", "Error", 0);
             }
         } catch (SQLException e) {
             // show error message on JOptionPane

@@ -1,6 +1,6 @@
 /*
- * Class Name : Laboratory
- * Entity class
+ * Class Name : Principal
+ * GUI class
  *
  * Version info : ~
  *
@@ -9,10 +9,13 @@
  * Author Reg No :
  */
 
+// package
+package project;
+
 // imports
 
 // class implementation
-public class Principal {
+class Principal {
     
     // properties
     private String id;

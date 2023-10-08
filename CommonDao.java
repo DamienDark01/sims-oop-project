@@ -9,6 +9,9 @@
  * Author Reg No : 
  */
 
+// package
+package project;
+
 // imports
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,7 +22,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 // class implementation
-public class CommonDao {
+class CommonDao {
 
     private static Connection dbcon = null;
     private static Statement stmt = null;

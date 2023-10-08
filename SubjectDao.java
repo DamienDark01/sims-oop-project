@@ -9,6 +9,9 @@
  * Author Reg No : 
  */
 
+// package
+package project;
+
 // imports
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +20,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 // class implementation
-public class SubjectDao {
+class SubjectDao {
 
     // show all
     public static ArrayList<Subject> getAll() {

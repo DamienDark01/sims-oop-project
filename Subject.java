@@ -1,5 +1,5 @@
 /*
- * Class Name : Laboratory
+ * Class Name : Subject
  * Entity class
  *
  * Version info : ~
@@ -9,10 +9,13 @@
  * Author Reg No :
  */
 
+// package
+package project;
+
 // imports
 
 // class implementation
-public class Subject {
+class Subject {
 
     // properties
     private String id;
