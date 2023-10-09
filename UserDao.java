@@ -38,8 +38,9 @@ class UserDao {
                     // column data are taken
                     String id = rslt.getString("user_id");
                     String name = rslt.getString("user_name");
-                    String accountType = rslt.getString("accountType");
+                    String accountType = rslt.getString("account_type");
                     String email = rslt.getString("u_email");
+                    String password = rslt.getString("password");
                     String contact = rslt.getString("u_contact");
                     String address = rslt.getString("u_address");
                     String gender = rslt.getString("gender");
@@ -47,6 +48,7 @@ class UserDao {
                     // setters are called
                     user.setId(id);
                     user.setName(name);
+                    user.setPassword(password);
                     user.setAccountType(accountType);
                     user.setEmail(email);
                     user.setContact(contact);
@@ -80,8 +82,9 @@ class UserDao {
                 // column data are taken
                 String id = rslt.getString("user_id");
                 String name = rslt.getString("user_name");
-                String accountType = rslt.getString("accountType");
+                String accountType = rslt.getString("account_type");
                 String email = rslt.getString("u_email");
+                String password = rslt.getString("password");
                 String contact = rslt.getString("u_contact");
                 String address = rslt.getString("u_address");
                 String gender = rslt.getString("gender");
@@ -92,6 +95,7 @@ class UserDao {
                 user.setId(id);
                 user.setName(name);
                 user.setAccountType(accountType);
+                user.setPassword(password);
                 user.setEmail(email);
                 user.setContact(contact);
                 user.setAddress(address);
@@ -126,7 +130,8 @@ class UserDao {
                 // column data are taken
                 String id = rslt.getString("user_id");
                 String name = rslt.getString("user_name");
-                String accountType = rslt.getString("accountType");
+                String password = rslt.getString("password");
+                String accountType = rslt.getString("account_type");
                 String email = rslt.getString("u_email");
                 String contact = rslt.getString("u_contact");
                 String address = rslt.getString("u_address");
@@ -135,6 +140,7 @@ class UserDao {
                 // setters are called
                 user.setId(id);
                 user.setName(name);
+                user.setPassword(password);
                 user.setAccountType(accountType);
                 user.setEmail(email);
                 user.setContact(contact);
@@ -167,7 +173,8 @@ class UserDao {
                 // column data are taken
                 String id = rslt.getString("user_id");
                 String name = rslt.getString("user_name");
-                String accountType = rslt.getString("accountType");
+                String password = rslt.getString("password");
+                String accountType = rslt.getString("account_type");
                 String email = rslt.getString("u_email");
                 String contact = rslt.getString("u_contact");
                 String address = rslt.getString("u_address");
@@ -179,6 +186,7 @@ class UserDao {
                 user.setId(id);
                 user.setName(name);
                 user.setAccountType(accountType);
+                user.setPassword(password);
                 user.setEmail(email);
                 user.setContact(contact);
                 user.setAddress(address);
