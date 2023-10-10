@@ -46,6 +46,8 @@ class NewClassroomWindow {
 	private void initialize() {
 		frmAddValues = new JFrame();
 		frmAddValues.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
+		frmAddValues.setVisible(true);
+		frmAddValues.setResizable(false);
 		frmAddValues.setTitle("Add values");
 		frmAddValues.setBounds(100, 100, 650, 700);
 		frmAddValues.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -58,10 +58,10 @@ class ClassroomDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
     // search by id
@@ -71,7 +71,7 @@ class ClassroomDao {
 
         try {
             // getting the resultset using CommonDao
-            String query = "SELECT * FROM classroom WHERE id = " + id + ";";
+            String query = "SELECT * FROM classroom WHERE class_id = '" + id + "';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
@@ -96,20 +96,20 @@ class ClassroomDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
     // search by name
-    public static ArrayList<Classroom> getByName(String name) {
+    public static ArrayList<Classroom> getByLocation(String name) {
         // create the returning list
         ArrayList<Classroom> list = new ArrayList<Classroom>();
 
         try {
             // getting the resultset using CommonDao
-            String query = "SELECT * FROM classroom WHERE name LIKE '%" + name + "%';";
+            String query = "SELECT * FROM classroom WHERE location LIKE '%" + name + "%';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
@@ -138,10 +138,10 @@ class ClassroomDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
 }

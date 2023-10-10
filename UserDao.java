@@ -23,24 +23,24 @@ import javax.swing.JOptionPane;
 class UserDao {
 
     // to validate user
-    public static User validateUser(String pName, String pPw) {
+    public static User validateUser(String pId, String pPw) {
         User user = new User();
         boolean isValid = false;
 
         try {
-            String query = "SELECT * FROM user WHERE id = " + pName + "AND password = " + pPw + ";";
+            String query = "SELECT * FROM user WHERE user_id = '" + pId + "' AND u_password = '" + pPw + "';";
             isValid = CommonDao.getValidation(query);
 
             if (isValid == true) {
                 ResultSet rslt = CommonDao.getResultSet(query);
 
-                while (rslt.next()) {
+                if (rslt.next()) {
                     // column data are taken
                     String id = rslt.getString("user_id");
                     String name = rslt.getString("user_name");
+                    String password = rslt.getString("u_password");
                     String accountType = rslt.getString("account_type");
                     String email = rslt.getString("u_email");
-                    String password = rslt.getString("password");
                     String contact = rslt.getString("u_contact");
                     String address = rslt.getString("u_address");
                     String gender = rslt.getString("gender");
@@ -59,13 +59,15 @@ class UserDao {
                 return user;
             } else {
                 JOptionPane.showMessageDialog(null, "No User Found!", "Error", 0);
+                return null;
             }
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        return null;
     }
 
     // show all
@@ -82,9 +84,9 @@ class UserDao {
                 // column data are taken
                 String id = rslt.getString("user_id");
                 String name = rslt.getString("user_name");
-                String accountType = rslt.getString("account_type");
+                String password = rslt.getString("u_password");
+                String accountType = rslt.getString("accountType");
                 String email = rslt.getString("u_email");
-                String password = rslt.getString("password");
                 String contact = rslt.getString("u_contact");
                 String address = rslt.getString("u_address");
                 String gender = rslt.getString("gender");
@@ -94,8 +96,8 @@ class UserDao {
                 // setters are called
                 user.setId(id);
                 user.setName(name);
-                user.setAccountType(accountType);
                 user.setPassword(password);
+                user.setAccountType(accountType);
                 user.setEmail(email);
                 user.setContact(contact);
                 user.setAddress(address);
@@ -110,10 +112,10 @@ class UserDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
     // search by id
@@ -123,14 +125,14 @@ class UserDao {
 
         try {
             // getting the resultset using CommonDao
-            String query = "SELECT * FROM teacher WHERE id = " + pId + ";";
+            String query = "SELECT * FROM teacher WHERE user_id = '" + pId + "';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
                 // column data are taken
                 String id = rslt.getString("user_id");
                 String name = rslt.getString("user_name");
-                String password = rslt.getString("password");
+                String password = rslt.getString("u_password");
                 String accountType = rslt.getString("account_type");
                 String email = rslt.getString("u_email");
                 String contact = rslt.getString("u_contact");
@@ -153,10 +155,10 @@ class UserDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // return object
-        return null;
     }
 
     // search by name
@@ -166,7 +168,7 @@ class UserDao {
 
         try {
             // getting the resultset using CommonDao
-            String query = "SELECT * FROM teacher WHERE name LIKE '%" + pName + "';";
+            String query = "SELECT * FROM teacher WHERE user_name LIKE '%" + pName + "%';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
@@ -185,8 +187,8 @@ class UserDao {
                 // setters are called
                 user.setId(id);
                 user.setName(name);
-                user.setAccountType(accountType);
                 user.setPassword(password);
+                user.setAccountType(accountType);
                 user.setEmail(email);
                 user.setContact(contact);
                 user.setAddress(address);
@@ -201,10 +203,10 @@ class UserDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
 }

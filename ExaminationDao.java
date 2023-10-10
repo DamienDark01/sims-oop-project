@@ -58,10 +58,10 @@ class ExaminationDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
     // search by id
@@ -71,7 +71,7 @@ class ExaminationDao {
 
         try {
             // getting the resultset using CommonDao
-            String query = "SELECT * FROM examination WHERE id = " + pId + ";";
+            String query = "SELECT * FROM examination WHERE exam_id = '" + pId + "';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
@@ -96,19 +96,20 @@ class ExaminationDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        return null;
     }
 
     // search by name
-    public static ArrayList<Examination> getByName(String name) {
+    public static ArrayList<Examination> getByType(String name) {
         // create the returning list
         ArrayList<Examination> list = new ArrayList<Examination>();
 
         try {
             // getting the resultset using CommonDao
-            String query = "SELECT * FROM examination WHERE name LIKE '%" + name + "';";
+            String query = "SELECT * FROM examination WHERE exam_type LIKE '%" + name + "%';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
@@ -137,10 +138,10 @@ class ExaminationDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
 }

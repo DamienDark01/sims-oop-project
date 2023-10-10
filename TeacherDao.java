@@ -68,10 +68,10 @@ class TeacherDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
     // search by id
@@ -81,7 +81,7 @@ class TeacherDao {
 
         try {
             // getting the resultset using CommonDao
-            String query = "SELECT * FROM teacher WHERE id = " + pId + ";";
+            String query = "SELECT * FROM teacher WHERE teacher_id = '" + pId + "';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
@@ -116,10 +116,10 @@ class TeacherDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // return object
-        return null;
     }
 
     // search by name
@@ -129,7 +129,7 @@ class TeacherDao {
 
         try {
             // getting the resultset using CommonDao
-            String query = "SELECT * FROM teacher WHERE name LIKE '%" + name + "';";
+            String query = "SELECT * FROM principal WHERE teacher_f_name LIKE '%" + name + "%' or teacher_l_name LIKE '%" + name + "%';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
@@ -168,10 +168,10 @@ class TeacherDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
 }

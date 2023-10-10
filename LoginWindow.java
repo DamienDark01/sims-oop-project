@@ -97,7 +97,8 @@ public class LoginWindow {
 		panel.add(lblNewLabel_3_2);
 		
 		JLabel lblNewLabel_4 = new JLabel("School Information Management System");
-		lblNewLabel_4.setBounds(45, 221, 204, 14);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblNewLabel_4.setBounds(10, 221, 216, 14);
 		panel.add(lblNewLabel_4);
 		
 		JPanel loginPanel = new JPanel();
@@ -115,7 +116,7 @@ public class LoginWindow {
 		loginPanel.add(uNameTextField);
 		uNameTextField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("User Name");
+		JLabel lblNewLabel_1 = new JLabel("User ID");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(118, 150, 102, 20);
 		loginPanel.add(lblNewLabel_1);
@@ -129,14 +130,16 @@ public class LoginWindow {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {	
-					String uName = uNameTextField.getText();
-					String password = passwordField.getPassword().toString();
+					String uId = uNameTextField.getText();
+					String password = new String(passwordField.getPassword());
 					
-					User user = UserDao.validateUser(uName, password);
+					User user = UserDao.validateUser(uId, password);
 					
 					if (user != null) {
 						frmLogin.dispose();
 						new DashboardWindow(user);
+					} else {
+						JOptionPane.showInternalMessageDialog(null, "Error : Wrong Credentials!", "Error", 0);
 					}
 				} catch (Exception exp) {
 					JOptionPane.showInternalMessageDialog(null, "Error : " + exp.getMessage(), "Error", 0);
@@ -146,16 +149,12 @@ public class LoginWindow {
 		btnNewButton.setBounds(179, 330, 89, 34);
 		loginPanel.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Create New Account");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnNewButton_2 = new JButton("Forgot Password");
+		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new NewUserWindow();
+				JOptionPane.showInternalMessageDialog(null, "Please Contact Support Desk", "Password Recovery", 1);
 			}
 		});
-		btnNewButton_1.setBounds(137, 437, 170, 23);
-		loginPanel.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("Forgot Password");
 		btnNewButton_2.setBounds(157, 471, 132, 23);
 		loginPanel.add(btnNewButton_2);
 		

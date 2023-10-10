@@ -48,6 +48,8 @@ class PrincipalWindow {
 		frame = new JFrame();
 		frame.setTitle("School Information Management System");
 		frame.setBounds(10, 10, 1080, 720);
+		frame.setVisible(true);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		

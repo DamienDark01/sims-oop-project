@@ -52,6 +52,8 @@ class NewTeacherWindow {
 		frmAddValues = new JFrame();
 		frmAddValues.setTitle("Add values");
 		frmAddValues.setBounds(100, 100, 650, 700);
+		frmAddValues.setVisible(true);
+		frmAddValues.setResizable(false);
 		frmAddValues.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddValues.getContentPane().setLayout(null);
 		

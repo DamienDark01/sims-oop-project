@@ -46,7 +46,9 @@ class DashboardWindow {
 	private void initialize(User user) {
 		frmDashboard = new JFrame();
 		frmDashboard.setTitle("Dashboard");
-		frmDashboard.setBounds(100, 100, 1080, 720);
+		frmDashboard.setVisible(true);
+		frmDashboard.setResizable(false);
+		frmDashboard.setBounds(10, 10, 1080, 720);
 		frmDashboard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmDashboard.getContentPane().setLayout(null);
 		

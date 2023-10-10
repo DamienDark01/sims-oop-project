@@ -27,6 +27,10 @@ class CommonDao {
     private static Connection dbcon = null;
     private static Statement stmt = null;
     private static ResultSet rslt = null;
+    private static String url = "jdbc:mysql://localhost:3306/oop_project";
+    private static String name = "root";
+    private static String password = "1234";
+    
 
     // for login validation
     public static boolean getValidation(String sqlQuery) {
@@ -34,12 +38,13 @@ class CommonDao {
 
         try {
             // correct url
-            dbcon = DriverManager.getConnection("jdbc:mysql://localhost/oop_project", "root", "1234");
+            dbcon = DriverManager.getConnection(url, name, password);
             stmt = dbcon.createStatement();
             rslt = stmt.executeQuery(sqlQuery);
 
-            while (rslt.next()) {
+            if (rslt.next()) {
                 isValid = true;
+                return isValid;
             }
         } catch (SQLException e) {
             // show error message on JOptionPane
@@ -53,7 +58,7 @@ class CommonDao {
     public static ResultSet getResultSet(String sqlQuery) {
         try {
             // correct URL
-            dbcon = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "1234");
+            dbcon = DriverManager.getConnection(url, name, password);
             stmt = dbcon.createStatement();
             rslt = stmt.executeQuery(sqlQuery);
 
@@ -61,9 +66,10 @@ class CommonDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        return null;
     }
 
     // for insert, update and delete queries
@@ -72,7 +78,7 @@ class CommonDao {
 
         try {
             // correct url
-            dbcon = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "1234");
+            dbcon = DriverManager.getConnection(url, name, password);
             stmt = dbcon.createStatement();
             int result = stmt.executeUpdate(sqlQuery);
 

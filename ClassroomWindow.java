@@ -46,6 +46,8 @@ class ClassroomWindow {
 	 */
 	private void initialize(User user) {
 		frame = new JFrame();
+		frame.setVisible(true);
+		frame.setResizable(false);
 		frame.setTitle("School Information Management System");
 		frame.setBounds(10, 10, 1080, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

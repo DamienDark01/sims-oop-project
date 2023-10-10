@@ -45,6 +45,8 @@ class NewSubjectWindow {
 	private void initialize() {
 		frmAddValues = new JFrame();
 		frmAddValues.setTitle("Add values");
+		frmAddValues.setVisible(true);
+		frmAddValues.setResizable(false);
 		frmAddValues.setBounds(100, 100, 650, 700);
 		frmAddValues.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddValues.getContentPane().setLayout(null);

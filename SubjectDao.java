@@ -54,10 +54,10 @@ class SubjectDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
     // search by id
@@ -67,7 +67,7 @@ class SubjectDao {
 
         try {
             // getting the resultset using CommonDao
-            String query = "SELECT * FROM subject WHERE id = " + pId + ";";
+            String query = "SELECT * FROM subject WHERE sub_id = '" + pId + "';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
@@ -87,10 +87,10 @@ class SubjectDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
     // search by name
@@ -100,7 +100,7 @@ class SubjectDao {
 
         try {
             // getting the resultset using CommonDao
-            String query = "SELECT * FROM subject WHERE name LIKE '%" + pName + "';";
+            String query = "SELECT * FROM subject WHERE sub_name LIKE '%" + pName + "%';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
@@ -125,10 +125,10 @@ class SubjectDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
 }

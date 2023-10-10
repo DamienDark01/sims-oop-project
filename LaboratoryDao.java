@@ -58,10 +58,10 @@ class LaboratoryDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
     // search by id
@@ -71,7 +71,7 @@ class LaboratoryDao {
 
         try {
             // getting the resultset using CommonDao
-            String query = "SELECT * FROM laboratory WHERE id = " + pId + ";";
+            String query = "SELECT * FROM laboratory WHERE lab_id = '" + pId + "';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
@@ -96,19 +96,20 @@ class LaboratoryDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        return null;
     }
 
     // search by name
-    public static ArrayList<Laboratory> getByName(String name) {
+    public static ArrayList<Laboratory> getByPurpose(String name) {
         // create the returning list
         ArrayList<Laboratory> list = new ArrayList<Laboratory>();
 
         try {
             // getting the resultset using CommonDao
-            String query = "SELECT * FROM laboratory WHERE name LIKE '%" + name + "';";
+            String query = "SELECT * FROM laboratory WHERE purpose LIKE '%" + name + "%';";
             ResultSet rslt = CommonDao.getResultSet(query);
 
             while (rslt.next()) {
@@ -137,10 +138,10 @@ class LaboratoryDao {
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
+            
+            // returns null if the above list is not returned
+            return null;
         }
-
-        // returns null if the above list is not returned
-        return null;
     }
 
 }
