@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 // class implementation
-class UserDao {
+public class UserDao {
 
     // to validate user
     public static User validateUser(String pId, String pPw) {
@@ -85,7 +85,7 @@ class UserDao {
                 String id = rslt.getString("user_id");
                 String name = rslt.getString("user_name");
                 String password = rslt.getString("u_password");
-                String accountType = rslt.getString("accountType");
+                String accountType = rslt.getString("account_type");
                 String email = rslt.getString("u_email");
                 String contact = rslt.getString("u_contact");
                 String address = rslt.getString("u_address");
@@ -207,6 +207,33 @@ class UserDao {
             // returns null if the above list is not returned
             return null;
         }
+    }
+    
+    public static int getAddConfirmation(String id, String name, String password, String email, String contact, String accType, String address, String gender) {
+    	int addedEntries = 0;
+    	
+    	String query = "INSERT INTO user VALUES ('" + id + "', '" + name + "', '" + password + "', '" + accType + "', '" + email + "', '" + contact + "', '" + address + "', '" + gender + "';";
+    	addedEntries = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return addedEntries;
+    }
+    
+    public static int getEditConfirmation(String id, String name, String password, String email, String contact, String accType, String address, String gender) {
+    	int editedEntires = 0;
+    	
+    	String query = "UPDATE user SET user_name = '" + name + "', u_password = '" + password + "', u_email = '" + email + "', u_contact = '" + contact + "', account_type = '" + accType + "', u_address = '" + address + "', gender = '" + gender + "'  where user_id = '" + id + "';";
+    	editedEntires = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return editedEntires;
+    }
+    
+    public static int getDeleteConfirmation(String pId) {
+    	int deletedEntires = 0;
+    	
+    	String query = "DELETE FROM user WHERE user_id = '" + pId + "';";
+    	deletedEntires = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return deletedEntires;
     }
 
 }

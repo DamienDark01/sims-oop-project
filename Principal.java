@@ -15,7 +15,7 @@ package project;
 // imports
 
 // class implementation
-class Principal {
+public class Principal {
     
     // properties
     private String id;

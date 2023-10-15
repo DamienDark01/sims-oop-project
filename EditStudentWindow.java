@@ -1,5 +1,5 @@
 /*
- * Class Name : NewTeacherWindow
+ * Class Name : NewStudentWindow
  * GUI class
  *
  * Version info : ~
@@ -19,28 +19,35 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 // class implementation
-public class NewTeacherWindow {
+public class EditStudentWindow {
 
 	// properties
 	private JFrame frmAddValues;
-	private JTextField txtId, txtFName, txtLName, txtEmail, txtContact, txtSubject, txtAddress, txtGender, txtQualification;
-	private JLabel lblHeader, lblId, lblFName, lblLName, lblEmail, lblName1, lblName2, lblName3, lblContact, lblSubject, lblAddress, lblGender, lblQualification;
+	private JTextField txtId, txtFName, txtLName, txtEmail, txtContact, txtClassroom, txtAddress, txtGender;
+	private JLabel lblHeader, lblId, lblFName, lblLName, lblEmail, lblName1, lblName2, lblName3, lblContact, lblClassroom, lblAddress, lblGender;
 	private JButton btnEnterDetails;
 	private JTextArea txtResult;
 	private JPanel panelLogo, panelLogo2;
+	private JButton btnNext;
+	private ArrayList<Student> list;
+	private int currentIndex;
 
 	/**
 	 * Create the application.
 	 */
-	public NewTeacherWindow() {
+	public EditStudentWindow(ArrayList<Student> list) {
+		this.list = list;
+		this.currentIndex = 0;
 		initialize();
+		addDetails();
 	}
 
 	/**
@@ -49,13 +56,13 @@ public class NewTeacherWindow {
 	private void initialize() {
 		frmAddValues = new JFrame();
 		frmAddValues.setTitle("Add values");
-		frmAddValues.setBounds(10, 10, 650, 700);
 		frmAddValues.setVisible(true);
 		frmAddValues.setResizable(false);
+		frmAddValues.setBounds(10, 10, 650, 700);
 		frmAddValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmAddValues.getContentPane().setLayout(null);
 		
-		lblHeader = new JLabel("Add new values to Teacher");
+		lblHeader = new JLabel("Add new values to Student");
 		lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblHeader.setBounds(10, 11, 395, 50);
 		frmAddValues.getContentPane().add(lblHeader);
@@ -75,10 +82,10 @@ public class NewTeacherWindow {
 		lblLName.setBounds(69, 172, 125, 39);
 		frmAddValues.getContentPane().add(lblLName);
 		
-		lblSubject = new JLabel("Subject Name :");
-		lblSubject.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblSubject.setBounds(69, 222, 175, 39);
-		frmAddValues.getContentPane().add(lblSubject);
+		lblAddress = new JLabel("Address :");
+		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblAddress.setBounds(69, 222, 167, 39);
+		frmAddValues.getContentPane().add(lblAddress);
 		
 		lblEmail = new JLabel("Email :");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 23));
@@ -90,14 +97,9 @@ public class NewTeacherWindow {
 		lblContact.setBounds(69, 322, 138, 39);
 		frmAddValues.getContentPane().add(lblContact);
 		
-		lblAddress = new JLabel("Address :");
-		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblAddress.setBounds(69, 422, 106, 39);
-		frmAddValues.getContentPane().add(lblAddress);
-		
 		lblGender = new JLabel("Gender :");
 		lblGender.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblGender.setBounds(69, 472, 106, 39);
+		lblGender.setBounds(69, 372, 106, 39);
 		frmAddValues.getContentPane().add(lblGender);
 		
 		btnEnterDetails = new JButton("Enter Details");
@@ -106,31 +108,31 @@ public class NewTeacherWindow {
 				String id = txtId.getText();
 				String fName = txtFName.getText();
 				String lName = txtLName.getText();
-				String subject = txtSubject.getText();
-				String email = txtEmail.getText();
-				String contact = txtContact.getText();
-				String qualification = txtQualification.getText();
 				String address = txtAddress.getText();
+				String contact = txtContact.getText();
+				String email = txtEmail.getText();
 				String gender = txtGender.getText();
+				String classId = txtClassroom.getText();
 				
-				int addedEntries = TeacherDao.getAddConfirmation(id, fName, lName, subject, email, contact, qualification, address, gender);
-				txtResult.setText(addedEntries + " entries added...");
+				int editedEntries = StudentDao.getEditConfirmation(id, fName, lName, email, contact, classId, address, gender);
+				
+				txtResult.setText("Edited " + editedEntries + "...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnEnterDetails.setBounds(254, 533, 138, 39);
+		btnEnterDetails.setBounds(116, 513, 138, 39);
 		frmAddValues.getContentPane().add(btnEnterDetails);
 		
 		txtResult = new JTextArea();
 		txtResult.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		txtResult.setText("Result...");
-		txtResult.setBounds(115, 583, 407, 50);
+		txtResult.setBounds(116, 563, 407, 50);
 		frmAddValues.getContentPane().add(txtResult);
 		
-		lblQualification = new JLabel("Qualification :");
-		lblQualification.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblQualification.setBounds(69, 372, 158, 39);
-		frmAddValues.getContentPane().add(lblQualification);
+		lblClassroom = new JLabel("Classroom ID :");
+		lblClassroom.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblClassroom.setBounds(69, 427, 190, 39);
+		frmAddValues.getContentPane().add(lblClassroom);
 		
 		panelLogo = new JPanel();
 		panelLogo.setLayout(null);
@@ -156,9 +158,10 @@ public class NewTeacherWindow {
 		panelLogo2.add(lblName3);
 		
 		txtId = new JTextField();
+		txtId.setEditable(false);
 		txtId.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtId.setColumns(10);
-		txtId.setBounds(115, 77, 290, 34);
+		txtId.setBounds(116, 72, 290, 34);
 		frmAddValues.getContentPane().add(txtId);
 		
 		txtFName = new JTextField();
@@ -173,11 +176,11 @@ public class NewTeacherWindow {
 		txtLName.setBounds(204, 177, 290, 34);
 		frmAddValues.getContentPane().add(txtLName);
 		
-		txtSubject = new JTextField();
-		txtSubject.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtSubject.setColumns(10);
-		txtSubject.setBounds(243, 227, 290, 34);
-		frmAddValues.getContentPane().add(txtSubject);
+		txtAddress = new JTextField();
+		txtAddress.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtAddress.setColumns(10);
+		txtAddress.setBounds(176, 227, 290, 34);
+		frmAddValues.getContentPane().add(txtAddress);
 		
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -191,23 +194,50 @@ public class NewTeacherWindow {
 		txtContact.setBounds(204, 327, 290, 34);
 		frmAddValues.getContentPane().add(txtContact);
 		
-		txtQualification = new JTextField();
-		txtQualification.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtQualification.setColumns(10);
-		txtQualification.setBounds(214, 377, 290, 34);
-		frmAddValues.getContentPane().add(txtQualification);
-		
-		txtAddress = new JTextField();
-		txtAddress.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtAddress.setColumns(10);
-		txtAddress.setBounds(173, 427, 290, 34);
-		frmAddValues.getContentPane().add(txtAddress);
-		
 		txtGender = new JTextField();
 		txtGender.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtGender.setColumns(10);
-		txtGender.setBounds(162, 477, 290, 34);
+		txtGender.setBounds(163, 377, 290, 34);
 		frmAddValues.getContentPane().add(txtGender);
+		
+		txtClassroom = new JTextField();
+		txtClassroom.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtClassroom.setColumns(10);
+		txtClassroom.setBounds(235, 432, 290, 34);
+		frmAddValues.getContentPane().add(txtClassroom);
+		
+		btnNext = new JButton("Next Entry");
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentIndex++;
+				
+				if (currentIndex < list.size()) {
+					addDetails();
+				} else {
+					txtResult.setText("All entries are edited...");
+				}
+			}
+		});
+		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNext.setBounds(385, 513, 138, 39);
+		frmAddValues.getContentPane().add(btnNext);
 	}
+	
+	private void addDetails() {
+        if (currentIndex >= 0 && currentIndex < list.size()) {
+            Student student = list.get(currentIndex);
+            
+            txtId.setText(student.getId());
+            txtFName.setText(student.getFirstName());
+            txtLName.setText(student.getLastName());
+            txtAddress.setText(student.getAddress());
+            txtContact.setText(student.getContact());
+            txtEmail.setText(student.getEmail());
+            txtGender.setText(student.getGender());
+            txtClassroom.setText(student.getClassroom().getId());
+            
+            txtResult.setText("Editing entry " + (currentIndex + 1) + " of " + list.size() + "...");
+        }
+    }
 
 }

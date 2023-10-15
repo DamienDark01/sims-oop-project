@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 // class implementation
-class LaboratoryDao {
+public class LaboratoryDao {
     
     // show all
     public static ArrayList<Laboratory> getAll() {
@@ -142,6 +142,33 @@ class LaboratoryDao {
             // returns null if the above list is not returned
             return null;
         }
+    }
+    
+    public static int getAddConfirmation(String id, String purpose, String location, String fName, String lName) {
+    	int addedEntries = 0;
+    	
+    	String query = "INSERT INTO laboratory VALUES ('" + id + "', '" + purpose + "', '" + location + "', (SELECT teacher_id FROM teacher WHERE teacher_f_name='" + fName + "' AND teacher_l_name='" + lName + "'));";
+    	addedEntries = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return addedEntries;
+    }
+    
+    public static int getEditConfirmation(String id, String purpose, String location, String fName, String lName) {
+    	int editedEntires = 0;
+    	
+    	String query = "UPDATE laboratory SET purpose = '" + purpose + "', location = '" + location + "', teacher_id = (SELECT teacher_id FROM teacher WHERE teacher_f_name='" + fName + "' AND teacher_l_name='" + lName + "') where lab_id = '" + id + "';";
+    	editedEntires = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return editedEntires;
+    }
+    
+    public static int getDeleteConfirmation(String pId) {
+    	int deletedEntires = 0;
+    	
+    	String query = "DELETE FROM laboratory WHERE lab_id = '" + pId + "';";
+    	deletedEntires = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return deletedEntires;
     }
 
 }

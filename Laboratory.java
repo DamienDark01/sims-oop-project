@@ -15,7 +15,7 @@ package project;
 // imports
 
 // class implementation
-class Laboratory {
+public class Laboratory {
 
     // properties
     private String id;

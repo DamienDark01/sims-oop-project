@@ -23,10 +23,11 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 // class implementation
-public class NewTeacherWindow {
+public class EditTeacherWindow {
 
 	// properties
 	private JFrame frmAddValues;
@@ -35,12 +36,18 @@ public class NewTeacherWindow {
 	private JButton btnEnterDetails;
 	private JTextArea txtResult;
 	private JPanel panelLogo, panelLogo2;
+	private JButton btnNext;
+	private ArrayList<Teacher> list;
+	private int currentIndex;
 
 	/**
 	 * Create the application.
 	 */
-	public NewTeacherWindow() {
+	public EditTeacherWindow(ArrayList<Teacher> list) {
+		this.list = list;
+		this.currentIndex = 0;
 		initialize();
+		addDetails();
 	}
 
 	/**
@@ -113,12 +120,13 @@ public class NewTeacherWindow {
 				String address = txtAddress.getText();
 				String gender = txtGender.getText();
 				
-				int addedEntries = TeacherDao.getAddConfirmation(id, fName, lName, subject, email, contact, qualification, address, gender);
-				txtResult.setText(addedEntries + " entries added...");
+				int editedEntries = TeacherDao.getEditConfirmation(id, fName, lName, subject, email, contact, qualification, address, gender);
+				
+				txtResult.setText("Edited " + editedEntries + "...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnEnterDetails.setBounds(254, 533, 138, 39);
+		btnEnterDetails.setBounds(115, 533, 138, 39);
 		frmAddValues.getContentPane().add(btnEnterDetails);
 		
 		txtResult = new JTextArea();
@@ -156,6 +164,7 @@ public class NewTeacherWindow {
 		panelLogo2.add(lblName3);
 		
 		txtId = new JTextField();
+		txtId.setEditable(false);
 		txtId.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtId.setColumns(10);
 		txtId.setBounds(115, 77, 290, 34);
@@ -208,6 +217,40 @@ public class NewTeacherWindow {
 		txtGender.setColumns(10);
 		txtGender.setBounds(162, 477, 290, 34);
 		frmAddValues.getContentPane().add(txtGender);
+		
+		btnNext = new JButton("Next Entry");
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentIndex++;
+				
+				if (currentIndex < list.size()) {
+					addDetails();
+				} else {
+					txtResult.setText("All entries are edited...");
+				}
+			}
+		});
+		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNext.setBounds(384, 533, 138, 39);
+		frmAddValues.getContentPane().add(btnNext);
 	}
+	
+	private void addDetails() {
+        if (currentIndex >= 0 && currentIndex < list.size()) {
+            Teacher teacher = list.get(currentIndex);
+            
+            txtId.setText(teacher.getId());
+            txtFName.setText(teacher.getFirstName());
+            txtLName.setText(teacher.getLastName());
+            txtSubject.setText(teacher.getSubject().getId());
+            txtEmail.setText(teacher.getEmail());
+            txtContact.setText(teacher.getContact());
+            txtQualification.setText(teacher.getQualification());
+            txtAddress.setText(teacher.getAddress());
+            txtGender.setText(teacher.getGender());
+            
+            txtResult.setText("Editing entry " + (currentIndex + 1) + " of " + list.size() + "...");
+        }
+    }
 
 }

@@ -13,7 +13,7 @@
 package project;
 
 // imports
-class Classroom {
+public class Classroom {
 
     // properties
     private String id;

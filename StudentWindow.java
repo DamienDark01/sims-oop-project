@@ -16,215 +16,352 @@ package project;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 // class implementation
-class StudentWindow {
+public class StudentWindow implements EntityWindow {
 
 	// properties
-	private JFrame frame;
-	private JTable table;
+	private JFrame frmStudent;
 	private JTextField txtEnterTheValue;
+	private JLabel lblEntity, lblName, lblAccType, lblEdit, lblName1, lblName2, lblName3;
+	private JButton btnDashboard, btnClassroom, btnExamination, btnUser, btnLaboratory, btnPrincipal, btnTeacher, btnSearch, btnEditDetails, btnDeleteEntries, btnSubject, btnAddStudent, btnRefresh;
+	private JComboBox<String> comboBoxSelect;
+	private JPanel panelLogo, panelLogo2, panel;
+	private Vector<String> columnNames;
+	private ArrayList<Student> itemList;
+	private JScrollPane scrollPane;
+	private JTable table;
+	private DefaultTableModel model;
 
 	/**
 	 * Create the application.
 	 */
 	public StudentWindow(User user) {
 		initialize(user);
+		
+		columnNames = new Vector<>();
+        columnNames.add("Student ID");
+        columnNames.add("First Name");
+        columnNames.add("Last Name");
+        columnNames.add("Address");
+        columnNames.add("Contact Number");
+        columnNames.add("Email");        
+        columnNames.add("Gender");
+        columnNames.add("Class ID");
+
+        model = new DefaultTableModel(columnNames, 0) {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Make all cells non-editable
+            }
+        };
+
+        table = new JTable(model);
+        scrollPane = new JScrollPane(table);
+		
+		itemList = StudentDao.getAll();
+		getTable(itemList);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(User user) {
-		frame = new JFrame();
-		frame.setTitle("School Information Management System");
-		frame.setBounds(10, 10, 1080, 720);
-		frame.setVisible(true);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	public void initialize(User user) {
+		frmStudent = new JFrame();
+		frmStudent.setTitle("School Information Management System");
+		frmStudent.setBounds(10, 10, 1080, 720);
+		frmStudent.setVisible(true);
+		frmStudent.setResizable(false);
+		frmStudent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmStudent.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Student");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		lblNewLabel.setBounds(133, 36, 198, 48);
-		frame.getContentPane().add(lblNewLabel);
+		lblEntity = new JLabel("Student");
+		lblEntity.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblEntity.setBounds(133, 36, 198, 48);
+		frmStudent.getContentPane().add(lblEntity);
 		
-		JButton btnNewButton = new JButton("Dashboard");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnDashboard = new JButton("Dashboard");
+		btnDashboard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				new DashboardWindow(user);
+				frmStudent.dispose();
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(10, 127, 181, 48);
-		frame.getContentPane().add(btnNewButton);
+		btnDashboard.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnDashboard.setBounds(10, 127, 181, 48);
+		frmStudent.getContentPane().add(btnDashboard);
 		
-		JButton btnClassroom = new JButton("Classroom");
+		btnClassroom = new JButton("Classroom");
 		btnClassroom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frmStudent.dispose();
 				new ClassroomWindow(user);
 			}
 		});
 		btnClassroom.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnClassroom.setBounds(10, 257, 181, 48);
-		frame.getContentPane().add(btnClassroom);
+		frmStudent.getContentPane().add(btnClassroom);
 		
-		JButton btnExamination = new JButton("Examination");
+		btnExamination = new JButton("Examination");
 		btnExamination.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frmStudent.dispose();
 				new ExaminationWindow(user);
 			}
 		});
 		btnExamination.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnExamination.setBounds(10, 316, 181, 48);
-		frame.getContentPane().add(btnExamination);
+		frmStudent.getContentPane().add(btnExamination);
 		
-		JButton btnLaboratory = new JButton("Laboratory");
+		btnLaboratory = new JButton("Laboratory");
 		btnLaboratory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frmStudent.dispose();
 				new LaboratoryWindow(user);
 			}
 		});
 		btnLaboratory.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnLaboratory.setBounds(10, 375, 181, 48);
-		frame.getContentPane().add(btnLaboratory);
+		frmStudent.getContentPane().add(btnLaboratory);
 		
-		JButton btnPrincipal = new JButton("Principal");
+		btnPrincipal = new JButton("Principal");
 		btnPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frmStudent.dispose();
 				new PrincipalWindow(user);
 			}
 		});
 		btnPrincipal.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnPrincipal.setBounds(10, 434, 181, 48);
-		frame.getContentPane().add(btnPrincipal);
+		frmStudent.getContentPane().add(btnPrincipal);
 		
-		JButton btnUser = new JButton("User");
+		btnUser = new JButton("User");
 		btnUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frmStudent.dispose();
 				new UserWindow(user);
 			}
 		});
 		btnUser.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnUser.setBounds(10, 493, 181, 48);
-		frame.getContentPane().add(btnUser);
+		frmStudent.getContentPane().add(btnUser);
 		
-		JButton btnSubject = new JButton("Subject");
+		btnSubject = new JButton("Subject");
 		btnSubject.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frmStudent.dispose();
 				new SubjectWindow(user);
 			}
 		});
 		btnSubject.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSubject.setBounds(10, 552, 181, 48);
-		frame.getContentPane().add(btnSubject);
+		frmStudent.getContentPane().add(btnSubject);
 		
-		JButton btnTeacher = new JButton("Teacher");
+		btnTeacher = new JButton("Teacher");
 		btnTeacher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frmStudent.dispose();
 				new TeacherWindow(user);
 			}
 		});
 		btnTeacher.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnTeacher.setBounds(10, 611, 181, 48);
-		frame.getContentPane().add(btnTeacher);
-		
-		table = new JTable();
-		table.setBounds(240, 257, 774, 402);
-		frame.getContentPane().add(table);
+		frmStudent.getContentPane().add(btnTeacher);
 		
 		txtEnterTheValue = new JTextField();
 		txtEnterTheValue.setToolTipText("Search ...");
 		txtEnterTheValue.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtEnterTheValue.setBounds(252, 127, 393, 48);
-		frame.getContentPane().add(txtEnterTheValue);
+		txtEnterTheValue.setBounds(241, 127, 404, 48);
+		frmStudent.getContentPane().add(txtEnterTheValue);
 		txtEnterTheValue.setColumns(10);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setToolTipText("Select an option ...");
-		comboBox.setName("");
-		comboBox.setBounds(662, 127, 155, 48);
-		frame.getContentPane().add(comboBox);
+		comboBoxSelect = new JComboBox<String>();
+		comboBoxSelect.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		comboBoxSelect.addItem("ID");
+		comboBoxSelect.addItem("Name");
+		comboBoxSelect.setToolTipText("Select an option ...");
+		comboBoxSelect.setName("");
+		comboBoxSelect.setBounds(662, 127, 155, 48);
+		frmStudent.getContentPane().add(comboBoxSelect);
 		
-		JButton btnSearch = new JButton("Search");
+		btnSearch = new JButton("Search");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int selectedItem = comboBoxSelect.getSelectedIndex();
+				String searchInput = txtEnterTheValue.getText();
+				
+				if (searchInput.equals("")) {
+					JOptionPane.showMessageDialog(null, "Please enter text to search!", "Error", 0);
+				} else {
+					if (selectedItem == 0) {
+						Student student = StudentDao.getById(searchInput);
+						getTable(student);
+					} else {
+						itemList = StudentDao.getByName(searchInput);
+						getTable(itemList);
+					}
+				}
+			}
+		});
 		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSearch.setBounds(827, 127, 199, 48);
-		frame.getContentPane().add(btnSearch);
+		frmStudent.getContentPane().add(btnSearch);
 		
-		JLabel lblNewLabel_1 = new JLabel("User Name : " + user.getName());
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(690, 11, 253, 37);
-		frame.getContentPane().add(lblNewLabel_1);
+		lblName = new JLabel("User Name : " + user.getName());
+		lblName.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblName.setBounds(690, 11, 253, 37);
+		frmStudent.getContentPane().add(lblName);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Account type : " + user.getAccountType());
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1_1.setBounds(690, 49, 253, 37);
-		frame.getContentPane().add(lblNewLabel_1_1);
+		lblAccType = new JLabel("Account type : " + user.getAccountType());
+		lblAccType.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblAccType.setBounds(690, 49, 253, 37);
+		frmStudent.getContentPane().add(lblAccType);
 		
-		JLabel lblNewLabel_1_3 = new JLabel("Edit :");
-		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1_3.setBounds(241, 204, 63, 37);
-		frame.getContentPane().add(lblNewLabel_1_3);
+		lblEdit = new JLabel("Edit :");
+		lblEdit.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblEdit.setBounds(241, 204, 63, 37);
+		frmStudent.getContentPane().add(lblEdit);
 		
-		JButton btnAddStudent = new JButton("Add Student");
+		btnAddStudent = new JButton("Add Student");
 		btnAddStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frmStudent.dispose();
 				new NewStudentWindow();
 			}
 		});
 		btnAddStudent.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAddStudent.setBounds(302, 198, 199, 48);
-		frame.getContentPane().add(btnAddStudent);
+		frmStudent.getContentPane().add(btnAddStudent);
 		
-		JButton btnEditDetails = new JButton("Edit Details");
+		btnEditDetails = new JButton("Edit Details");
+		btnEditDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new EditStudentWindow(itemList);
+			}
+		});
 		btnEditDetails.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnEditDetails.setBounds(559, 198, 199, 48);
-		frame.getContentPane().add(btnEditDetails);
+		frmStudent.getContentPane().add(btnEditDetails);
 		
-		JButton btnDeleteEntries = new JButton("Delete Entries");
+		btnDeleteEntries = new JButton("Delete Entries");
+		btnDeleteEntries.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int input = JOptionPane.showConfirmDialog(null, "Confirm Deletion?", "Delete Entries", 0);
+				int deletedRowCount = 0;
+
+				if (input == 0) {
+					for (int row=0; row<model.getRowCount(); row++) {
+						String idValue = (String) model.getValueAt(row, 0);
+						deletedRowCount += StudentDao.getDeleteConfirmation(idValue);
+					}
+					
+					JOptionPane.showMessageDialog(null, "Number of rows deleted : " + deletedRowCount, "Deletion Confirmation", 1);
+				}
+			}
+		});
 		btnDeleteEntries.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnDeleteEntries.setBounds(815, 198, 199, 48);
-		frame.getContentPane().add(btnDeleteEntries);
+		btnDeleteEntries.setBounds(827, 198, 199, 48);
+		frmStudent.getContentPane().add(btnDeleteEntries);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setLayout(null);
-		panel_3.setBackground(Color.BLACK);
-		panel_3.setBounds(10, 11, 100, 100);
-		frame.getContentPane().add(panel_3);
+		panelLogo = new JPanel();
+		panelLogo.setLayout(null);
+		panelLogo.setBackground(Color.BLACK);
+		panelLogo.setBounds(10, 11, 100, 100);
+		frmStudent.getContentPane().add(panelLogo);
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setLayout(null);
-		panel_4.setBounds(15, 15, 65, 65);
-		panel_3.add(panel_4);
+		panelLogo2 = new JPanel();
+		panelLogo2.setLayout(null);
+		panelLogo2.setBounds(15, 15, 65, 65);
+		panelLogo.add(panelLogo2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Western");
-		lblNewLabel_3.setBounds(2, 0, 46, 14);
-		panel_4.add(lblNewLabel_3);
+		lblName1 = new JLabel("Western");
+		lblName1.setBounds(2, 0, 46, 14);
+		panelLogo2.add(lblName1);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("High");
-		lblNewLabel_3_1.setBounds(2, 11, 46, 14);
-		panel_4.add(lblNewLabel_3_1);
+		lblName2 = new JLabel("High");
+		lblName2.setBounds(2, 11, 46, 14);
+		panelLogo2.add(lblName2);
 		
-		JLabel lblNewLabel_3_2 = new JLabel("School");
-		lblNewLabel_3_2.setBounds(2, 25, 46, 14);
-		panel_4.add(lblNewLabel_3_2);
+		lblName3 = new JLabel("School");
+		lblName3.setBounds(2, 25, 46, 14);
+		panelLogo2.add(lblName3);
+		
+		btnRefresh = new JButton("Load/Refresh");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				itemList = StudentDao.getAll();
+				getTable(itemList);
+			}
+		});
+		btnRefresh.setBounds(341, 51, 110, 33);
+		frmStudent.getContentPane().add(btnRefresh);
+	}
+	
+	public <E> void getTable(ArrayList<E> itemList) {
+		panel = new JPanel();
+		panel.setBounds(240, 257, 786, 402);
+		frmStudent.getContentPane().add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		model.setRowCount(0);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        for (E item : itemList) {
+            Vector<String> row = new Vector<>();
+            row.add(((Student) item).getId());
+            row.add(((Student) item).getFirstName());
+            row.add(((Student) item).getLastName());
+            row.add(((Student) item).getAddress());
+            row.add(((Student) item).getContact());
+            row.add(((Student) item).getEmail());          
+            row.add(((Student) item).getGender());
+            row.add(((Student) item).getClassroom().getId());
+
+            model.addRow(row);
+        }
+	}
+	
+	public void getTable(Student student) {
+		panel = new JPanel();
+		panel.setBounds(240, 257, 786, 402);
+		frmStudent.getContentPane().add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		model.setRowCount(0);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        Vector<String> row = new Vector<>();
+        row.add(student.getId());
+        row.add(student.getFirstName());
+        row.add(student.getLastName());
+        row.add(student.getAddress());
+        row.add(student.getContact());
+        row.add(student.getEmail());          
+        row.add(student.getGender());
+        row.add(student.getClassroom().getId());
+
+        model.addRow(row);
 	}
 
 }

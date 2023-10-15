@@ -22,7 +22,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 // class implementation
-class CommonDao {
+public class CommonDao {
 
     private static Connection dbcon = null;
     private static Statement stmt = null;
@@ -37,7 +37,7 @@ class CommonDao {
         boolean isValid = false;
 
         try {
-            // correct url
+            // correct URL
             dbcon = DriverManager.getConnection(url, name, password);
             stmt = dbcon.createStatement();
             rslt = stmt.executeQuery(sqlQuery);
@@ -73,24 +73,20 @@ class CommonDao {
     }
 
     // for insert, update and delete queries
-    public static boolean getInsertUpdateDeleteStatus(String sqlQuery) {
-        boolean isSuccess = false;
+    public static int getInsertUpdateDeleteStatus(String sqlQuery) {
+        int successfulEntries = 0;
 
         try {
-            // correct url
+            // correct URL
             dbcon = DriverManager.getConnection(url, name, password);
             stmt = dbcon.createStatement();
-            int result = stmt.executeUpdate(sqlQuery);
-
-            if (result > 0) {
-                isSuccess = true;
-            }
+            successfulEntries = stmt.executeUpdate(sqlQuery);
         } catch (SQLException e) {
             // show error message on JOptionPane
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", 0);
         }
 
-        return isSuccess;
+        return successfulEntries;
     }
 
 }

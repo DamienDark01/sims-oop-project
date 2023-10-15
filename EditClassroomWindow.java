@@ -23,64 +23,70 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 // class implementation
-public class NewClassroomWindow {
+public class EditClassroomWindow {
 
 	// properties
-	private JFrame frmAddValues;
+	private JFrame frmEditValues;
 	private JTextField txtId, txtLocation, txtFName, txtCapacity;
 	private JLabel lblHeader, lblId, lblFName, lblLocation, lblCapacity, lblName1, lblName2, lblName3;
 	private JButton btnEnterDetails;
 	private JTextArea txtResult;
 	private JPanel panelLogo, panelLogo2;
 	private JTextField txtLName;
+	private ArrayList<Classroom> list;
+	private int currentIndex;
 
 	/**
 	 * Create the application.
 	 */
-	public NewClassroomWindow() {
+	public EditClassroomWindow(ArrayList<Classroom> list) {
+		this.list = list;
+		this.currentIndex = 0;
 		initialize();
+		addDetails();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmAddValues = new JFrame();
-		frmAddValues.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
-		frmAddValues.setVisible(true);
-		frmAddValues.setResizable(false);
-		frmAddValues.setTitle("Add values");
-		frmAddValues.setBounds(10, 10, 650, 700);
-		frmAddValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frmAddValues.getContentPane().setLayout(null);
+		frmEditValues = new JFrame();
+		frmEditValues.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
+		frmEditValues.setVisible(true);
+		frmEditValues.setResizable(false);
+		frmEditValues.setTitle("Edit values");
+		frmEditValues.setBounds(10, 10, 650, 700);
+		frmEditValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmEditValues.getContentPane().setLayout(null);
 		
-		lblHeader = new JLabel("Add new values to Classroom");
+		lblHeader = new JLabel("Edit values of Classroom");
 		lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblHeader.setBounds(10, 11, 395, 50);
-		frmAddValues.getContentPane().add(lblHeader);
+		frmEditValues.getContentPane().add(lblHeader);
 		
 		lblId = new JLabel("ID :");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblId.setBounds(69, 72, 106, 39);
-		frmAddValues.getContentPane().add(lblId);
+		frmEditValues.getContentPane().add(lblId);
 		
-		lblFName = new JLabel("Teacher First Name :");
+		lblFName = new JLabel("Teacher Name (First) :");
 		lblFName.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblFName.setBounds(69, 122, 233, 39);
-		frmAddValues.getContentPane().add(lblFName);
+		lblFName.setBounds(69, 122, 243, 39);
+		frmEditValues.getContentPane().add(lblFName);
 		
 		lblLocation = new JLabel("Location :");
 		lblLocation.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblLocation.setBounds(69, 222, 125, 39);
-		frmAddValues.getContentPane().add(lblLocation);
+		frmEditValues.getContentPane().add(lblLocation);
 		
 		lblCapacity = new JLabel("Capacity :");
 		lblCapacity.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblCapacity.setBounds(69, 272, 167, 39);
-		frmAddValues.getContentPane().add(lblCapacity);
+		frmEditValues.getContentPane().add(lblCapacity);
 		
 		btnEnterDetails = new JButton("Enter Details");
 		btnEnterDetails.addActionListener(new ActionListener() {
@@ -91,25 +97,26 @@ public class NewClassroomWindow {
 				String location = txtLocation.getText();
 				String capacity = txtCapacity.getText();
 				
-				int addedEntries = ClassroomDao.getAddConfirmation(id, fName, lName, location, capacity);
-				txtResult.setText(addedEntries + " entries added...");
+				int editedEntries = ClassroomDao.getEditConfirmation(id, fName, lName, location, capacity);
+				
+				txtResult.setText("Edited " + editedEntries + "...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnEnterDetails.setBounds(240, 509, 138, 39);
-		frmAddValues.getContentPane().add(btnEnterDetails);
+		btnEnterDetails.setBounds(115, 509, 138, 39);
+		frmEditValues.getContentPane().add(btnEnterDetails);
 		
 		txtResult = new JTextArea();
 		txtResult.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		txtResult.setText("Result...");
 		txtResult.setBounds(115, 559, 407, 50);
-		frmAddValues.getContentPane().add(txtResult);
+		frmEditValues.getContentPane().add(txtResult);
 		
 		panelLogo = new JPanel();
 		panelLogo.setLayout(null);
 		panelLogo.setBackground(Color.BLACK);
 		panelLogo.setBounds(534, 0, 100, 100);
-		frmAddValues.getContentPane().add(panelLogo);
+		frmEditValues.getContentPane().add(panelLogo);
 		
 		panelLogo2 = new JPanel();
 		panelLogo2.setLayout(null);
@@ -130,37 +137,69 @@ public class NewClassroomWindow {
 		
 		txtId = new JTextField();
 		txtId.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtId.setEditable(false);
 		txtId.setBounds(115, 72, 290, 34);
-		frmAddValues.getContentPane().add(txtId);
+		frmEditValues.getContentPane().add(txtId);
 		txtId.setColumns(10);
 		
 		txtFName = new JTextField();
 		txtFName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtFName.setColumns(10);
-		txtFName.setBounds(294, 127, 290, 34);
-		frmAddValues.getContentPane().add(txtFName);
+		txtFName.setBounds(301, 127, 290, 34);
+		frmEditValues.getContentPane().add(txtFName);
 		
 		txtLocation = new JTextField();
 		txtLocation.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtLocation.setColumns(10);
 		txtLocation.setBounds(178, 227, 290, 34);
-		frmAddValues.getContentPane().add(txtLocation);
+		frmEditValues.getContentPane().add(txtLocation);
 		
 		txtCapacity = new JTextField();
 		txtCapacity.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtCapacity.setColumns(10);
 		txtCapacity.setBounds(178, 277, 290, 34);
-		frmAddValues.getContentPane().add(txtCapacity);
+		frmEditValues.getContentPane().add(txtCapacity);
 		
-		JLabel lblLName = new JLabel("Teacher Last Name :");
+		JLabel lblLName = new JLabel("Teacher Name (Last) :");
 		lblLName.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblLName.setBounds(69, 172, 233, 39);
-		frmAddValues.getContentPane().add(lblLName);
+		lblLName.setBounds(69, 172, 243, 39);
+		frmEditValues.getContentPane().add(lblLName);
 		
 		txtLName = new JTextField();
 		txtLName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtLName.setColumns(10);
-		txtLName.setBounds(294, 177, 290, 34);
-		frmAddValues.getContentPane().add(txtLName);
+		txtLName.setBounds(301, 177, 290, 34);
+		frmEditValues.getContentPane().add(txtLName);
+		
+		JButton btnNext = new JButton("Next Entry");
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentIndex++;
+				
+				if (currentIndex < list.size()) {
+					addDetails();
+				} else {
+					txtResult.setText("All entries are edited...");
+				}
+			}
+		});
+		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNext.setBounds(384, 509, 138, 39);
+		frmEditValues.getContentPane().add(btnNext);
 	}
+	
+	private void addDetails() {
+        if (currentIndex >= 0 && currentIndex < list.size()) {
+            Classroom classroom = list.get(currentIndex);
+            
+            txtId.setText(classroom.getId());
+            txtFName.setText(classroom.getTeacher().getFirstName());
+            txtLName.setText(classroom.getTeacher().getLastName());
+            txtLocation.setText(classroom.getLocation());
+            txtCapacity.setText(String.valueOf(classroom.getCapacity()));
+            
+            txtResult.setText("Editing entry " + (currentIndex + 1) + " of " + list.size() + "...");
+        }
+    }
+	
 }

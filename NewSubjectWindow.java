@@ -22,15 +22,19 @@ import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 // class implementation
-class NewSubjectWindow {
+public class NewSubjectWindow {
 
 	// properties
 	private JFrame frmAddValues;
-	private JTextField idTxt;
-	private JTextField nameTxt;
-	private JTextField moduleTxt;
+	private JTextField txtId, txtModule, txtName;
+	private JLabel lblHeader, lblId, lblName, lblModules, lblName1, lblName2, lblName3;
+	private JButton btnEnterDetails;
+	private JTextArea txtResult;
+	private JPanel panelLogo, panelLogo2;
 
 	/**
 	 * Create the application.
@@ -47,81 +51,91 @@ class NewSubjectWindow {
 		frmAddValues.setTitle("Add values");
 		frmAddValues.setVisible(true);
 		frmAddValues.setResizable(false);
-		frmAddValues.setBounds(100, 100, 650, 700);
-		frmAddValues.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAddValues.setBounds(10, 10, 650, 700);
+		frmAddValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmAddValues.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Add new values to Subject");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblNewLabel.setBounds(10, 11, 395, 50);
-		frmAddValues.getContentPane().add(lblNewLabel);
+		lblHeader = new JLabel("Add new values to Subject");
+		lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblHeader.setBounds(10, 11, 395, 50);
+		frmAddValues.getContentPane().add(lblHeader);
 		
-		JLabel lblId = new JLabel("ID :");
+		lblId = new JLabel("ID :");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblId.setBounds(69, 72, 106, 39);
 		frmAddValues.getContentPane().add(lblId);
 		
-		JLabel lblName = new JLabel("Name :");
+		lblName = new JLabel("Name :");
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblName.setBounds(69, 122, 106, 39);
 		frmAddValues.getContentPane().add(lblName);
 		
-		JLabel lblPassword = new JLabel("No of Modules :");
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblPassword.setBounds(69, 172, 167, 39);
-		frmAddValues.getContentPane().add(lblPassword);
+		lblModules = new JLabel("No of Modules :");
+		lblModules.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblModules.setBounds(69, 172, 167, 39);
+		frmAddValues.getContentPane().add(lblModules);
 		
-		JButton btnEnterDetails = new JButton("Enter Details");
+		btnEnterDetails = new JButton("Enter Details");
+		btnEnterDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id = txtId.getText();
+				String name = txtName.getText();
+				String moduleNum = txtModule.getText();
+				
+				int addedEntries = SubjectDao.getAddConfirmation(id, name, moduleNum);
+				txtResult.setText(addedEntries + " entries added...");
+			}
+		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnEnterDetails.setBounds(238, 472, 138, 39);
+		btnEnterDetails.setBounds(244, 509, 138, 39);
 		frmAddValues.getContentPane().add(btnEnterDetails);
 		
-		JTextArea txtrResult = new JTextArea();
-		txtrResult.setFont(new Font("Monospaced", Font.PLAIN, 15));
-		txtrResult.setText("Result...");
-		txtrResult.setBounds(115, 559, 407, 50);
-		frmAddValues.getContentPane().add(txtrResult);
+		txtResult = new JTextArea();
+		txtResult.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		txtResult.setText("Result...");
+		txtResult.setBounds(115, 559, 407, 50);
+		frmAddValues.getContentPane().add(txtResult);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setLayout(null);
-		panel_3.setBackground(Color.BLACK);
-		panel_3.setBounds(534, 0, 100, 100);
-		frmAddValues.getContentPane().add(panel_3);
+		panelLogo = new JPanel();
+		panelLogo.setLayout(null);
+		panelLogo.setBackground(Color.BLACK);
+		panelLogo.setBounds(534, 0, 100, 100);
+		frmAddValues.getContentPane().add(panelLogo);
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setLayout(null);
-		panel_4.setBounds(15, 15, 65, 65);
-		panel_3.add(panel_4);
+		panelLogo2 = new JPanel();
+		panelLogo2.setLayout(null);
+		panelLogo2.setBounds(15, 15, 65, 65);
+		panelLogo.add(panelLogo2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Western");
-		lblNewLabel_3.setBounds(2, 0, 46, 14);
-		panel_4.add(lblNewLabel_3);
+		lblName1 = new JLabel("Western");
+		lblName1.setBounds(2, 0, 46, 14);
+		panelLogo2.add(lblName1);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("High");
-		lblNewLabel_3_1.setBounds(2, 11, 46, 14);
-		panel_4.add(lblNewLabel_3_1);
+		lblName2 = new JLabel("High");
+		lblName2.setBounds(2, 11, 46, 14);
+		panelLogo2.add(lblName2);
 		
-		JLabel lblNewLabel_3_2 = new JLabel("School");
-		lblNewLabel_3_2.setBounds(2, 25, 46, 14);
-		panel_4.add(lblNewLabel_3_2);
+		lblName3 = new JLabel("School");
+		lblName3.setBounds(2, 25, 46, 14);
+		panelLogo2.add(lblName3);
 		
-		idTxt = new JTextField();
-		idTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		idTxt.setColumns(10);
-		idTxt.setBounds(115, 77, 290, 34);
-		frmAddValues.getContentPane().add(idTxt);
+		txtId = new JTextField();
+		txtId.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtId.setColumns(10);
+		txtId.setBounds(115, 77, 290, 34);
+		frmAddValues.getContentPane().add(txtId);
 		
-		nameTxt = new JTextField();
-		nameTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		nameTxt.setColumns(10);
-		nameTxt.setBounds(154, 127, 290, 34);
-		frmAddValues.getContentPane().add(nameTxt);
+		txtName = new JTextField();
+		txtName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtName.setColumns(10);
+		txtName.setBounds(154, 127, 290, 34);
+		frmAddValues.getContentPane().add(txtName);
 		
-		moduleTxt = new JTextField();
-		moduleTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		moduleTxt.setColumns(10);
-		moduleTxt.setBounds(238, 177, 290, 34);
-		frmAddValues.getContentPane().add(moduleTxt);
+		txtModule = new JTextField();
+		txtModule.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtModule.setColumns(10);
+		txtModule.setBounds(238, 177, 290, 34);
+		frmAddValues.getContentPane().add(txtModule);
 	}
 
 }

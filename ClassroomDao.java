@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 // class implementation
-class ClassroomDao {
+public class ClassroomDao {
 
     // show all
     public static ArrayList<Classroom> getAll() {
@@ -142,6 +142,33 @@ class ClassroomDao {
             // returns null if the above list is not returned
             return null;
         }
+    }
+    
+    public static int getAddConfirmation(String id, String fName, String lName, String location, String capacity) {
+    	int addedEntires = 0;
+    	
+    	String query = "INSERT INTO classroom VALUES ('" + id + "', (SELECT teacher_id FROM teacher WHERE teacher_f_name='" + fName + "' AND teacher_l_name='" + lName + "'), '" + location + "', " + capacity + ");";
+    	addedEntires = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return addedEntires;
+    }
+    
+    public static int getEditConfirmation(String id, String fName, String lName, String location, String capacity) {
+    	int editedEntries = 0;
+    	
+    	String query = "UPDATE classroom SET teacher_id=(SELECT teacher_id FROM teacher WHERE teacher_f_name='" + fName + "' AND teacher_l_name='" + lName + "'), location='" + location + "', capacity='" + capacity + "';";
+    	editedEntries = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return editedEntries;
+    }
+    
+    public static int getDeleteConfirmation(String id) {
+    	int deletedEntires = 0;
+    	
+    	String query = "DELETE FROM classroom WHERE class_id = '" + id + "';";
+    	deletedEntires = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return deletedEntires;
     }
 
 }

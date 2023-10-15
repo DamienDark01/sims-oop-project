@@ -1,5 +1,5 @@
 /*
- * Class Name : NewClassroomWindow
+ * Class Name : NewSubjectWindow
  * GUI class
  *
  * Version info : ~
@@ -23,25 +23,31 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 // class implementation
-public class NewClassroomWindow {
+public class EditSubjectWindow {
 
 	// properties
 	private JFrame frmAddValues;
-	private JTextField txtId, txtLocation, txtFName, txtCapacity;
-	private JLabel lblHeader, lblId, lblFName, lblLocation, lblCapacity, lblName1, lblName2, lblName3;
+	private JTextField txtId, txtModule, txtName;
+	private JLabel lblHeader, lblId, lblName, lblModules, lblName1, lblName2, lblName3;
 	private JButton btnEnterDetails;
 	private JTextArea txtResult;
 	private JPanel panelLogo, panelLogo2;
-	private JTextField txtLName;
+	private JButton btnNext;
+	private ArrayList<Subject> list;
+	private int currentIndex;
 
 	/**
 	 * Create the application.
 	 */
-	public NewClassroomWindow() {
+	public EditSubjectWindow(ArrayList<Subject> list) {
+		this.list = list;
+		this.currentIndex = 0;
 		initialize();
+		addDetails();
 	}
 
 	/**
@@ -49,15 +55,14 @@ public class NewClassroomWindow {
 	 */
 	private void initialize() {
 		frmAddValues = new JFrame();
-		frmAddValues.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
+		frmAddValues.setTitle("Add values");
 		frmAddValues.setVisible(true);
 		frmAddValues.setResizable(false);
-		frmAddValues.setTitle("Add values");
 		frmAddValues.setBounds(10, 10, 650, 700);
 		frmAddValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmAddValues.getContentPane().setLayout(null);
 		
-		lblHeader = new JLabel("Add new values to Classroom");
+		lblHeader = new JLabel("Add new values to Subject");
 		lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblHeader.setBounds(10, 11, 395, 50);
 		frmAddValues.getContentPane().add(lblHeader);
@@ -67,36 +72,30 @@ public class NewClassroomWindow {
 		lblId.setBounds(69, 72, 106, 39);
 		frmAddValues.getContentPane().add(lblId);
 		
-		lblFName = new JLabel("Teacher First Name :");
-		lblFName.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblFName.setBounds(69, 122, 233, 39);
-		frmAddValues.getContentPane().add(lblFName);
+		lblName = new JLabel("Name :");
+		lblName.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblName.setBounds(69, 122, 106, 39);
+		frmAddValues.getContentPane().add(lblName);
 		
-		lblLocation = new JLabel("Location :");
-		lblLocation.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblLocation.setBounds(69, 222, 125, 39);
-		frmAddValues.getContentPane().add(lblLocation);
-		
-		lblCapacity = new JLabel("Capacity :");
-		lblCapacity.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblCapacity.setBounds(69, 272, 167, 39);
-		frmAddValues.getContentPane().add(lblCapacity);
+		lblModules = new JLabel("No of Modules :");
+		lblModules.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblModules.setBounds(69, 172, 167, 39);
+		frmAddValues.getContentPane().add(lblModules);
 		
 		btnEnterDetails = new JButton("Enter Details");
 		btnEnterDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String id = txtId.getText();
-				String fName = txtFName.getText();
-				String lName = txtLName.getText();
-				String location = txtLocation.getText();
-				String capacity = txtCapacity.getText();
+				String name = txtName.getText();
+				String moduleNum = txtModule.getText();
 				
-				int addedEntries = ClassroomDao.getAddConfirmation(id, fName, lName, location, capacity);
-				txtResult.setText(addedEntries + " entries added...");
+				int editedEntries = SubjectDao.getEditConfirmation(id, name, moduleNum);
+				
+				txtResult.setText("Edited " + editedEntries + "...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnEnterDetails.setBounds(240, 509, 138, 39);
+		btnEnterDetails.setBounds(115, 509, 138, 39);
 		frmAddValues.getContentPane().add(btnEnterDetails);
 		
 		txtResult = new JTextArea();
@@ -129,38 +128,51 @@ public class NewClassroomWindow {
 		panelLogo2.add(lblName3);
 		
 		txtId = new JTextField();
+		txtId.setEditable(false);
 		txtId.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtId.setBounds(115, 72, 290, 34);
-		frmAddValues.getContentPane().add(txtId);
 		txtId.setColumns(10);
+		txtId.setBounds(115, 77, 290, 34);
+		frmAddValues.getContentPane().add(txtId);
 		
-		txtFName = new JTextField();
-		txtFName.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtFName.setColumns(10);
-		txtFName.setBounds(294, 127, 290, 34);
-		frmAddValues.getContentPane().add(txtFName);
+		txtName = new JTextField();
+		txtName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtName.setColumns(10);
+		txtName.setBounds(154, 127, 290, 34);
+		frmAddValues.getContentPane().add(txtName);
 		
-		txtLocation = new JTextField();
-		txtLocation.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtLocation.setColumns(10);
-		txtLocation.setBounds(178, 227, 290, 34);
-		frmAddValues.getContentPane().add(txtLocation);
+		txtModule = new JTextField();
+		txtModule.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtModule.setColumns(10);
+		txtModule.setBounds(238, 177, 290, 34);
+		frmAddValues.getContentPane().add(txtModule);
 		
-		txtCapacity = new JTextField();
-		txtCapacity.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtCapacity.setColumns(10);
-		txtCapacity.setBounds(178, 277, 290, 34);
-		frmAddValues.getContentPane().add(txtCapacity);
-		
-		JLabel lblLName = new JLabel("Teacher Last Name :");
-		lblLName.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblLName.setBounds(69, 172, 233, 39);
-		frmAddValues.getContentPane().add(lblLName);
-		
-		txtLName = new JTextField();
-		txtLName.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtLName.setColumns(10);
-		txtLName.setBounds(294, 177, 290, 34);
-		frmAddValues.getContentPane().add(txtLName);
+		btnNext = new JButton("Next Entry");
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentIndex++;
+				
+				if (currentIndex < list.size()) {
+					addDetails();
+				} else {
+					txtResult.setText("All entries are edited...");
+				}
+			}
+		});
+		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNext.setBounds(384, 509, 138, 39);
+		frmAddValues.getContentPane().add(btnNext);
 	}
+	
+	private void addDetails() {
+        if (currentIndex >= 0 && currentIndex < list.size()) {
+            Subject sub = list.get(currentIndex);
+            
+            txtId.setText(sub.getId());
+            txtName.setText(sub.getName());
+            txtModule.setText(String.valueOf(sub.getNoOfModules()));
+            
+            txtResult.setText("Editing entry " + (currentIndex + 1) + " of " + list.size() + "...");
+        }
+    }
+
 }

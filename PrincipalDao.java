@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 // class implementation
-class PrincipalDao {
+public class PrincipalDao {
     
     // show all
     public static ArrayList<Principal> getAll() {
@@ -160,6 +160,33 @@ class PrincipalDao {
             // returns null if the above list is not returned
             return null;
         }
+    }
+    
+    public static int getAddConfirmation(String id, String fName, String lName, String email, String contact, String position, String address, String gender) {
+    	int addedEntries = 0;
+    	
+    	String query = "INSERT INTO principal VALUES ('" + id + "', '" + fName + "', '" + lName + "', '" + email + "', '" + contact + "', '" + position + "', '" + address + "', '" + gender + "';";
+    	addedEntries = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return addedEntries;
+    }
+    
+    public static int getEditConfirmation(String id, String fName, String lName, String email, String contact, String position, String address, String gender) {
+    	int editedEntires = 0;
+    	
+    	String query = "UPDATE principal SET principal_f_name = '" + fName + "', principal_l_name = '" + lName + "', p_email = '" + email + "', p_contact = '" + contact + "', position = '" + position + "', p_address = '" + address + "', gender = '" + gender + "'  where principal_id = '" + id + "';";
+    	editedEntires = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return editedEntires;
+    }
+    
+    public static int getDeleteConfirmation(String pId) {
+    	int deletedEntires = 0;
+    	
+    	String query = "DELETE FROM principal WHERE principal_id = '" + pId + "';";
+    	deletedEntires = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return deletedEntires;
     }
 
 }

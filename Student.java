@@ -15,7 +15,7 @@ package project;
 // imports
 
 // class implementation
-class Student {
+public class Student {
 
 	// properties
 	private String id;

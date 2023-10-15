@@ -14,7 +14,7 @@ package project;
 
 // imports
 
-class Examination {
+public class Examination {
     
     // properties
     private String id;

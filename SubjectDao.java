@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 // class implementation
-class SubjectDao {
+public class SubjectDao {
 
     // show all
     public static ArrayList<Subject> getAll() {
@@ -129,6 +129,33 @@ class SubjectDao {
             // returns null if the above list is not returned
             return null;
         }
+    }
+    
+    public static int getAddConfirmation(String id, String name, String moduleNum) {
+    	int addedEntries = 0;
+    	
+    	String query = "INSERT INTO subject VALUES ('" + id + "', '" + name + "', " + moduleNum + ");";
+    	addedEntries = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return addedEntries;
+    }
+    
+    public static int getEditConfirmation(String id, String name, String moduleNum) {
+    	int editedEntires = 0;
+    	
+    	String query = "UPDATE subject SET sub_name = '" + name + "', no_of_modules = '" + moduleNum + "' where sub_id = '" + id + "';";
+    	editedEntires = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return editedEntires;
+    }
+    
+    public static int getDeleteConfirmation(String pId) {
+    	int deletedEntires = 0;
+    	
+    	String query = "DELETE FROM subject WHERE sub_id = '" + pId + "';";
+    	deletedEntires = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return deletedEntires;
     }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Class Name : NewExaminationWindow
+ * Class Name : EditExaminationWindow
  * GUI class
  *
  * Version info : ~
@@ -14,6 +14,7 @@ package project;
 
 // imports
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,87 +27,93 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 // class implementation
-public class NewExaminationWindow {
+public class EditExaminationWindow {
 
 	// properties
-	private JFrame frmAddValues;
+	private JFrame frmEditValues;
 	private JTextField txtId, txtSubject, txtExamType, txtDuration;
 	private JLabel lblHeader, lblId, lblSubject, lblExamType, lblDuration, lblName1, lblName2, lblName3;
 	private JButton btnEnterDetails;
 	private JTextArea txtResult;
 	private JPanel panelLogo, panelLogo2;
+	private ArrayList<Examination> list;
+	private int currentIndex;
 
 	/**
 	 * Create the application.
 	 */
-	public NewExaminationWindow() {
+	public EditExaminationWindow(ArrayList<Examination> list) {
+		this.list = list;
+		this.currentIndex = 0;
 		initialize();
+		addDetails();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmAddValues = new JFrame();
-		frmAddValues.setTitle("Add values");
-		frmAddValues.setVisible(true);
-		frmAddValues.setResizable(false);
-		frmAddValues.setBounds(10, 10, 650, 700);
-		frmAddValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frmAddValues.getContentPane().setLayout(null);
+		frmEditValues = new JFrame();
+		frmEditValues.setTitle("Edit values");
+		frmEditValues.setVisible(true);
+		frmEditValues.setResizable(false);
+		frmEditValues.setBounds(10, 10, 650, 700);
+		frmEditValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmEditValues.getContentPane().setLayout(null);
 		
-		lblHeader = new JLabel("Add new values to Examination");
+		lblHeader = new JLabel("Edit values of Examination");
 		lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblHeader.setBounds(10, 11, 395, 50);
-		frmAddValues.getContentPane().add(lblHeader);
+		frmEditValues.getContentPane().add(lblHeader);
 		
 		lblId = new JLabel("ID :");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblId.setBounds(69, 72, 106, 39);
-		frmAddValues.getContentPane().add(lblId);
+		frmEditValues.getContentPane().add(lblId);
 		
 		lblSubject = new JLabel("Subject :");
 		lblSubject.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblSubject.setBounds(69, 122, 106, 39);
-		frmAddValues.getContentPane().add(lblSubject);
+		frmEditValues.getContentPane().add(lblSubject);
 		
 		lblExamType = new JLabel("Exam Type :");
 		lblExamType.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblExamType.setBounds(69, 172, 147, 39);
-		frmAddValues.getContentPane().add(lblExamType);
+		frmEditValues.getContentPane().add(lblExamType);
 		
 		lblDuration = new JLabel("Duration :");
 		lblDuration.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblDuration.setBounds(69, 222, 167, 39);
-		frmAddValues.getContentPane().add(lblDuration);
+		frmEditValues.getContentPane().add(lblDuration);
 		
 		btnEnterDetails = new JButton("Enter Details");
 		btnEnterDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String id = txtId.getText();
 				String subject = txtSubject.getText();
-				String examType = txtExamType.getText();
+				String type = txtExamType.getText();
 				String duration = txtDuration.getText();
 				
-				int addedEntries = ExaminationDao.getAddConfirmation(id, subject, examType, duration, duration);
-				txtResult.setText(addedEntries + " entries added...");
+				int editedEntries = ExaminationDao.getEditConfirmation(id, subject, type, duration);
+				
+				txtResult.setText("Edited " + editedEntries + "...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnEnterDetails.setBounds(239, 509, 138, 39);
-		frmAddValues.getContentPane().add(btnEnterDetails);
+		btnEnterDetails.setBounds(115, 509, 138, 39);
+		frmEditValues.getContentPane().add(btnEnterDetails);
 		
 		txtResult = new JTextArea();
 		txtResult.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		txtResult.setText("Result...");
 		txtResult.setBounds(115, 559, 407, 50);
-		frmAddValues.getContentPane().add(txtResult);
+		frmEditValues.getContentPane().add(txtResult);
 		
 		panelLogo = new JPanel();
 		panelLogo.setLayout(null);
 		panelLogo.setBackground(Color.BLACK);
 		panelLogo.setBounds(534, 0, 100, 100);
-		frmAddValues.getContentPane().add(panelLogo);
+		frmEditValues.getContentPane().add(panelLogo);
 		
 		panelLogo2 = new JPanel();
 		panelLogo2.setLayout(null);
@@ -127,27 +134,57 @@ public class NewExaminationWindow {
 		
 		txtId = new JTextField();
 		txtId.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtId.setEditable(false);
 		txtId.setColumns(10);
 		txtId.setBounds(115, 77, 290, 34);
-		frmAddValues.getContentPane().add(txtId);
+		frmEditValues.getContentPane().add(txtId);
 		
 		txtSubject = new JTextField();
 		txtSubject.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtSubject.setColumns(10);
 		txtSubject.setBounds(166, 127, 290, 34);
-		frmAddValues.getContentPane().add(txtSubject);
+		frmEditValues.getContentPane().add(txtSubject);
 		
 		txtExamType = new JTextField();
 		txtExamType.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtExamType.setColumns(10);
 		txtExamType.setBounds(206, 177, 290, 34);
-		frmAddValues.getContentPane().add(txtExamType);
+		frmEditValues.getContentPane().add(txtExamType);
 		
 		txtDuration = new JTextField();
 		txtDuration.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtDuration.setColumns(10);
 		txtDuration.setBounds(180, 227, 290, 34);
-		frmAddValues.getContentPane().add(txtDuration);
+		frmEditValues.getContentPane().add(txtDuration);
+		
+		JButton btnNext = new JButton("Next Entry");
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentIndex++;
+				
+				if (currentIndex < list.size()) {
+					addDetails();
+				} else {
+					txtResult.setText("All entries are edited...");
+				}
+			}
+		});
+		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNext.setBounds(384, 509, 138, 39);
+		frmEditValues.getContentPane().add(btnNext);
 	}
-
+	
+	private void addDetails() {
+        if (currentIndex >= 0 && currentIndex < list.size()) {
+            Examination exam = list.get(currentIndex);
+            
+            txtId.setText(exam.getId());
+            txtSubject.setText(exam.getSubject().getName());
+            txtExamType.setText(exam.getExamType());
+            txtDuration.setText(String.valueOf(exam.getDuration()));
+            
+            txtResult.setText("Editing entry " + (currentIndex + 1) + " of " + list.size() + "...");
+        }
+    }
+	
 }

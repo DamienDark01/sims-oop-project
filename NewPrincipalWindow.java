@@ -22,20 +22,19 @@ import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 // class implementation
-class NewPrincipalWindow {
+public class NewPrincipalWindow {
 
 	// properties
 	private JFrame frmAddValues;
-	private JTextField idTxt;
-	private JTextField fNameTxt;
-	private JTextField lNameTxt;
-	private JTextField emailTxt;
-	private JTextField contactTxt;
-	private JTextField positionTxt;
-	private JTextField addressTxt;
-	private JTextField genderTxt;
+	private JTextField txtId, txtFName, txtLName, txtEmail, txtContact, txtPosition, txtAddress, txtGender;
+	private JLabel lblHeader, lblId, lblFName, lblLName, lblEmail, lblName1, lblName2, lblName3, lblContact, lblPosition, lblAddress, lblGender;
+	private JButton btnEnterDetails;
+	private JTextArea txtResult;
+	private JPanel panelLogo, panelLogo2;
 
 	/**
 	 * Create the application.
@@ -52,136 +51,151 @@ class NewPrincipalWindow {
 		frmAddValues.setTitle("Add values");
 		frmAddValues.setVisible(true);
 		frmAddValues.setResizable(false);
-		frmAddValues.setBounds(100, 100, 650, 700);
-		frmAddValues.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAddValues.setBounds(10, 10, 650, 700);
+		frmAddValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmAddValues.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Add new values to Principal");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblNewLabel.setBounds(10, 11, 395, 50);
-		frmAddValues.getContentPane().add(lblNewLabel);
+		lblHeader = new JLabel("Add new values to Principal");
+		lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblHeader.setBounds(10, 11, 395, 50);
+		frmAddValues.getContentPane().add(lblHeader);
 		
-		JLabel lblId = new JLabel("ID :");
+		lblId = new JLabel("ID :");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblId.setBounds(69, 72, 106, 39);
 		frmAddValues.getContentPane().add(lblId);
 		
-		JLabel lblName = new JLabel("First Name :");
-		lblName.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblName.setBounds(69, 122, 138, 39);
-		frmAddValues.getContentPane().add(lblName);
+		lblFName = new JLabel("First Name :");
+		lblFName.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblFName.setBounds(69, 122, 138, 39);
+		frmAddValues.getContentPane().add(lblFName);
 		
-		JLabel lblPassword = new JLabel("Last Name :");
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblPassword.setBounds(69, 172, 125, 39);
-		frmAddValues.getContentPane().add(lblPassword);
+		lblLName = new JLabel("Last Name :");
+		lblLName.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblLName.setBounds(69, 172, 125, 39);
+		frmAddValues.getContentPane().add(lblLName);
 		
-		JLabel lblAccountType = new JLabel("Email :");
-		lblAccountType.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblAccountType.setBounds(69, 222, 167, 39);
-		frmAddValues.getContentPane().add(lblAccountType);
-		
-		JLabel lblEmail = new JLabel("Contact No :");
+		lblEmail = new JLabel("Email :");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblEmail.setBounds(69, 272, 146, 39);
+		lblEmail.setBounds(69, 222, 167, 39);
 		frmAddValues.getContentPane().add(lblEmail);
 		
-		JLabel lblContact = new JLabel("Position :");
+		lblContact = new JLabel("Contact No :");
 		lblContact.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblContact.setBounds(69, 322, 106, 39);
+		lblContact.setBounds(69, 272, 146, 39);
 		frmAddValues.getContentPane().add(lblContact);
 		
-		JLabel lblAddress = new JLabel("Address :");
+		lblPosition = new JLabel("Position :");
+		lblPosition.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblPosition.setBounds(69, 322, 106, 39);
+		frmAddValues.getContentPane().add(lblPosition);
+		
+		lblAddress = new JLabel("Address :");
 		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblAddress.setBounds(69, 372, 106, 39);
 		frmAddValues.getContentPane().add(lblAddress);
 		
-		JLabel lblGender = new JLabel("Gender :");
+		lblGender = new JLabel("Gender :");
 		lblGender.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblGender.setBounds(69, 422, 106, 39);
 		frmAddValues.getContentPane().add(lblGender);
 		
-		JButton btnEnterDetails = new JButton("Enter Details");
+		btnEnterDetails = new JButton("Enter Details");
+		btnEnterDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id = txtId.getText();
+				String fName = txtFName.getText();
+				String lName = txtLName.getText();
+				String email = txtEmail.getText();
+				String contact = txtContact.getText();
+				String position = txtPosition.getText();
+				String address = txtAddress.getText();
+				String gender = txtGender.getText();
+				
+				int addedEntries = PrincipalDao.getAddConfirmation(id, fName, lName, email, contact, position, address, gender);
+				txtResult.setText(addedEntries + " entries added...");
+			}
+		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnEnterDetails.setBounds(238, 472, 138, 39);
+		btnEnterDetails.setBounds(267, 509, 138, 39);
 		frmAddValues.getContentPane().add(btnEnterDetails);
 		
-		JTextArea txtrResult = new JTextArea();
-		txtrResult.setFont(new Font("Monospaced", Font.PLAIN, 15));
-		txtrResult.setText("Result...");
-		txtrResult.setBounds(115, 559, 407, 50);
-		frmAddValues.getContentPane().add(txtrResult);
+		txtResult = new JTextArea();
+		txtResult.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		txtResult.setText("Result...");
+		txtResult.setBounds(115, 559, 407, 50);
+		frmAddValues.getContentPane().add(txtResult);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setLayout(null);
-		panel_3.setBackground(Color.BLACK);
-		panel_3.setBounds(534, 0, 100, 100);
-		frmAddValues.getContentPane().add(panel_3);
+		panelLogo = new JPanel();
+		panelLogo.setLayout(null);
+		panelLogo.setBackground(Color.BLACK);
+		panelLogo.setBounds(534, 0, 100, 100);
+		frmAddValues.getContentPane().add(panelLogo);
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setLayout(null);
-		panel_4.setBounds(15, 15, 65, 65);
-		panel_3.add(panel_4);
+		panelLogo2 = new JPanel();
+		panelLogo2.setLayout(null);
+		panelLogo2.setBounds(15, 15, 65, 65);
+		panelLogo.add(panelLogo2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Western");
-		lblNewLabel_3.setBounds(2, 0, 46, 14);
-		panel_4.add(lblNewLabel_3);
+		lblName1 = new JLabel("Western");
+		lblName1.setBounds(2, 0, 46, 14);
+		panelLogo2.add(lblName1);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("High");
-		lblNewLabel_3_1.setBounds(2, 11, 46, 14);
-		panel_4.add(lblNewLabel_3_1);
+		lblName2 = new JLabel("High");
+		lblName2.setBounds(2, 11, 46, 14);
+		panelLogo2.add(lblName2);
 		
-		JLabel lblNewLabel_3_2 = new JLabel("School");
-		lblNewLabel_3_2.setBounds(2, 25, 46, 14);
-		panel_4.add(lblNewLabel_3_2);
+		lblName3 = new JLabel("School");
+		lblName3.setBounds(2, 25, 46, 14);
+		panelLogo2.add(lblName3);
 		
-		idTxt = new JTextField();
-		idTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		idTxt.setColumns(10);
-		idTxt.setBounds(115, 77, 290, 34);
-		frmAddValues.getContentPane().add(idTxt);
+		txtId = new JTextField();
+		txtId.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtId.setColumns(10);
+		txtId.setBounds(115, 77, 290, 34);
+		frmAddValues.getContentPane().add(txtId);
 		
-		fNameTxt = new JTextField();
-		fNameTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		fNameTxt.setColumns(10);
-		fNameTxt.setBounds(202, 127, 290, 34);
-		frmAddValues.getContentPane().add(fNameTxt);
+		txtFName = new JTextField();
+		txtFName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtFName.setColumns(10);
+		txtFName.setBounds(202, 127, 290, 34);
+		frmAddValues.getContentPane().add(txtFName);
 		
-		lNameTxt = new JTextField();
-		lNameTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lNameTxt.setColumns(10);
-		lNameTxt.setBounds(202, 177, 290, 34);
-		frmAddValues.getContentPane().add(lNameTxt);
+		txtLName = new JTextField();
+		txtLName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtLName.setColumns(10);
+		txtLName.setBounds(202, 177, 290, 34);
+		frmAddValues.getContentPane().add(txtLName);
 		
-		emailTxt = new JTextField();
-		emailTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		emailTxt.setColumns(10);
-		emailTxt.setBounds(146, 227, 290, 34);
-		frmAddValues.getContentPane().add(emailTxt);
+		txtEmail = new JTextField();
+		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(146, 227, 290, 34);
+		frmAddValues.getContentPane().add(txtEmail);
 		
-		contactTxt = new JTextField();
-		contactTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		contactTxt.setColumns(10);
-		contactTxt.setBounds(202, 277, 290, 34);
-		frmAddValues.getContentPane().add(contactTxt);
+		txtContact = new JTextField();
+		txtContact.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtContact.setColumns(10);
+		txtContact.setBounds(202, 277, 290, 34);
+		frmAddValues.getContentPane().add(txtContact);
 		
-		positionTxt = new JTextField();
-		positionTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		positionTxt.setColumns(10);
-		positionTxt.setBounds(173, 327, 290, 34);
-		frmAddValues.getContentPane().add(positionTxt);
+		txtPosition = new JTextField();
+		txtPosition.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtPosition.setColumns(10);
+		txtPosition.setBounds(173, 327, 290, 34);
+		frmAddValues.getContentPane().add(txtPosition);
 		
-		addressTxt = new JTextField();
-		addressTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		addressTxt.setColumns(10);
-		addressTxt.setBounds(173, 377, 290, 34);
-		frmAddValues.getContentPane().add(addressTxt);
+		txtAddress = new JTextField();
+		txtAddress.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtAddress.setColumns(10);
+		txtAddress.setBounds(173, 377, 290, 34);
+		frmAddValues.getContentPane().add(txtAddress);
 		
-		genderTxt = new JTextField();
-		genderTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		genderTxt.setColumns(10);
-		genderTxt.setBounds(173, 427, 290, 34);
-		frmAddValues.getContentPane().add(genderTxt);
+		txtGender = new JTextField();
+		txtGender.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtGender.setColumns(10);
+		txtGender.setBounds(173, 427, 290, 34);
+		frmAddValues.getContentPane().add(txtGender);
 	}
 
 }

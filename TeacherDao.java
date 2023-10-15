@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 // class implementation
-class TeacherDao {
+public class TeacherDao {
     
     // show all
     public static ArrayList<Teacher> getAll() {
@@ -172,6 +172,33 @@ class TeacherDao {
             // returns null if the above list is not returned
             return null;
         }
+    }
+    
+    public static int getAddConfirmation(String id, String fName, String lName, String subject, String email, String contact, String qualification, String address, String gender) {
+    	int addedEntries = 0;
+    	
+    	String query = "INSERT INTO teacher VALUES ('" + id + "', '" + fName + "', '" + lName + "', (SELECT sub_id FROM subject WHERE sub_name = '" + subject + "'),'" + email + "', '" + contact + "', '" + qualification + "', '" + address + "', '" + gender + "';";
+    	addedEntries = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return addedEntries;
+    }
+    
+    public static int getEditConfirmation(String id, String fName, String lName, String subject, String email, String contact, String qualification, String address, String gender) {
+    	int editedEntires = 0;
+    	
+    	String query = "UPDATE teacher SET teacher_f_name = '" + fName + "', teacher_l_name = '" + lName + "', sub_id = (SELECT sub_id FROM subject WHERE sub_name = '" + subject + "'), t_email = '" + email + "', t_contact = '" + contact + "', qualification = '" + qualification + "', t_address = '" + address + "', gender = '" + gender + "'  where teacher_id = '" + id + "';";
+    	editedEntires = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return editedEntires;
+    }
+    
+    public static int getDeleteConfirmation(String pId) {
+    	int deletedEntires = 0;
+    	
+    	String query = "DELETE FROM teacher WHERE teacher_id = '" + pId + "';";
+    	deletedEntires = CommonDao.getInsertUpdateDeleteStatus(query);
+    	
+    	return deletedEntires;
     }
 
 }

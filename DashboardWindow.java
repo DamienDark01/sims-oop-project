@@ -25,10 +25,11 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 //class implementation
-class DashboardWindow {
+public class DashboardWindow {
 
 	// properties
 	private JFrame frmDashboard;
@@ -54,242 +55,258 @@ class DashboardWindow {
 		
 		Border line = BorderFactory.createLineBorder(Color.black);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 1044, 108);
-		panel.setBorder(line);
-		frmDashboard.getContentPane().add(panel);
-		panel.setLayout(null);
+		JPanel panelHeader = new JPanel();
+		panelHeader.setBounds(10, 11, 1044, 108);
+		panelHeader.setBorder(line);
+		frmDashboard.getContentPane().add(panelHeader);
+		panelHeader.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Welcome, ");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblNewLabel.setBounds(368, 25, 121, 52);
-		panel.add(lblNewLabel);
+		JLabel lblWelcome = new JLabel("Welcome, ");
+		lblWelcome.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblWelcome.setBounds(368, 25, 121, 52);
+		panelHeader.add(lblWelcome);
 		
-		JLabel nameLabel = new JLabel(user.getName());
-		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		nameLabel.setBounds(488, 25, 363, 52);
-		panel.add(nameLabel);
+		JLabel lblUserName = new JLabel(user.getName());
+		lblUserName.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblUserName.setBounds(488, 25, 363, 52);
+		panelHeader.add(lblUserName);
 		
-		JButton logoutBtn = new JButton("Log Out");
-		logoutBtn.addActionListener(new ActionListener() {
+		JButton btnLogout = new JButton("Log Out");
+		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmDashboard.dispose();
 				new LoginWindow();
+				frmDashboard.dispose();
 			}
 		});
-		logoutBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		logoutBtn.setBounds(861, 36, 138, 39);
-		panel.add(logoutBtn);
+		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnLogout.setBounds(861, 36, 138, 39);
+		panelHeader.add(btnLogout);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Color.black);
-		panel_3.setBounds(5, 5, 100, 100);
-		panel.add(panel_3);
-		panel_3.setLayout(null);
+		JPanel panelLogo = new JPanel();
+		panelLogo.setBackground(Color.black);
+		panelLogo.setBounds(5, 5, 100, 100);
+		panelHeader.add(panelLogo);
+		panelLogo.setLayout(null);
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(15, 15, 65, 65);
-		panel_3.add(panel_4);
-		panel_4.setLayout(null);
+		JPanel panelLogo2 = new JPanel();
+		panelLogo2.setBounds(15, 15, 65, 65);
+		panelLogo.add(panelLogo2);
+		panelLogo2.setLayout(null);
 		
-		JLabel lblNewLabel_3 = new JLabel("Western");
-		lblNewLabel_3.setBounds(2, 0, 46, 14);
-		panel_4.add(lblNewLabel_3);
+		JLabel lblName1 = new JLabel("Western");
+		lblName1.setBounds(2, 0, 46, 14);
+		panelLogo2.add(lblName1);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("High");
-		lblNewLabel_3_1.setBounds(2, 11, 46, 14);
-		panel_4.add(lblNewLabel_3_1);
+		JLabel lblName2 = new JLabel("High");
+		lblName2.setBounds(2, 11, 46, 14);
+		panelLogo2.add(lblName2);
 		
-		JLabel lblNewLabel_3_2 = new JLabel("School");
-		lblNewLabel_3_2.setBounds(2, 25, 46, 14);
-		panel_4.add(lblNewLabel_3_2);
+		JLabel lblName3 = new JLabel("School");
+		lblName3.setBounds(2, 25, 46, 14);
+		panelLogo2.add(lblName3);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(line);
-		panel_1.setBounds(10, 130, 387, 540);
-		frmDashboard.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
+		JPanel panelAccDetails = new JPanel();
+		panelAccDetails.setBorder(line);
+		panelAccDetails.setBounds(10, 130, 387, 540);
+		frmDashboard.getContentPane().add(panelAccDetails);
+		panelAccDetails.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Account Details");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		lblNewLabel_1.setBounds(10, 11, 219, 39);
-		panel_1.add(lblNewLabel_1);
+		panelAccDetails.add(lblNewLabel_1);
 		
-		JButton editDetails = new JButton("Edit Details");
-		editDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		editDetails.setBounds(116, 490, 138, 39);
-		panel_1.add(editDetails);
+		JButton btnEditDetails = new JButton("Edit Details");
+		btnEditDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<User> itemList = new ArrayList<User>();
+				itemList.add(user);
+				
+				new EditUserWindow(itemList);
+			}
+		});
+		btnEditDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnEditDetails.setBounds(116, 490, 138, 39);
+		panelAccDetails.add(btnEditDetails);
 		
 		JLabel lblId = new JLabel("ID :");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblId.setBounds(10, 82, 106, 39);
-		panel_1.add(lblId);
+		panelAccDetails.add(lblId);
 		
 		JLabel lblName = new JLabel("Name :");
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblName.setBounds(10, 132, 106, 39);
-		panel_1.add(lblName);
+		panelAccDetails.add(lblName);
 		
 		JLabel lblPassword = new JLabel("Password :");
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblPassword.setBounds(10, 182, 125, 39);
-		panel_1.add(lblPassword);
+		panelAccDetails.add(lblPassword);
 		
 		JLabel lblAccountType = new JLabel("Account Type :");
 		lblAccountType.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblAccountType.setBounds(10, 232, 167, 39);
-		panel_1.add(lblAccountType);
+		panelAccDetails.add(lblAccountType);
 		
 		JLabel lblEmail = new JLabel("Email :");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblEmail.setBounds(10, 282, 106, 39);
-		panel_1.add(lblEmail);
+		panelAccDetails.add(lblEmail);
 		
 		JLabel lblContact = new JLabel("Contact :");
 		lblContact.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblContact.setBounds(10, 332, 106, 39);
-		panel_1.add(lblContact);
+		panelAccDetails.add(lblContact);
 		
 		JLabel lblAddress = new JLabel("Address :");
 		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblAddress.setBounds(10, 382, 106, 39);
-		panel_1.add(lblAddress);
+		panelAccDetails.add(lblAddress);
 		
 		JLabel lblGender = new JLabel("Gender :");
 		lblGender.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblGender.setBounds(10, 432, 106, 39);
-		panel_1.add(lblGender);
+		panelAccDetails.add(lblGender);
 		
 		JLabel nameLabel_1 = new JLabel(user.getId());
 		nameLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		nameLabel_1.setBounds(63, 82, 314, 39);
-		panel_1.add(nameLabel_1);
+		panelAccDetails.add(nameLabel_1);
 		
 		JLabel nameLabel_2 = new JLabel(user.getName());
 		nameLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		nameLabel_2.setBounds(94, 132, 283, 39);
-		panel_1.add(nameLabel_2);
+		panelAccDetails.add(nameLabel_2);
 		
 		JLabel nameLabel_3 = new JLabel(user.getPassword());
 		nameLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		nameLabel_3.setBounds(130, 182, 247, 39);
-		panel_1.add(nameLabel_3);
+		panelAccDetails.add(nameLabel_3);
 		
 		JLabel nameLabel_4 = new JLabel(user.getAccountType());
 		nameLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		nameLabel_4.setBounds(172, 232, 205, 39);
-		panel_1.add(nameLabel_4);
+		panelAccDetails.add(nameLabel_4);
 		
 		JLabel nameLabel_5 = new JLabel(user.getEmail());
 		nameLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		nameLabel_5.setBounds(86, 282, 291, 39);
-		panel_1.add(nameLabel_5);
+		panelAccDetails.add(nameLabel_5);
 		
 		JLabel nameLabel_6 = new JLabel(user.getContact());
 		nameLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		nameLabel_6.setBounds(116, 332, 261, 39);
-		panel_1.add(nameLabel_6);
+		panelAccDetails.add(nameLabel_6);
 		
 		JLabel nameLabel_7 = new JLabel(user.getAddress());
 		nameLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		nameLabel_7.setBounds(116, 382, 261, 39);
-		panel_1.add(nameLabel_7);
+		panelAccDetails.add(nameLabel_7);
 		
 		JLabel nameLabel_8 = new JLabel(user.getGender());
 		nameLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		nameLabel_8.setBounds(105, 432, 272, 39);
-		panel_1.add(nameLabel_8);
+		panelAccDetails.add(nameLabel_8);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(line);
-		panel_2.setBounds(407, 130, 647, 540);
-		frmDashboard.getContentPane().add(panel_2);
-		panel_2.setLayout(null);
+		JPanel panelDashboard = new JPanel();
+		panelDashboard.setBorder(line);
+		panelDashboard.setBounds(407, 130, 647, 540);
+		frmDashboard.getContentPane().add(panelDashboard);
+		panelDashboard.setLayout(null);
 		
 		JLabel lblNewLabel_2 = new JLabel("Dashboard");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		lblNewLabel_2.setBounds(10, 11, 226, 34);
-		panel_2.add(lblNewLabel_2);
+		panelDashboard.add(lblNewLabel_2);
 		
 		JButton btnClassroom = new JButton("Classroom");
 		btnClassroom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new ClassroomWindow(user);
+				frmDashboard.dispose();
 			}
 		});
 		btnClassroom.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnClassroom.setBounds(10, 67, 169, 90);
-		panel_2.add(btnClassroom);
+		panelDashboard.add(btnClassroom);
 		
 		JButton btnExamination = new JButton("Examination");
 		btnExamination.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new ExaminationWindow(user);
+				frmDashboard.dispose();
 			}
 		});
 		btnExamination.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnExamination.setBounds(246, 67, 169, 90);
-		panel_2.add(btnExamination);
+		panelDashboard.add(btnExamination);
 		
 		JButton btnLaboratory = new JButton("Laboratory");
 		btnLaboratory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new LaboratoryWindow(user);
+				frmDashboard.dispose();
 			}
 		});
 		btnLaboratory.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnLaboratory.setBounds(468, 67, 169, 90);
-		panel_2.add(btnLaboratory);
+		panelDashboard.add(btnLaboratory);
 		
 		JButton btnPrincipal = new JButton("Principal");
 		btnPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new PrincipalWindow(user);
+				frmDashboard.dispose();
 			}
 		});
 		btnPrincipal.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnPrincipal.setBounds(10, 186, 169, 90);
-		panel_2.add(btnPrincipal);
+		panelDashboard.add(btnPrincipal);
 		
 		JButton btnStudent = new JButton("Student");
 		btnStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new StudentWindow(user);
+				frmDashboard.dispose();
 			}
 		});
 		btnStudent.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnStudent.setBounds(246, 186, 169, 90);
-		panel_2.add(btnStudent);
+		panelDashboard.add(btnStudent);
 		
 		JButton btnSubject = new JButton("Subject");
 		btnSubject.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new StudentWindow(user);
+				frmDashboard.dispose();
 			}
 		});
 		btnSubject.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnSubject.setBounds(468, 186, 169, 90);
-		panel_2.add(btnSubject);
+		panelDashboard.add(btnSubject);
 		
 		JButton btnTeacher = new JButton("Teacher");
 		btnTeacher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new TeacherWindow(user);
+				frmDashboard.dispose();
 			}
 		});
 		btnTeacher.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnTeacher.setBounds(121, 309, 169, 90);
-		panel_2.add(btnTeacher);
+		panelDashboard.add(btnTeacher);
 		
 		JButton btnUser = new JButton("User");
 		btnUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new UserWindow(user);
+				frmDashboard.dispose();
 			}
 		});
 		btnUser.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnUser.setBounds(355, 309, 169, 90);
-		panel_2.add(btnUser);
+		panelDashboard.add(btnUser);
 		
 		JButton btnContactSupport = new JButton("Contact Support");
 		btnContactSupport.addActionListener(new ActionListener() {
@@ -300,7 +317,7 @@ class DashboardWindow {
 		});
 		btnContactSupport.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnContactSupport.setBounds(255, 479, 138, 39);
-		panel_2.add(btnContactSupport);
+		panelDashboard.add(btnContactSupport);
 	}
 	
 }
