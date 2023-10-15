@@ -15,6 +15,7 @@ package com.sliit.gui.create;
 // imports
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -57,6 +58,9 @@ public class NewPrincipalWindow implements CreateWindow {
 		frmAddValues.setBounds(10, 10, 650, 700);
 		frmAddValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmAddValues.getContentPane().setLayout(null);
+		
+		ImageIcon img = new ImageIcon("src/logo.png");
+        frmAddValues.setIconImage(img.getImage());
 		
 		lblHeader = new JLabel("Add new values to Principal");
 		lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 26));

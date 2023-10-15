@@ -28,6 +28,7 @@ import com.sliit.dao.UserDao;
 import com.sliit.entities.User;
 import com.sliit.gui.general.DashboardWindow;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
@@ -78,6 +79,9 @@ public class LoginWindow {
 		frmLogin.setBounds(10, 10, 900, 600);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
+		
+		ImageIcon img = new ImageIcon("src/logo.png");
+        frmLogin.setIconImage(img.getImage());
 		
 		colorPanel = new JPanel();
 		colorPanel.setBounds(0, 0, 437, 561);

@@ -16,6 +16,7 @@ package com.sliit.gui.update;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,7 +35,7 @@ import java.awt.event.ActionEvent;
 public class EditUserWindow implements EditWindow {
 
 	// properties
-	private JFrame frmAddValues;
+	private JFrame frmEditValues;
 	private JTextField txtId, txtName, txtPassword, txtEmail, txtContact, txtAccType, txtAddress, txtGender;
 	private JLabel lblHeader, lblId, lblName, lblPassword, lblEmail, lblName1, lblName2, lblName3, lblContact, lblAccountType, lblAddress, lblGender;
 	private JButton btnEnterDetails;
@@ -58,58 +59,61 @@ public class EditUserWindow implements EditWindow {
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
-		frmAddValues = new JFrame();
-		frmAddValues.setTitle("Add values");
-		frmAddValues.setVisible(true);
-		frmAddValues.setResizable(false);
-		frmAddValues.setBounds(10, 10, 650, 700);
-		frmAddValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frmAddValues.getContentPane().setLayout(null);
+		frmEditValues = new JFrame();
+		frmEditValues.setTitle("Add values");
+		frmEditValues.setVisible(true);
+		frmEditValues.setResizable(false);
+		frmEditValues.setBounds(10, 10, 650, 700);
+		frmEditValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmEditValues.getContentPane().setLayout(null);
+		
+		ImageIcon img = new ImageIcon("src/logo.png");
+        frmEditValues.setIconImage(img.getImage());
 		
 		lblHeader = new JLabel("Add new values to User");
 		lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblHeader.setBounds(10, 11, 395, 50);
-		frmAddValues.getContentPane().add(lblHeader);
+		frmEditValues.getContentPane().add(lblHeader);
 		
 		lblId = new JLabel("ID :");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblId.setBounds(69, 72, 106, 39);
-		frmAddValues.getContentPane().add(lblId);
+		frmEditValues.getContentPane().add(lblId);
 		
 		lblName = new JLabel("Name :");
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblName.setBounds(69, 122, 106, 39);
-		frmAddValues.getContentPane().add(lblName);
+		frmEditValues.getContentPane().add(lblName);
 		
 		lblPassword = new JLabel("Password :");
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblPassword.setBounds(69, 172, 125, 39);
-		frmAddValues.getContentPane().add(lblPassword);
+		frmEditValues.getContentPane().add(lblPassword);
 		
 		lblAccountType = new JLabel("Account Type :");
 		lblAccountType.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblAccountType.setBounds(69, 222, 167, 39);
-		frmAddValues.getContentPane().add(lblAccountType);
+		frmEditValues.getContentPane().add(lblAccountType);
 		
 		lblEmail = new JLabel("Email :");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblEmail.setBounds(69, 272, 106, 39);
-		frmAddValues.getContentPane().add(lblEmail);
+		frmEditValues.getContentPane().add(lblEmail);
 		
 		lblContact = new JLabel("Contact :");
 		lblContact.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblContact.setBounds(69, 322, 106, 39);
-		frmAddValues.getContentPane().add(lblContact);
+		frmEditValues.getContentPane().add(lblContact);
 		
 		lblAddress = new JLabel("Address :");
 		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblAddress.setBounds(69, 372, 106, 39);
-		frmAddValues.getContentPane().add(lblAddress);
+		frmEditValues.getContentPane().add(lblAddress);
 		
 		lblGender = new JLabel("Gender :");
 		lblGender.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblGender.setBounds(69, 422, 106, 39);
-		frmAddValues.getContentPane().add(lblGender);
+		frmEditValues.getContentPane().add(lblGender);
 		
 		btnEnterDetails = new JButton("Enter Details");
 		btnEnterDetails.addActionListener(new ActionListener() {
@@ -130,19 +134,19 @@ public class EditUserWindow implements EditWindow {
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnEnterDetails.setBounds(115, 509, 138, 39);
-		frmAddValues.getContentPane().add(btnEnterDetails);
+		frmEditValues.getContentPane().add(btnEnterDetails);
 		
 		txtResult = new JTextArea();
 		txtResult.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		txtResult.setText("Result...");
 		txtResult.setBounds(115, 559, 407, 50);
-		frmAddValues.getContentPane().add(txtResult);
+		frmEditValues.getContentPane().add(txtResult);
 		
 		panelLogo = new JPanel();
 		panelLogo.setLayout(null);
 		panelLogo.setBackground(Color.BLACK);
 		panelLogo.setBounds(534, 0, 100, 100);
-		frmAddValues.getContentPane().add(panelLogo);
+		frmEditValues.getContentPane().add(panelLogo);
 		
 		panelLogo2 = new JPanel();
 		panelLogo2.setLayout(null);
@@ -166,49 +170,49 @@ public class EditUserWindow implements EditWindow {
 		txtId.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtId.setColumns(10);
 		txtId.setBounds(115, 77, 290, 34);
-		frmAddValues.getContentPane().add(txtId);
+		frmEditValues.getContentPane().add(txtId);
 		
 		txtName = new JTextField();
 		txtName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtName.setColumns(10);
 		txtName.setBounds(150, 127, 290, 34);
-		frmAddValues.getContentPane().add(txtName);
+		frmEditValues.getContentPane().add(txtName);
 		
 		txtPassword = new JTextField();
 		txtPassword.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtPassword.setColumns(10);
 		txtPassword.setBounds(185, 177, 290, 34);
-		frmAddValues.getContentPane().add(txtPassword);
+		frmEditValues.getContentPane().add(txtPassword);
 		
 		txtAccType = new JTextField();
 		txtAccType.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtAccType.setColumns(10);
 		txtAccType.setBounds(232, 227, 290, 34);
-		frmAddValues.getContentPane().add(txtAccType);
+		frmEditValues.getContentPane().add(txtAccType);
 		
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtEmail.setColumns(10);
 		txtEmail.setBounds(150, 277, 290, 34);
-		frmAddValues.getContentPane().add(txtEmail);
+		frmEditValues.getContentPane().add(txtEmail);
 		
 		txtContact = new JTextField();
 		txtContact.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtContact.setColumns(10);
 		txtContact.setBounds(172, 327, 290, 34);
-		frmAddValues.getContentPane().add(txtContact);
+		frmEditValues.getContentPane().add(txtContact);
 		
 		txtAddress = new JTextField();
 		txtAddress.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtAddress.setColumns(10);
 		txtAddress.setBounds(172, 377, 290, 34);
-		frmAddValues.getContentPane().add(txtAddress);
+		frmEditValues.getContentPane().add(txtAddress);
 		
 		txtGender = new JTextField();
 		txtGender.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtGender.setColumns(10);
 		txtGender.setBounds(172, 427, 290, 34);
-		frmAddValues.getContentPane().add(txtGender);
+		frmEditValues.getContentPane().add(txtGender);
 		
 		btnNext = new JButton("Next Entry");
 		btnNext.addActionListener(new ActionListener() {
@@ -224,7 +228,7 @@ public class EditUserWindow implements EditWindow {
 		});
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNext.setBounds(384, 509, 138, 39);
-		frmAddValues.getContentPane().add(btnNext);
+		frmEditValues.getContentPane().add(btnNext);
 	}
 	
 	public void addDetails() {

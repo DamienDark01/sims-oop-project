@@ -16,6 +16,7 @@ package com.sliit.gui.update;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -64,6 +65,9 @@ public class EditExaminationWindow implements EditWindow {
 		frmEditValues.setBounds(10, 10, 650, 700);
 		frmEditValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmEditValues.getContentPane().setLayout(null);
+		
+		ImageIcon img = new ImageIcon("src/logo.png");
+        frmEditValues.setIconImage(img.getImage());
 		
 		lblHeader = new JLabel("Edit values of Examination");
 		lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 26));

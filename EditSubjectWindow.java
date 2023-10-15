@@ -15,6 +15,7 @@ package com.sliit.gui.update;
 // imports
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,7 +35,7 @@ import java.awt.event.ActionEvent;
 public class EditSubjectWindow implements EditWindow {
 
 	// properties
-	private JFrame frmAddValues;
+	private JFrame frmEditValues;
 	private JTextField txtId, txtModule, txtName;
 	private JLabel lblHeader, lblId, lblName, lblModules, lblName1, lblName2, lblName3;
 	private JButton btnEnterDetails;
@@ -58,33 +59,36 @@ public class EditSubjectWindow implements EditWindow {
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
-		frmAddValues = new JFrame();
-		frmAddValues.setTitle("Add values");
-		frmAddValues.setVisible(true);
-		frmAddValues.setResizable(false);
-		frmAddValues.setBounds(10, 10, 650, 700);
-		frmAddValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frmAddValues.getContentPane().setLayout(null);
+		frmEditValues = new JFrame();
+		frmEditValues.setTitle("Add values");
+		frmEditValues.setVisible(true);
+		frmEditValues.setResizable(false);
+		frmEditValues.setBounds(10, 10, 650, 700);
+		frmEditValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmEditValues.getContentPane().setLayout(null);
+		
+		ImageIcon img = new ImageIcon("src/logo.png");
+        frmEditValues.setIconImage(img.getImage());
 		
 		lblHeader = new JLabel("Add new values to Subject");
 		lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblHeader.setBounds(10, 11, 395, 50);
-		frmAddValues.getContentPane().add(lblHeader);
+		frmEditValues.getContentPane().add(lblHeader);
 		
 		lblId = new JLabel("ID :");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblId.setBounds(69, 72, 106, 39);
-		frmAddValues.getContentPane().add(lblId);
+		frmEditValues.getContentPane().add(lblId);
 		
 		lblName = new JLabel("Name :");
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblName.setBounds(69, 122, 106, 39);
-		frmAddValues.getContentPane().add(lblName);
+		frmEditValues.getContentPane().add(lblName);
 		
 		lblModules = new JLabel("No of Modules :");
 		lblModules.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblModules.setBounds(69, 172, 167, 39);
-		frmAddValues.getContentPane().add(lblModules);
+		frmEditValues.getContentPane().add(lblModules);
 		
 		btnEnterDetails = new JButton("Enter Details");
 		btnEnterDetails.addActionListener(new ActionListener() {
@@ -100,19 +104,19 @@ public class EditSubjectWindow implements EditWindow {
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnEnterDetails.setBounds(115, 509, 138, 39);
-		frmAddValues.getContentPane().add(btnEnterDetails);
+		frmEditValues.getContentPane().add(btnEnterDetails);
 		
 		txtResult = new JTextArea();
 		txtResult.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		txtResult.setText("Result...");
 		txtResult.setBounds(115, 559, 407, 50);
-		frmAddValues.getContentPane().add(txtResult);
+		frmEditValues.getContentPane().add(txtResult);
 		
 		panelLogo = new JPanel();
 		panelLogo.setLayout(null);
 		panelLogo.setBackground(Color.BLACK);
 		panelLogo.setBounds(534, 0, 100, 100);
-		frmAddValues.getContentPane().add(panelLogo);
+		frmEditValues.getContentPane().add(panelLogo);
 		
 		panelLogo2 = new JPanel();
 		panelLogo2.setLayout(null);
@@ -136,19 +140,19 @@ public class EditSubjectWindow implements EditWindow {
 		txtId.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtId.setColumns(10);
 		txtId.setBounds(115, 77, 290, 34);
-		frmAddValues.getContentPane().add(txtId);
+		frmEditValues.getContentPane().add(txtId);
 		
 		txtName = new JTextField();
 		txtName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtName.setColumns(10);
 		txtName.setBounds(154, 127, 290, 34);
-		frmAddValues.getContentPane().add(txtName);
+		frmEditValues.getContentPane().add(txtName);
 		
 		txtModule = new JTextField();
 		txtModule.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtModule.setColumns(10);
 		txtModule.setBounds(238, 177, 290, 34);
-		frmAddValues.getContentPane().add(txtModule);
+		frmEditValues.getContentPane().add(txtModule);
 		
 		btnNext = new JButton("Next Entry");
 		btnNext.addActionListener(new ActionListener() {
@@ -164,7 +168,7 @@ public class EditSubjectWindow implements EditWindow {
 		});
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNext.setBounds(384, 509, 138, 39);
-		frmAddValues.getContentPane().add(btnNext);
+		frmEditValues.getContentPane().add(btnNext);
 	}
 	
 	public void addDetails() {

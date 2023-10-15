@@ -28,6 +28,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -57,6 +58,9 @@ public class DashboardWindow {
 		frmDashboard.setBounds(10, 10, 1080, 720);
 		frmDashboard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmDashboard.getContentPane().setLayout(null);
+		
+		ImageIcon img = new ImageIcon("src/logo.png");
+        frmDashboard.setIconImage(img.getImage());
 		
 		Border line = BorderFactory.createLineBorder(Color.black);
 		

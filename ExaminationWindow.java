@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -99,6 +100,9 @@ public class ExaminationWindow implements EntityWindow {
 		frmExamination.setBounds(10, 10, 1080, 720);
 		frmExamination.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmExamination.getContentPane().setLayout(null);
+		
+		ImageIcon img = new ImageIcon("src/logo.png");
+        frmExamination.setIconImage(img.getImage());
 		
 		lblEntity = new JLabel("Examination");
 		lblEntity.setFont(new Font("Tahoma", Font.PLAIN, 34));

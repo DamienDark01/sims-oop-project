@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -97,6 +98,9 @@ public class ClassroomWindow implements EntityWindow {
 		frmClassroom.setBounds(10, 10, 1080, 720);
 		frmClassroom.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmClassroom.getContentPane().setLayout(null);
+		
+		ImageIcon img = new ImageIcon("src/logo.png");
+        frmClassroom.setIconImage(img.getImage());
 		
 		lblEntity = new JLabel("Classroom");
 		lblEntity.setFont(new Font("Tahoma", Font.PLAIN, 34));

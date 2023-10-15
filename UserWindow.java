@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -101,6 +102,9 @@ public class UserWindow implements EntityWindow {
 		frmUser.setResizable(false);
 		frmUser.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUser.getContentPane().setLayout(null);
+		
+		ImageIcon img = new ImageIcon("src/logo.png");
+        frmUser.setIconImage(img.getImage());
 		
 		lblEntity = new JLabel("User");
 		lblEntity.setFont(new Font("Tahoma", Font.PLAIN, 34));

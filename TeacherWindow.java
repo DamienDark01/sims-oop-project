@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -103,6 +104,9 @@ public class TeacherWindow implements EntityWindow {
 		frmTeacher.setResizable(false);
 		frmTeacher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTeacher.getContentPane().setLayout(null);
+		
+		ImageIcon img = new ImageIcon("src/logo.png");
+        frmTeacher.setIconImage(img.getImage());
 		
 		lblEntity = new JLabel("Teacher");
 		lblEntity.setFont(new Font("Tahoma", Font.PLAIN, 34));

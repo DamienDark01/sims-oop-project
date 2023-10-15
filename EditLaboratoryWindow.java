@@ -15,6 +15,7 @@ package com.sliit.gui.update;
 // imports
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,7 +35,7 @@ import java.awt.event.ActionEvent;
 public class EditLaboratoryWindow implements EditWindow {
 
 	// properties
-	private JFrame frmAddValues;
+	private JFrame frmEditValues;
 	private JTextField txtId, txtLocation, txtPurpose;
 	private JLabel lblHeader, lblId, lblLocation, lblPurpose, lblName1, lblName2, lblName3;
 	private JButton btnEnterDetails;
@@ -60,33 +61,36 @@ public class EditLaboratoryWindow implements EditWindow {
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
-		frmAddValues = new JFrame();
-		frmAddValues.setTitle("Add values");
-		frmAddValues.setVisible(true);
-		frmAddValues.setResizable(false);
-		frmAddValues.setBounds(10, 10, 650, 700);
-		frmAddValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frmAddValues.getContentPane().setLayout(null);
+		frmEditValues = new JFrame();
+		frmEditValues.setTitle("Add values");
+		frmEditValues.setVisible(true);
+		frmEditValues.setResizable(false);
+		frmEditValues.setBounds(10, 10, 650, 700);
+		frmEditValues.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmEditValues.getContentPane().setLayout(null);
+		
+		ImageIcon img = new ImageIcon("src/logo.png");
+        frmEditValues.setIconImage(img.getImage());
 		
 		lblHeader = new JLabel("Edit values in Laboratory");
 		lblHeader.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblHeader.setBounds(10, 11, 395, 50);
-		frmAddValues.getContentPane().add(lblHeader);
+		frmEditValues.getContentPane().add(lblHeader);
 		
 		lblId = new JLabel("ID :");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblId.setBounds(69, 72, 106, 39);
-		frmAddValues.getContentPane().add(lblId);
+		frmEditValues.getContentPane().add(lblId);
 		
 		lblPurpose = new JLabel("Purpose :");
 		lblPurpose.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblPurpose.setBounds(69, 122, 106, 39);
-		frmAddValues.getContentPane().add(lblPurpose);
+		frmEditValues.getContentPane().add(lblPurpose);
 		
 		lblLocation = new JLabel("Location :");
 		lblLocation.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblLocation.setBounds(69, 172, 125, 39);
-		frmAddValues.getContentPane().add(lblLocation);
+		frmEditValues.getContentPane().add(lblLocation);
 		
 		btnEnterDetails = new JButton("Enter Details");
 		btnEnterDetails.addActionListener(new ActionListener() {
@@ -104,19 +108,19 @@ public class EditLaboratoryWindow implements EditWindow {
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnEnterDetails.setBounds(115, 509, 138, 39);
-		frmAddValues.getContentPane().add(btnEnterDetails);
+		frmEditValues.getContentPane().add(btnEnterDetails);
 		
 		txtResult = new JTextArea();
 		txtResult.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		txtResult.setText("Result...");
 		txtResult.setBounds(115, 559, 407, 50);
-		frmAddValues.getContentPane().add(txtResult);
+		frmEditValues.getContentPane().add(txtResult);
 		
 		panelLogo = new JPanel();
 		panelLogo.setLayout(null);
 		panelLogo.setBackground(Color.BLACK);
 		panelLogo.setBounds(534, 0, 100, 100);
-		frmAddValues.getContentPane().add(panelLogo);
+		frmEditValues.getContentPane().add(panelLogo);
 		
 		panelLogo2 = new JPanel();
 		panelLogo2.setLayout(null);
@@ -140,19 +144,19 @@ public class EditLaboratoryWindow implements EditWindow {
 		txtId.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtId.setColumns(10);
 		txtId.setBounds(115, 77, 290, 34);
-		frmAddValues.getContentPane().add(txtId);
+		frmEditValues.getContentPane().add(txtId);
 		
 		txtPurpose = new JTextField();
 		txtPurpose.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtPurpose.setColumns(10);
 		txtPurpose.setBounds(173, 127, 290, 34);
-		frmAddValues.getContentPane().add(txtPurpose);
+		frmEditValues.getContentPane().add(txtPurpose);
 		
 		txtLocation = new JTextField();
 		txtLocation.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtLocation.setColumns(10);
 		txtLocation.setBounds(173, 172, 290, 34);
-		frmAddValues.getContentPane().add(txtLocation);
+		frmEditValues.getContentPane().add(txtLocation);
 		
 		btnNext = new JButton("Next Entry");
 		btnNext.addActionListener(new ActionListener() {
@@ -168,29 +172,29 @@ public class EditLaboratoryWindow implements EditWindow {
 		});
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNext.setBounds(384, 509, 138, 39);
-		frmAddValues.getContentPane().add(btnNext);
+		frmEditValues.getContentPane().add(btnNext);
 		
 		JLabel lblFName = new JLabel("Teacher Name (First) :");
 		lblFName.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblFName.setBounds(69, 222, 243, 39);
-		frmAddValues.getContentPane().add(lblFName);
+		frmEditValues.getContentPane().add(lblFName);
 		
 		txtFName = new JTextField();
 		txtFName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtFName.setColumns(10);
 		txtFName.setBounds(301, 227, 290, 34);
-		frmAddValues.getContentPane().add(txtFName);
+		frmEditValues.getContentPane().add(txtFName);
 		
 		JLabel lblLName = new JLabel("Teacher Name (Last) :");
 		lblLName.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblLName.setBounds(69, 272, 243, 39);
-		frmAddValues.getContentPane().add(lblLName);
+		frmEditValues.getContentPane().add(lblLName);
 		
 		txtLName = new JTextField();
 		txtLName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtLName.setColumns(10);
 		txtLName.setBounds(301, 277, 290, 34);
-		frmAddValues.getContentPane().add(txtLName);
+		frmEditValues.getContentPane().add(txtLName);
 	}
 	
 	public void addDetails() {
