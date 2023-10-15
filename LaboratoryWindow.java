@@ -243,7 +243,6 @@ public class LaboratoryWindow implements EntityWindow {
 		btnAddLab.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new NewLaboratoryWindow();
-				frmLaboratory.dispose();
 			}
 		});
 		btnAddLab.setFont(new Font("Tahoma", Font.PLAIN, 18));

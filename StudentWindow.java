@@ -246,7 +246,6 @@ public class StudentWindow implements EntityWindow {
 		btnAddStudent = new JButton("Add Student");
 		btnAddStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmStudent.dispose();
 				new NewStudentWindow();
 			}
 		});

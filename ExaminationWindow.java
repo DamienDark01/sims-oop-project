@@ -244,7 +244,6 @@ public class ExaminationWindow implements EntityWindow {
 		btnAddExam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new NewExaminationWindow();
-				frmExamination.dispose();
 			}
 		});
 		btnAddExam.setFont(new Font("Tahoma", Font.PLAIN, 18));

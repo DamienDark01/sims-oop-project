@@ -197,6 +197,11 @@ public class SubjectWindow implements EntityWindow {
 		frmSubject.getContentPane().add(lblEdit);
 		
 		btnAddSubject = new JButton("Add Subject");
+		btnAddSubject.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new NewSubjectWindow();
+			}
+		});
 		btnAddSubject.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAddSubject.setBounds(302, 198, 199, 48);
 		frmSubject.getContentPane().add(btnAddSubject);

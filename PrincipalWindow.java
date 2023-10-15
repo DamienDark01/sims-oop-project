@@ -247,7 +247,6 @@ public class PrincipalWindow implements EntityWindow {
 		btnAddPrincipal = new JButton("Add Principal");
 		btnAddPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmPrincipal.dispose();
 				new NewPrincipalWindow();
 			}
 		});

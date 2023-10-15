@@ -248,7 +248,6 @@ public class UserWindow implements EntityWindow {
 		btnAddUser = new JButton("Add User");
 		btnAddUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmUser.dispose();
 				new NewUserWindow();
 			}
 		});
