@@ -10,7 +10,7 @@
  */
 
 // package
-package project;
+package com.sliit.gui.update;
 
 // imports
 import java.awt.Font;
@@ -23,11 +23,15 @@ import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
+
+import com.sliit.dao.UserDao;
+import com.sliit.entities.User;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 // class implementation
-public class EditUserWindow {
+public class EditUserWindow implements EditWindow {
 
 	// properties
 	private JFrame frmAddValues;
@@ -53,7 +57,7 @@ public class EditUserWindow {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frmAddValues = new JFrame();
 		frmAddValues.setTitle("Add values");
 		frmAddValues.setVisible(true);
@@ -223,7 +227,7 @@ public class EditUserWindow {
 		frmAddValues.getContentPane().add(btnNext);
 	}
 	
-	private void addDetails() {
+	public void addDetails() {
         if (currentIndex >= 0 && currentIndex < list.size()) {
             User user = list.get(currentIndex);
             

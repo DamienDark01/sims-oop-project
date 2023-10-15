@@ -10,7 +10,7 @@
  */
 
 // package
-package project;
+package com.sliit.app;
 
 // imports
 import java.awt.Color;
@@ -23,6 +23,11 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import com.sliit.dao.UserDao;
+import com.sliit.entities.User;
+import com.sliit.gui.general.DashboardWindow;
+
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;

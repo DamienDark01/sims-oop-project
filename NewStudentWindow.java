@@ -10,7 +10,7 @@
  */
 
 // package
-package project;
+package com.sliit.gui.create;
 
 // imports
 import java.awt.Font;
@@ -25,8 +25,10 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
 
+import com.sliit.dao.StudentDao;
+
 // class implementation
-public class NewStudentWindow {
+public class NewStudentWindow implements CreateWindow {
 
 	// properties
 	private JFrame frmAddValues;
@@ -46,7 +48,7 @@ public class NewStudentWindow {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frmAddValues = new JFrame();
 		frmAddValues.setTitle("Add values");
 		frmAddValues.setVisible(true);

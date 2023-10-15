@@ -10,7 +10,7 @@
  */
 
 // package
-package project;
+package com.sliit.entities;
 
 // imports
 public class Classroom {

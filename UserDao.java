@@ -10,7 +10,7 @@
  */
 
 // package
-package project;
+package com.sliit.dao;
 
 // imports
 import java.sql.ResultSet;
@@ -18,6 +18,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+
+import com.sliit.entities.User;
 
 // class implementation
 public class UserDao {
@@ -209,6 +211,7 @@ public class UserDao {
         }
     }
     
+    // return the number of added entries
     public static int getAddConfirmation(String id, String name, String password, String email, String contact, String accType, String address, String gender) {
     	int addedEntries = 0;
     	
@@ -218,6 +221,7 @@ public class UserDao {
     	return addedEntries;
     }
     
+    // return the number of edited entries
     public static int getEditConfirmation(String id, String name, String password, String email, String contact, String accType, String address, String gender) {
     	int editedEntires = 0;
     	
@@ -227,6 +231,7 @@ public class UserDao {
     	return editedEntires;
     }
     
+    // return the number of deleted entries
     public static int getDeleteConfirmation(String pId) {
     	int deletedEntires = 0;
     	

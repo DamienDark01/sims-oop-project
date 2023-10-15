@@ -10,7 +10,7 @@
  */
 
 // package
-package project;
+package com.sliit.dao;
 
 // imports
 import java.sql.ResultSet;
@@ -18,6 +18,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+
+import com.sliit.entities.Laboratory;
+import com.sliit.entities.Teacher;
 
 // class implementation
 public class LaboratoryDao {
@@ -144,6 +147,7 @@ public class LaboratoryDao {
         }
     }
     
+    // return the number of added entries
     public static int getAddConfirmation(String id, String purpose, String location, String fName, String lName) {
     	int addedEntries = 0;
     	
@@ -153,6 +157,7 @@ public class LaboratoryDao {
     	return addedEntries;
     }
     
+    // return the number of edited entries
     public static int getEditConfirmation(String id, String purpose, String location, String fName, String lName) {
     	int editedEntires = 0;
     	
@@ -162,6 +167,7 @@ public class LaboratoryDao {
     	return editedEntires;
     }
     
+    // return the number of deleted entries
     public static int getDeleteConfirmation(String pId) {
     	int deletedEntires = 0;
     	

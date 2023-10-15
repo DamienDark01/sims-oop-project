@@ -10,9 +10,15 @@
  */
 
 // package
-package project;
+package com.sliit.gui.general;
 
+import com.sliit.dao.ClassroomDao;
 // imports
+import com.sliit.entities.Classroom;
+import com.sliit.entities.User;
+import com.sliit.gui.create.NewClassroomWindow;
+import com.sliit.gui.update.EditClassroomWindow;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

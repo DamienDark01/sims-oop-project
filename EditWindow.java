@@ -1,5 +1,5 @@
 /*
- * Class Name : CreateWindow
+ * Class Name : EditWindow
  * Interface
  *
  * Version info : ~
@@ -10,10 +10,11 @@
  */
 
 // package
-package com.sliit.gui.create;
+package com.sliit.gui.update;
 
-interface CreateWindow {
+public interface EditWindow {
 	
 	void initialize();
+	void addDetails();
 
 }

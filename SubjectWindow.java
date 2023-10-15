@@ -10,7 +10,7 @@
  */
 
 // package
-package project;
+package com.sliit.gui.general;
 
 // imports
 import java.awt.Font;
@@ -27,6 +27,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import com.sliit.dao.SubjectDao;
+import com.sliit.entities.Subject;
+import com.sliit.entities.User;
+import com.sliit.gui.create.NewSubjectWindow;
+import com.sliit.gui.update.EditSubjectWindow;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 

@@ -10,7 +10,7 @@
  */
 
 // package
-package project;
+package com.sliit.gui.update;
 
 // imports
 import java.awt.Font;
@@ -22,12 +22,16 @@ import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
+
+import com.sliit.dao.PrincipalDao;
+import com.sliit.entities.Principal;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 // class implementation
-public class EditPrincipalWindow {
+public class EditPrincipalWindow implements EditWindow {
 
 	// properties
 	private JFrame frmAddValues;
@@ -53,7 +57,7 @@ public class EditPrincipalWindow {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frmAddValues = new JFrame();
 		frmAddValues.setTitle("Add values");
 		frmAddValues.setVisible(true);
@@ -223,7 +227,7 @@ public class EditPrincipalWindow {
 		frmAddValues.getContentPane().add(btnNext);
 	}
 	
-	private void addDetails() {
+	public void addDetails() {
         if (currentIndex >= 0 && currentIndex < list.size()) {
             Principal principal = list.get(currentIndex);
             

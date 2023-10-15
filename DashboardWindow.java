@@ -10,12 +10,17 @@
  */
 
 // package
-package project;
+package com.sliit.gui.general;
 
 //imports
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+
+import com.sliit.app.LoginWindow;
+import com.sliit.entities.User;
+import com.sliit.gui.update.EditUserWindow;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 

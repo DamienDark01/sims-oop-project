@@ -10,7 +10,7 @@
  */
 
 // package
-package project;
+package com.sliit.gui.create;
 
 // imports
 import java.awt.Font;
@@ -22,11 +22,14 @@ import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
+
+import com.sliit.dao.ClassroomDao;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 // class implementation
-public class NewClassroomWindow {
+public class NewClassroomWindow implements CreateWindow {
 
 	// properties
 	private JFrame frmAddValues;
@@ -47,7 +50,7 @@ public class NewClassroomWindow {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frmAddValues = new JFrame();
 		frmAddValues.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmAddValues.setVisible(true);
@@ -163,4 +166,5 @@ public class NewClassroomWindow {
 		txtLName.setBounds(294, 177, 290, 34);
 		frmAddValues.getContentPane().add(txtLName);
 	}
+	
 }

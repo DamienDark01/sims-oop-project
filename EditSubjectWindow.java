@@ -10,7 +10,7 @@
  */
 
 // package
-package project;
+package com.sliit.gui.update;
 
 // imports
 import java.awt.Font;
@@ -22,12 +22,16 @@ import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
+
+import com.sliit.dao.SubjectDao;
+import com.sliit.entities.Subject;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 // class implementation
-public class EditSubjectWindow {
+public class EditSubjectWindow implements EditWindow {
 
 	// properties
 	private JFrame frmAddValues;
@@ -53,7 +57,7 @@ public class EditSubjectWindow {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frmAddValues = new JFrame();
 		frmAddValues.setTitle("Add values");
 		frmAddValues.setVisible(true);
@@ -163,7 +167,7 @@ public class EditSubjectWindow {
 		frmAddValues.getContentPane().add(btnNext);
 	}
 	
-	private void addDetails() {
+	public void addDetails() {
         if (currentIndex >= 0 && currentIndex < list.size()) {
             Subject sub = list.get(currentIndex);
             

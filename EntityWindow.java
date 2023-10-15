@@ -10,12 +10,15 @@
  */
 
 // package
-package project;
+package com.sliit.gui.general;
 
+// imports
 import java.util.ArrayList;
 
+import com.sliit.entities.User;
+
 // class implementation
-public interface EntityWindow {
+interface EntityWindow {
 	
 	void initialize(User user);
 	<E> void getTable(ArrayList<E> itemList);

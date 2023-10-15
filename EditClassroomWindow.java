@@ -10,7 +10,7 @@
  */
 
 // package
-package project;
+package com.sliit.gui.update;
 
 // imports
 import java.awt.Font;
@@ -22,12 +22,16 @@ import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
+
+import com.sliit.dao.ClassroomDao;
+import com.sliit.entities.Classroom;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 // class implementation
-public class EditClassroomWindow {
+public class EditClassroomWindow implements EditWindow {
 
 	// properties
 	private JFrame frmEditValues;
@@ -53,7 +57,7 @@ public class EditClassroomWindow {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frmEditValues = new JFrame();
 		frmEditValues.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmEditValues.setVisible(true);
@@ -188,7 +192,7 @@ public class EditClassroomWindow {
 		frmEditValues.getContentPane().add(btnNext);
 	}
 	
-	private void addDetails() {
+	public void addDetails() {
         if (currentIndex >= 0 && currentIndex < list.size()) {
             Classroom classroom = list.get(currentIndex);
             

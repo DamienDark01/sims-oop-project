@@ -10,7 +10,7 @@
  */
 
 // package
-package project;
+package com.sliit.gui.update;
 
 // imports
 import java.awt.Font;
@@ -23,11 +23,15 @@ import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
+
+import com.sliit.dao.ExaminationDao;
+import com.sliit.entities.Examination;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 // class implementation
-public class EditExaminationWindow {
+public class EditExaminationWindow implements EditWindow {
 
 	// properties
 	private JFrame frmEditValues;
@@ -52,7 +56,7 @@ public class EditExaminationWindow {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frmEditValues = new JFrame();
 		frmEditValues.setTitle("Edit values");
 		frmEditValues.setVisible(true);
@@ -174,7 +178,7 @@ public class EditExaminationWindow {
 		frmEditValues.getContentPane().add(btnNext);
 	}
 	
-	private void addDetails() {
+	public void addDetails() {
         if (currentIndex >= 0 && currentIndex < list.size()) {
             Examination exam = list.get(currentIndex);
             

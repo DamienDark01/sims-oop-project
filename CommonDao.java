@@ -5,12 +5,12 @@
  * Version info : ~
  *
  * Copyright notice
- * Author Name : 
- * Author Reg No : 
+ * Author Name : Bandara K M D I
+ * Author Reg No : IT22167996
  */
 
 // package
-package project;
+package com.sliit.dao;
 
 // imports
 import java.sql.Connection;
@@ -22,7 +22,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 // class implementation
-public class CommonDao {
+class CommonDao {
 
     private static Connection dbcon = null;
     private static Statement stmt = null;
