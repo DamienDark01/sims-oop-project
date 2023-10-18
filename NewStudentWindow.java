@@ -114,7 +114,7 @@ public class NewStudentWindow implements CreateWindow {
 				String gender = txtGender.getText();
 				
 				int addedEntries = StudentDao.getAddConfirmation(id, fName, lName, email, contact, classId, address, gender);
-				txtResult.setText(addedEntries + " entries added...");
+				txtResult.setText(addedEntries + " entry/entries added...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));

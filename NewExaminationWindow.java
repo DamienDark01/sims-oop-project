@@ -96,7 +96,7 @@ public class NewExaminationWindow implements CreateWindow {
 				String duration = txtDuration.getText();
 				
 				int addedEntries = ExaminationDao.getAddConfirmation(id, subject, examType, duration, duration);
-				txtResult.setText(addedEntries + " entries added...");
+				txtResult.setText(addedEntries + " entry/entries added...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));

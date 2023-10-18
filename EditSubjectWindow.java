@@ -99,7 +99,7 @@ public class EditSubjectWindow implements EditWindow {
 				
 				int editedEntries = SubjectDao.getEditConfirmation(id, name, moduleNum);
 				
-				txtResult.setText("Edited " + editedEntries + "...");
+				txtResult.setText("Edited " + editedEntries + " entry/entries...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));

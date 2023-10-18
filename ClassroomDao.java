@@ -161,7 +161,7 @@ public class ClassroomDao {
     public static int getEditConfirmation(String id, String fName, String lName, String location, String capacity) {
     	int editedEntries = 0;
     	
-    	String query = "UPDATE classroom SET teacher_id=(SELECT teacher_id FROM teacher WHERE teacher_f_name='" + fName + "' AND teacher_l_name='" + lName + "'), location='" + location + "', capacity='" + capacity + "';";
+    	String query = "UPDATE classroom SET teacher_id=(SELECT teacher_id FROM teacher WHERE teacher_f_name='" + fName + "' AND teacher_l_name='" + lName + "'), location='" + location + "', capacity='" + capacity + "' WHERE class_id = '" + id + "';";
     	editedEntries = CommonDao.getInsertUpdateDeleteStatus(query);
     	
     	return editedEntries;

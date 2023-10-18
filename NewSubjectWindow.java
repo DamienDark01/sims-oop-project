@@ -90,7 +90,7 @@ public class NewSubjectWindow implements CreateWindow {
 				String moduleNum = txtModule.getText();
 				
 				int addedEntries = SubjectDao.getAddConfirmation(id, name, moduleNum);
-				txtResult.setText(addedEntries + " entries added...");
+				txtResult.setText(addedEntries + " entry/entries added...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));

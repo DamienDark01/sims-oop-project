@@ -120,7 +120,7 @@ public class NewUserWindow implements CreateWindow {
 				String gender = txtGender.getText();
 				
 				int addedEntries = UserDao.getAddConfirmation(id, name, password, email, contact, accType, address, gender);
-				txtResult.setText(addedEntries + " entries added...");
+				txtResult.setText(addedEntries + " entry/entries added...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));

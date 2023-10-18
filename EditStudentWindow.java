@@ -123,7 +123,7 @@ public class EditStudentWindow implements EditWindow {
 				
 				int editedEntries = StudentDao.getEditConfirmation(id, fName, lName, email, contact, classId, address, gender);
 				
-				txtResult.setText("Edited " + editedEntries + "...");
+				txtResult.setText("Edited " + editedEntries + " entry/entries...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));

@@ -104,7 +104,7 @@ public class EditExaminationWindow implements EditWindow {
 				
 				int editedEntries = ExaminationDao.getEditConfirmation(id, subject, type, duration);
 				
-				txtResult.setText("Edited " + editedEntries + "...");
+				txtResult.setText("Edited " + editedEntries + " entry/entries...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));

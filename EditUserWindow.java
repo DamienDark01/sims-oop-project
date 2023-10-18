@@ -129,7 +129,7 @@ public class EditUserWindow implements EditWindow {
 				
 				int editedEntries = UserDao.getEditConfirmation(id, name, password, email, contact, accType, address, gender);
 				
-				txtResult.setText("Edited " + editedEntries + "...");
+				txtResult.setText("Edited " + editedEntries + " entry/entries...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));

@@ -129,7 +129,7 @@ public class EditPrincipalWindow implements EditWindow {
 				
 				int editedEntries = PrincipalDao.getEditConfirmation(id, fName, lName, email, contact, position, address, gender);
 				
-				txtResult.setText("Edited " + editedEntries + "...");
+				txtResult.setText("Edited " + editedEntries + " entry/entries...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));

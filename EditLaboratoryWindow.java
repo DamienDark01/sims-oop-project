@@ -103,7 +103,7 @@ public class EditLaboratoryWindow implements EditWindow {
 				
 				int editedEntries = LaboratoryDao.getEditConfirmation(id, purpose, location, fName, lName);
 				
-				txtResult.setText("Edited " + editedEntries + "...");
+				txtResult.setText("Edited " + editedEntries + " entry/entries...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));

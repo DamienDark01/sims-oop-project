@@ -99,7 +99,7 @@ public class NewClassroomWindow implements CreateWindow {
 				String capacity = txtCapacity.getText();
 				
 				int addedEntries = ClassroomDao.getAddConfirmation(id, fName, lName, location, capacity);
-				txtResult.setText(addedEntries + " entries added...");
+				txtResult.setText(addedEntries + " entry/entries added...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));

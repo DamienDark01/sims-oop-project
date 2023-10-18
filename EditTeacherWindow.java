@@ -130,7 +130,7 @@ public class EditTeacherWindow implements EditWindow {
 				
 				int editedEntries = TeacherDao.getEditConfirmation(id, fName, lName, subject, email, contact, qualification, address, gender);
 				
-				txtResult.setText("Edited " + editedEntries + "...");
+				txtResult.setText("Edited " + editedEntries + " entry/entries...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));

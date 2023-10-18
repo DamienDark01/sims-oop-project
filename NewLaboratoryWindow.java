@@ -96,7 +96,7 @@ public class NewLaboratoryWindow implements CreateWindow {
 				String lName = txtLName.getText();
 				
 				int addedEntries = LaboratoryDao.getAddConfirmation(id, purpose, location, fName, lName);
-				txtResult.setText(addedEntries + " entries added...");
+				txtResult.setText(addedEntries + " entry/entries added...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));

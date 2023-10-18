@@ -107,7 +107,7 @@ public class EditClassroomWindow implements EditWindow {
 				
 				int editedEntries = ClassroomDao.getEditConfirmation(id, fName, lName, location, capacity);
 				
-				txtResult.setText("Edited " + editedEntries + "...");
+				txtResult.setText("Edited " + editedEntries + " entry/entries...");
 			}
 		});
 		btnEnterDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
